@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Reva Graphics
 
-## Getting Started
+Reva Graphics is a Next.js App Router site for the agency's services, portfolio,
+and contact information.
 
-First, run the development server:
+## Development
+
+Install dependencies and start the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Useful project commands:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+npm run start
+```
 
-## Learn More
+## Routes
 
-To learn more about Next.js, take a look at the following resources:
+Routes are defined under `src/app`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `/` — Home
+- `/about` — About
+- `/application` — Mobile applications
+- `/branding` — Branding
+- `/catalogue` — Catalogue and brochure viewer
+- `/cloud` — Cloud services
+- `/contact` — Contact
+- `/content` — Content services
+- `/corporate` — Corporate printing
+- `/designing` — Design services
+- `/development` — Web development
+- `/events` — Event printing
+- `/gifting` — Corporate gifting
+- `/marketing` — Digital marketing
+- `/portfolio` — Portfolio
+- `/printing` — Printing
+- `/stationery` — Stationery
+- `/videopage` — Video production and editing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Keep route metadata in each route's server `page.jsx`. Interactive pages use
+client components alongside their route files; keep browser APIs and React
+hooks inside those client components. Files served directly by URL belong in
+`public`.
