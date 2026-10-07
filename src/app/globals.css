@@ -312,7 +312,6 @@ html.lenis {
 
   .badge-grid-responsive .badge-item {
     object-fit: contain;
-    max-width: 200%;
   }
 }
 

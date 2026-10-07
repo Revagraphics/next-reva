@@ -9,6 +9,9 @@ export const metadata = {
     title: "Reva Graphics | Creative & Digital Agency",
     description:
         "Creative design, branding, digital marketing, web development, and print solutions for growing businesses.",
+    icons: {
+        icon: "/favicon.png",
+    },
     openGraph: {
         type: "website",
         siteName: "Reva Graphics",

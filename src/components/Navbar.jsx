@@ -184,12 +184,16 @@ export default function Navbar() {
       {/* ================= NAVBAR ================= */}
       <nav
         ref={scope}
-        className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[90%] z-[9999] rounded-3xl bg-white/30 backdrop-blur-[20px] border shadow-xl"
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[90%] z-9999 rounded-3xl bg-white/30 backdrop-blur-[20px] border border-gray-600 shadow-xl"
       >
         <div className="flex justify-between items-center px-6 py-3">
           {/* LOGO */}
           <Link href="/" className="nav-animate-item">
-            <Image src={Logo} className="h-14" alt="Reva Graphics logo" />
+            <Image
+              src={Logo}
+              className="h-14 w-auto object-contain"
+              alt="Reva Graphics logo"
+            />
           </Link>
 
           {/* ================= DESKTOP ================= */}
@@ -239,7 +243,7 @@ export default function Navbar() {
 
                   {/* DROPDOWN PANEL */}
                   <div
-                    className={`absolute left-0 mt-2 w-52 bg-white shadow-xl overflow-hidden border-gray-100 transition-all duration-300 origin-top ${
+                    className={`absolute left-0 mt-2 w-52 bg-white shadow-xl overflow-hidden border border-gray-100 transition-all duration-300 origin-top ${
                       desktopDropdown === key
                         ? "opacity-100 scale-100 visible"
                         : "opacity-0 scale-95 invisible"
@@ -319,7 +323,11 @@ export default function Navbar() {
       >
         <div className="flex justify-between items-center p-6 border-b">
           <Link href="/" onClick={closeMobile}>
-            <Image src={Logo} className="h-9" alt="Reva Graphics" />
+            <Image
+              src={Logo}
+              className="h-9 w-auto object-contain"
+              alt="Reva Graphics"
+            />
           </Link>
           <HiX
             className="text-3xl cursor-pointer"
