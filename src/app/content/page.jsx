@@ -6,6 +6,7 @@ import Image from 'next/image'
 
 import benefit1 from "@/assets/benefit1.svg?url";
 import benefit2 from "@/assets/benefit2.svg?url";
+import { createPageMetadata } from "@/lib/seo";
 import benefit3 from "@/assets/benefit3.svg?url";
 import benefit4 from "@/assets/benefit4.svg?url";
 import benefit5 from "@/assets/benefit5.svg?url";
@@ -13,16 +14,11 @@ import benefit6 from "@/assets/benefit6.svg?url";
 import devloper from "@/assets/developers.svg?url";
 import team from "@/assets/team-support.svg?url";
 
-export const metadata = {
-  title: "Content Creation Services | Reva Graphics",
-  description:
-    "Create clear, engaging brand content with Reva Graphics, including digital content, copywriting, and creative production.",
-  openGraph: {
-    title: "Content Creation Services | Reva Graphics",
-    description:
-      "Digital content, copywriting, and creative production to help your brand connect with customers.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Content Creation Services | Reva Graphics",
+  "Create clear, engaging brand content with Reva Graphics, including digital content, copywriting, and creative production.",
+  "/content",
+);
 
 export default function Content() {
   const Benefits = [

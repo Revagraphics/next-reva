@@ -6,17 +6,13 @@ import Instagram from "@/components/Instagram";
 // import content from "../assets/content.png";
 import ShimmerText from "@/components/ShimmerText";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Brand Identity & Design Services | Reva Graphics",
-  description:
-    "Build a distinctive brand with Reva Graphics, from brand strategy and visual identity to creative advertising and culture.",
-  openGraph: {
-    title: "Brand Identity & Design Services | Reva Graphics",
-    description:
-      "Brand strategy, visual identity, creative advertising, and brand culture tailored to your business.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Brand Identity & Design Services | Reva Graphics",
+  "Build a distinctive brand with Reva Graphics, from brand strategy and visual identity to creative advertising and culture.",
+  "/branding",
+);
 
 // Helper function to remove floating image
 // const removeFloatingImage = (imageId, setFloatingImages) => {

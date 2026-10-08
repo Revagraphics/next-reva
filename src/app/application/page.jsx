@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import GridBg from "@/components/GridBg";
 import ShimmerText from "@/components/ShimmerText";
+import { createPageMetadata } from "@/lib/seo";
 
 import {
   FaMobileAlt,
@@ -13,16 +14,11 @@ import {
   FaCircle
 } from "react-icons/fa";
 
-export const metadata = {
-  title: "Mobile App Design & Development | Reva Graphics",
-  description:
-    "Plan and build intuitive mobile applications with product strategy, user-focused design, and custom development from Reva Graphics.",
-  openGraph: {
-    title: "Mobile App Design & Development | Reva Graphics",
-    description:
-      "Product strategy, user-focused app design, and custom mobile development from Reva Graphics.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Mobile App Design & Development | Reva Graphics",
+  "Plan and build intuitive mobile applications with product strategy, user-focused design, and custom development from Reva Graphics.",
+  "/application",
+);
 
 export default function Application() {
   return (

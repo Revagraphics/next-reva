@@ -6,19 +6,15 @@ import Link from "next/link";
 import WorkFilter from "@/components/WorkFilter";
 import bg from "@/assets/about.webp";
 import ShimmerText from "@/components/ShimmerText";
+import { createPageMetadata } from "@/lib/seo";
 import GridBg from "@/components/GridBg";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
 
-export const metadata = {
-  title: "Graphic & Digital Design Services | Reva Graphics",
-  description:
-    "Explore graphic design, digital design, and visual communication services created by the Reva Graphics team.",
-  openGraph: {
-    title: "Graphic & Digital Design Services | Reva Graphics",
-    description:
-      "Graphic design, digital design, and visual communication for distinctive brands.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Graphic & Digital Design Services | Reva Graphics",
+  "Explore graphic design, digital design, and visual communication services created by the Reva Graphics team.",
+  "/designing",
+);
 
 const projectsData = [
   {

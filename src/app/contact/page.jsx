@@ -3,17 +3,13 @@ import Feedback from "@/components/Feedback";
 import ShimmerText from "@/components/ShimmerText";
 import FAQ from "@/components/FAQ";
 import GridBg from "@/components/GridBg";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Contact Reva Graphics | Start a Project",
-  description:
-    "Contact Reva Graphics to discuss creative design, marketing, development, and print projects for your business.",
-  openGraph: {
-    title: "Contact Reva Graphics | Start a Project",
-    description:
-      "Talk to Reva Graphics about your next design, marketing, development, or print project.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Contact Reva Graphics | Start a Project",
+  "Contact Reva Graphics to discuss creative design, marketing, development, and print projects for your business.",
+  "/contact",
+);
 
 // const pageData = [
 //   {

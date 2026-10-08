@@ -1,17 +1,13 @@
 import ShimmerText from "@/components/ShimmerText";
 import GridBg from "@/components/GridBg";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Cloud Services & Solutions | Reva Graphics",
-  description:
-    "Modernize your business with scalable cloud architecture, migration, and managed solutions from Reva Graphics.",
-  openGraph: {
-    title: "Cloud Services & Solutions | Reva Graphics",
-    description:
-      "Scalable cloud architecture, migration, and managed solutions for your business.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Cloud Services & Solutions | Reva Graphics",
+  "Modernize your business with scalable cloud architecture, migration, and managed solutions from Reva Graphics.",
+  "/cloud",
+);
 
 export default function Cloud() {
   const services = [

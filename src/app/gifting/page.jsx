@@ -6,6 +6,7 @@ import campaign from "@/assets/campaign.webp";
 import website from "@/assets/banglore.jpg";
 import branding from "@/assets/branding.webp";
 import brochure from "@/assets/brochure.jpg";
+import { createPageMetadata } from "@/lib/seo";
 import testimonial from "@/assets/testimonial.webp";
 import packaging from "@/assets/product-packaging.webp";
 
@@ -22,16 +23,11 @@ const works = [
   { id: 10, image: packaging, title: "Gift Cards" },
 ];
 
-export const metadata = {
-  title: "Corporate Gifting Solutions | Reva Graphics",
-  description:
-    "Discover thoughtful custom corporate gifts and branded merchandise for clients, teams, and business events.",
-  openGraph: {
-    title: "Corporate Gifting Solutions | Reva Graphics",
-    description:
-      "Custom corporate gifts and branded merchandise for clients, teams, and events.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Corporate Gifting Solutions | Reva Graphics",
+  "Discover thoughtful custom corporate gifts and branded merchandise for clients, teams, and business events.",
+  "/gifting",
+);
 
 export default function Cloud() {
   const services = [

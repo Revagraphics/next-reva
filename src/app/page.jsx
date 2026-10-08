@@ -1,15 +1,11 @@
 import HomePageClient from "./HomePageClient";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Reva Graphics | Creative, Design & Digital Solutions",
-  description:
-    "Build your brand with Reva Graphics: creative design, digital marketing, web development, and print solutions.",
-  openGraph: {
-    title: "Reva Graphics | Creative, Design & Digital Solutions",
-    description:
-      "Creative design, digital marketing, web development, and print solutions tailored to your business.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Reva Graphics | Creative, Design & Digital Solutions",
+  "Build your brand with Reva Graphics: creative design, digital marketing, web development, and print solutions.",
+  "/",
+);
 
 export default function HomePage() {
   return <HomePageClient />;

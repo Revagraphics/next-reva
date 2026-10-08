@@ -6,6 +6,7 @@ import campaign from "@/assets/campaign.webp";
 import website from "@/assets/banglore.jpg";
 import branding from "@/assets/branding.webp";
 import brochure from "@/assets/brochure.jpg";
+import { createPageMetadata } from "@/lib/seo";
 import testimonial from "@/assets/testimonial.webp";
 import packaging from "@/assets/product-packaging.webp";
 
@@ -22,16 +23,11 @@ const works = [
   { id: 10, image: packaging, title: "Event Lanyards" },
 ];
 
-export const metadata = {
-  title: "Event Branding & Design | Reva Graphics",
-  description:
-    "Create memorable events with custom event branding, design, promotional materials, and print solutions from Reva Graphics.",
-  openGraph: {
-    title: "Event Branding & Design | Reva Graphics",
-    description:
-      "Custom event branding, promotional design, and print solutions from Reva Graphics.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Event Branding & Design | Reva Graphics",
+  "Create memorable events with custom event branding, design, promotional materials, and print solutions from Reva Graphics.",
+  "/events",
+);
 
 export default function Cloud() {
   const services = [

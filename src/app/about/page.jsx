@@ -6,6 +6,7 @@ import build from "@/assets/building.jpg";
 import Mission from "@/components/Mission";
 import Ethics from "@/components/Ethics";
 import TeamWork from "@/components/TeamWork";
+import { createPageMetadata } from "@/lib/seo";
 import SelectedWork from "@/components/SelectedWork";
 import ShimmerText from "@/components/ShimmerText";
 import GridBg from "@/components/GridBg";
@@ -18,16 +19,11 @@ import brochure from "@/assets/brochure.jpg";
 import testimonial from "@/assets/testimonial.webp";
 import packaging from "@/assets/product-packaging.webp";
 
-export const metadata = {
-  title: "About Reva Graphics | Creative Digital Agency",
-  description:
-    "Meet Reva Graphics, a creative agency delivering design, marketing, and digital solutions for ambitious businesses.",
-  openGraph: {
-    title: "About Reva Graphics | Creative Digital Agency",
-    description:
-      "Learn about the people, mission, and creative expertise behind Reva Graphics.",
-  },
-};
+export const metadata = createPageMetadata(
+  "About Reva Graphics | Creative Digital Agency",
+  "Meet Reva Graphics, a creative agency delivering design, marketing, and digital solutions for ambitious businesses.",
+  "/about",
+);
 
 const works = [
   { id: 1, image: campaign, title: "Campaign" },

@@ -6,6 +6,7 @@ import campaign from "@/assets/campaign.webp";
 import website from "@/assets/banglore.jpg";
 import branding from "@/assets/branding.webp";
 import brochure from "@/assets/brochure.jpg";
+import { createPageMetadata } from "@/lib/seo";
 import testimonial from "@/assets/testimonial.webp";
 import packaging from "@/assets/product-packaging.webp";
 import idCards from "@/assets/event/id-cards.jpg";
@@ -26,16 +27,11 @@ const works = [
   { id: 11, image: packaging, title: "Lanyards" },
 ];
 
-export const metadata = {
-  title: "Corporate Design & Printing | Reva Graphics",
-  description:
-    "Strengthen your corporate identity with business stationery, branded materials, and print services from Reva Graphics.",
-  openGraph: {
-    title: "Corporate Design & Printing | Reva Graphics",
-    description:
-      "Corporate identity, branded business materials, and professional printing from Reva Graphics.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Corporate Design & Printing | Reva Graphics",
+  "Strengthen your corporate identity with business stationery, branded materials, and print services from Reva Graphics.",
+  "/corporate",
+);
 
 export default function Cloud() {
   const services = [

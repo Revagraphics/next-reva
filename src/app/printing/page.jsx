@@ -4,17 +4,13 @@ import ShimmerText from "@/components/ShimmerText";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
 import HeroVideo from "@/components/HeroVideo";
 import ScrollToServices from "@/components/ScrollToServices";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Printing Services | Reva Graphics",
-  description:
-    "High-quality printing services for business cards, brochures, banners, and marketing materials.",
-  openGraph: {
-    title: "Printing Services | Reva Graphics",
-    description:
-      "High-quality printing services for business cards, brochures, banners, and marketing materials.",
-  },
-};
+export const metadata = createPageMetadata(
+  "Printing Services | Reva Graphics",
+  "High-quality printing services for business cards, brochures, banners, and marketing materials.",
+  "/printing",
+);
 
 const services = [
   {
