@@ -153,7 +153,7 @@ export default function ReviewCarousel() {
                       alt={review.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 42vw"
-                      className="w-full h-full object-contain md:object-cover transition-transform duration-700"
+                      className="w-full h-full object-cover object-center transition-transform duration-700"
                     />
                   </div>
                   {/* Mobile Gradient Overlay */}

@@ -30,8 +30,8 @@ export default function ImageSlider() {
     track.innerHTML = loopedItems
       .map(
         (img) => `
-          <div class="branding_slide w-[56vw] max-w-[320px] min-w-[220px] h-[26vh] min-h-[180px] md:w-[42vw] md:max-w-[420px] md:min-w-[300px] md:h-[42vh] lg:w-[58vh] lg:min-w-[420px] lg:h-[42vh] flex-shrink-0 rounded-3xl overflow-hidden shadow-2xl bg-white p-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-3xl">
-            <img src="${img.img.src}" alt="Slide ${img.id}" class="w-full h-full object-contain transition-transform duration-700 hover:scale-[1.03]" draggable="false" />
+          <div class="branding_slide w-[56vw] max-w-[320px] min-w-[220px] h-[26vh] min-h-[180px] md:w-[42vw] md:max-w-[420px] md:min-w-[300px] md:h-[42vh] lg:w-[58vh] lg:min-w-[420px] lg:h-[42vh] flex-shrink-0 rounded-3xl overflow-hidden shadow-2xl bg-white transition-all duration-300 hover:scale-[1.02] hover:shadow-3xl">
+            <img src="${img.img.src}" alt="Slide ${img.id}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]" draggable="false" />
           </div>
         `,
       )

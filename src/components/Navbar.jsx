@@ -28,7 +28,7 @@ const dropdownConfigs = {
   },
   services: {
     label: "Designing",
-    to: "/designing",
+    to: "/branding",
     items: [
       { to: "/branding", label: "Brand Identity" },
       { to: "/marketing", label: "Digital Marketing" },
@@ -184,7 +184,7 @@ export default function Navbar() {
       {/* ================= NAVBAR ================= */}
       <nav
         ref={scope}
-        className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[90%] z-9999 rounded-3xl bg-white/30 backdrop-blur-[20px] border border-gray-600 shadow-xl"
+        className="fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-[90%] z-9999 rounded-3xl bg-white/30 backdrop-blur-[20px] border border-stone-300 shadow-xl"
       >
         <div className="flex justify-between items-center px-6 py-3">
           {/* LOGO */}

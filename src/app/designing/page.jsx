@@ -3,7 +3,6 @@ import SelectedWork from "@/components/SelectedWork";
 import Expertise from "@/components/Expertise";
 import Image from 'next/image'
 import Link from "next/link";
-import WorkFilter from "@/components/WorkFilter";
 import bg from "@/assets/about.webp";
 import ShimmerText from "@/components/ShimmerText";
 import { createPageMetadata } from "@/lib/seo";
@@ -106,42 +105,42 @@ export default function designing() {
     <>
 
       <div className="bg-white">
-        <section className="relative min-h-[70vh] flex items-center bg-linear-to-br from-zinc-50 via-white to-slate-50 overflow-hidden">
+        <section className="relative flex min-h-[80svh] items-center overflow-hidden bg-linear-to-br from-zinc-50 via-white to-slate-50">
           {/* Subtle Light Background Pattern */}
           <div className="absolute inset-0 bg-[radial-gradient(at_center,#e0e7ff30_0%,transparent_70%)]"></div>
 
-          <div className="mt-10">
-            <div className="max-w-[80%] mx-auto px-6  lg:px-12 relative z-10">
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="relative z-10 w-full py-20 sm:py-24">
+            <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
+              <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
                 {/* Left Content */}
-                <div className="space-y-8 pt-12  lg:pt-0">
-                  <div className="inline-flex items-center mt-14 lg:mt-4 gap-1 bg-white px-5 py-2.5 rounded-full border border-orange-200 shadow-sm">
-                    <span className="text-orange-600 text-sm font-semibold tracking-widest">
+                <div className="space-y-6 sm:space-y-8">
+                  <div className="inline-flex items-center gap-1 rounded-full border  px-4 py-2.5 shadow-sm sm:px-5">
+                    {/* <span className="text-orange-600 text-sm font-semibold tracking-widest">
                       PREMIUM DESIGNING
-                    </span>
+                    </span> */}
                   </div>
 
-                  <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold text-zinc-900 leading-tight tracking-tighter">
+                  <h1 className="text-4xl font-bold leading-tight tracking-tighter text-zinc-900 sm:text-5xl md:text-6xl lg:text-6xl">
                     We Design <ShimmerText>Experiences</ShimmerText>
-                    <br />
+                 
                     That Convert
                   </h1>
 
-                  <p className="text-xl text-zinc-600 max-w-lg">
+                  <p className="max-w-lg text-base text-zinc-600 sm:text-lg lg:text-xl">
                     From stunning branding to high-converting websites and
                     packaging — we craft designs that don&apos;t just look good, they
                     perform.
                   </p>
 
-                  <div className="flex flex-wrap gap-4 pt-4 lg:pt-6">
+                  <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:gap-4 sm:pt-4">
                     <Link href="/portfolio">
-                      <button className="bg-linear-to-r from-orange-500 to-pink-500 text-white px-9 py-4 rounded-2xl hover:scale-105 font-semibold transition-all active:scale-95 shadow-lg shadow-orange-500/30">
+                      <button className="w-full rounded-2xl bg-linear-to-r from-orange-500 to-pink-500 px-7 py-3.5 font-semibold text-white shadow-lg shadow-orange-500/30 transition-all hover:scale-105 active:scale-95 sm:w-auto sm:px-9 sm:py-4">
                         Explore Our Work
                       </button>
                     </Link>
                     <Link href="/development">
                       {" "}
-                      <button className="border border-zinc-300 hover:border-zinc-400 text-zinc-700 px-9 py-4 rounded-2xl font-medium transition-all">
+                      <button className="w-full rounded-2xl border border-zinc-300 px-7 py-3.5 font-medium text-zinc-700 transition-all hover:border-zinc-400 sm:w-auto sm:px-9 sm:py-4">
                         View Services
                       </button>
                     </Link>
@@ -152,20 +151,20 @@ export default function designing() {
                 <div className="relative flex justify-center lg:justify-end">
                   <div className="relative">
                     {/* Main Decorative Frame */}
-                    <div className="w-70 md:w-82.5 lg:w-87.5 aspect-square bg-linear-to-r from-orange-500 to-pink-500 rounded-[4rem] rotate-6 shadow-2xl overflow-hidden">
+                    <div className="relative aspect-square w-[min(72vw,20rem)] rotate-3 overflow-hidden rounded-[2.5rem] bg-linear-to-r from-orange-500 to-pink-500 shadow-2xl sm:w-88 sm:rotate-6 sm:rounded-[3rem] lg:w-100 lg:rounded-[4rem]">
                       {/* Inner Card */}
-                      <div className="absolute inset-4 bg-white rounded-[3rem] flex items-center justify-center shadow-inner">
+                      <div className="absolute inset-3 flex items-center justify-center rounded-4xl bg-white shadow-inner sm:inset-4 sm:rounded-[2.5rem] lg:rounded-[3rem]">
                         <div className="text-center">
-                          <div className="text-4xl mb-4 text-orange-500">
+                          <div className="mb-3 text-3xl text-orange-500 sm:mb-4 sm:text-4xl">
                             <ShimmerText>✦</ShimmerText>
                           </div>
-                          <p className="text-2xl font-light text-zinc-500">
+                          <p className="text-lg font-light text-zinc-500 sm:text-2xl">
                             Premium
                           </p>
-                          <p className="text-2xl font-bold tracking-wider text-zinc-900">
+                          <p className="text-lg font-bold tracking-wider text-zinc-900 sm:text-2xl">
                             DESIGN STUDIO
                           </p>
-                          <p className="text-2xl font-bold tracking-wider">
+                          <p className="text-lg font-bold tracking-wider sm:text-2xl">
                             <ShimmerText>REVA GRAPHICS</ShimmerText>
                           </p>
                         </div>
@@ -180,7 +179,7 @@ export default function designing() {
             </div>
 
             {/* Scroll Indicator - Light Theme */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-400 text-sm flex flex-col items-center gap-2">
+            <div className="pointer-events-none absolute bottom-3 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs text-zinc-400 sm:bottom-5 sm:text-sm">
               <span>Scroll to explore</span>
               <div className="w-px h-12 bg-linear-to-b from-transparent via-zinc-300 to-transparent"></div>
             </div>
@@ -225,20 +224,6 @@ export default function designing() {
             </div>
           </div>
         </section>
-
-        <WorkFilter
-          title="Our Creative Work"
-          subtitle="We design and develop high-impact digital experiences across industries"
-          projects={projectsData}
-          categories={[
-            "All",
-            "logistics",
-            "E-commerce",
-            "Education",
-            "Informative & Service",
-            "International Site",
-          ]}
-        />
 
         <SelectedWork />
         <Expertise />

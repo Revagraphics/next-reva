@@ -162,6 +162,47 @@ export default function Development() {
                     software that will suit your business requirement.
                   </p>
 
+                  
+                </div>
+
+                <div className="pt-4">
+                  <ul className="space-y-4">
+                    {/* Item 1 */}
+                    <li className="flex items-center gap-3 text-[#30303c] font-bold leading-tight">
+                      <FaRedo className="text-orange-500 shrink-0" size={20} />
+                      <span>Fast landing Pages</span>
+                    </li>
+
+                    {/* Item 2 */}
+                    <li className="flex items-center gap-3 text-[#30303c] font-bold leading-tight">
+                      <FaTachometerAlt
+                        className="text-amber-500 shrink-0"
+                        size={20}
+                      />
+                      <span>Easy to understand functions</span>
+                    </li>
+
+                    {/* Item 3 */}
+                    <li className="flex items-center gap-3 text-[#30303c] font-bold leading-tight">
+                      <FaUsers className="text-purple-500 shrink-0" size={20} />
+                      <span>User-friendly designs</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              
+
+              {/* Left Content */}
+              <div className="space-y-8 lg:pt-8">
+                <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-[#30303c]">
+                  We offer <ShimmerText>Full Stack</ShimmerText>  Solutions
+                </h1>
+
+                <div className="space-y-6 text-[#555] text-[17px] md:text-lg leading-relaxed">
+
                   <p>
                     Once the Web Design is ready and approved by the Client, the
                     Website Developer takes over the process of giving
@@ -208,6 +249,26 @@ export default function Development() {
                       <span>User-friendly designs</span>
                     </li>
                   </ul>
+                </div>
+              </div>
+
+              {/* Right Image / Visual */}
+              <div className="flex justify-start lg:justify-end pt-8 lg:pt-0">
+                <div className="relative w-full max-w-lg lg:max-w-xl">
+                  {/* Decorative Background */}
+
+                  <div className="absolute -inset-8 md:-inset-12 bg-linear-to-br from-orange-400/20 via-amber-400/20 to-purple-400/20 rounded-[3.5rem] -rotate-6 blur-2xl" />
+
+                  {/* Main Image */}
+                  <Image
+                    src={web2}
+                    alt="Web Application and CRM Development"
+                    className="relative z-10 w-full h-auto rounded-3xl  
+                       object-cover transition-transform duration-500 hover:scale-[1.02]"
+                  />
+
+                  {/* Subtle shine/overlay effect */}
+                  <div className="absolute inset-0 bg-linear-to-br from-white/10 via-transparent to-transparent rounded-3xl pointer-events-none z-20" />
                 </div>
               </div>
             </div>

@@ -2,49 +2,54 @@
 
 // src/pages/CatalogueBrochure.jsx
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import Image from 'next/image'
+import Image from "next/image";
+import Link from "next/link";
 import gsap from "gsap";
 import catalogue1 from "@/assets/catalogue2.png";
 import catalogue2 from "@/assets/catalogue3.png";
 import catalogue3 from "@/assets/catalogue4.png";
 import ShimmerText from "@/components/ShimmerText";
 import GridBg from "@/components/GridBg";
-import { FaCut, FaTimes } from "react-icons/fa";
-
-const PdfFlipBook = dynamic(() => import("@/components/PdfFlipBook"), {
-  ssr: false,
-  loading: () => (
-    <div className="text-center text-sm text-neutral-500">
-      Loading PDF viewer...
-    </div>
-  ),
-});
 
 export default function Catalogue() {
   const pageRef = useRef(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [selectedPdf, setSelectedPdf] = useState(null);
+  const [pdfs, setPdfs] = useState([]);
+  const [cataloguesLoading, setCataloguesLoading] = useState(true);
+  const [cataloguesError, setCataloguesError] = useState("");
 
-  // Lock body scroll when modal is open
   useEffect(() => {
-    if (selectedPdf) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+    const controller = new AbortController();
+
+    async function loadCatalogues() {
+      try {
+        const response = await fetch("/api/catalogues", {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Catalogue request failed (${response.status})`);
+        }
+
+        const data = await response.json();
+        if (!Array.isArray(data.catalogues)) {
+          throw new Error("Catalogue API returned an invalid response");
+        }
+
+        setPdfs(data.catalogues);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          setCataloguesError("Catalogues could not be loaded. Please try again later.");
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setCataloguesLoading(false);
+        }
+      }
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedPdf]);
 
-  // Close modal on Escape
-  useEffect(() => {
-    const handleEsc = (e) => {
-      if (e.key === "Escape") setSelectedPdf(null);
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
+    loadCatalogues();
+    return () => controller.abort();
   }, []);
 
   // GSAP animations
@@ -69,6 +74,15 @@ export default function Catalogue() {
         },
       );
 
+    }, pageRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!pdfs.length) return undefined;
+
+    const ctx = gsap.context(() => {
       gsap.fromTo(
         ".pdf-card",
         { opacity: 0, y: 50 },
@@ -84,29 +98,7 @@ export default function Catalogue() {
     }, pageRef);
 
     return () => ctx.revert();
-  }, []);
-
-  // Only show files that are present in public/. Add new entries when their PDFs are uploaded.
-  const pdfs = [
-    {
-      id: 1,
-      title: "Aarika Lookbook 2026",
-      description: "Spring / Summer Collection",
-      cover:
-        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800",
-      pdfUrl: "/aarika.pdf",
-      pages: 24,
-    },
-     {
-      id: 2,
-      title: "eezy chair 2026",
-      description: "Spring / Summer Collection",
-      cover:
-        "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800",
-      pdfUrl: "/aarika_2.pdf",
-      pages: 24,
-    },
-  ];
+  }, [pdfs.length]);
 
   const products = [
     {
@@ -166,10 +158,25 @@ export default function Catalogue() {
 
             {/* Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {cataloguesLoading && (
+                <p className="col-span-full py-12 text-center text-neutral-500">
+                  Loading catalogues...
+                </p>
+              )}
+              {cataloguesError && (
+                <p className="col-span-full py-12 text-center text-red-600">
+                  {cataloguesError}
+                </p>
+              )}
+              {!cataloguesLoading && !cataloguesError && pdfs.length === 0 && (
+                <p className="col-span-full py-12 text-center text-neutral-500">
+                  No catalogues are available right now.
+                </p>
+              )}
               {pdfs.map((pdf) => (
-                <button
-                  key={pdf.id}
-                  onClick={() => setSelectedPdf(pdf)}
+                <Link
+                  key={pdf.slug}
+                  href={`/catalogue/${pdf.slug}`}
                   className="pdf-card group text-left bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-neutral-100 hover:border-neutral-200"
                 >
                   {/* Cover */}
@@ -201,7 +208,7 @@ export default function Catalogue() {
                       {pdf.pages} pages
                     </span>
                   </div>
-                </button>
+                </Link>
               ))}
             </div>
           </div>
@@ -326,43 +333,6 @@ export default function Catalogue() {
 
 
 
-      {/* ====================================================== */}
-      {/* MODAL - PDF FLIP BOOK                                  */}
-      {/* ====================================================== */}
-      {selectedPdf && (
-        <div className="fixed inset-0 z-10000 flex items-center justify-center p-4 md:p-8">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/75 backdrop-blur-md"
-            onClick={() => setSelectedPdf(null)}
-          />
-
-          {/* Modal  height is 90vh and should be cover whole pdf */}
-          <div className="relative w-full max-w-7xl h-[min(94vh,980px)] bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col">
-            {/* Header */}
-            <div className="flex items-center justify-between px-6 md:px-8 py-5 border-b border-neutral-100 shrink-0">
-              <div>
-                <h3 className="font-serif text-2xl text-neutral-900">{selectedPdf.title} </h3>
-                <p className="text-sm text-neutral-500 mt-0.5 font-light"> {selectedPdf.description} </p>
-              </div>
-
-              <button
-                onClick={() => setSelectedPdf(null)}
-                className="p-2.5 rounded-full hover:bg-neutral-100 transition text-neutral-500 hover:text-neutral-900"
-                aria-label="Close"
-              >
-                <FaTimes size={22} />
-              
-              </button>
-            </div>
-
-            {/* Flip Book */}
-            <div className="flex flex-1 min-h-0 items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_center,#fff_0%,#f5f5f4_72%)] py-4 px-2 md:px-6">
-              <PdfFlipBook pdfUrl={selectedPdf.pdfUrl} />
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }

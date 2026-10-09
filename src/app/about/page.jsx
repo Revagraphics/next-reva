@@ -40,7 +40,7 @@ export default function About() {
       
 
       <div className=" min-h-screen">
-        <section className="mt-28 px-4 flex item-center lg:h-[60vh] max-w-[90%] mx-auto">
+        <section className="mt-28 px-4 flex item-center lg:h-[75vh] max-w-[90%] mx-auto">
           <div className="flex flex-col lg:flex-row gap-2 lg:gap-12 items-center">
             {/* TEXT */}
             <section className="hero-animate flex-1 text-center lg:text-left">
@@ -77,6 +77,7 @@ export default function About() {
                 />
               </div>
             </section>
+
           </div>
         </section>
 

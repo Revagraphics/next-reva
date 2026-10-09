@@ -138,7 +138,7 @@ export default function Portfolio() {
           </div>
 
           {/* FAN CARDS */}
-          <div className="lg:col-span-7 flex justify-center mt-10 lg:mt-0">
+          <div className="lg:col-span-7 flex justify-center mt-14 lg:mt-0">
             <div className="relative w-65 sm:w-[320px] lg:w-95 h-105 sm:h-115 lg:h-125">
               {testimonials.map((t, i) => {
                 const total = testimonials.length;

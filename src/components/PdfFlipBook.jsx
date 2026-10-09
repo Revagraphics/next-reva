@@ -28,29 +28,29 @@ export default function PdfFlipBook({ pdfUrl }) {
   const [loadError, setLoadError] = useState(null);
   const [activePage, setActivePage] = useState(0);
   const [zoom, setZoom] = useState(1);
+  const [isPortrait, setIsPortrait] = useState(false);
   const viewerRef = useRef(null);
+  const bookAreaRef = useRef(null);
   const bookRef = useRef(null);
 
   useEffect(() => {
-    const viewer = viewerRef.current;
-    if (!viewer) return undefined;
+    const bookArea = bookAreaRef.current;
+    if (!bookArea) return undefined;
 
     const updateSize = () => {
-      const { width, height } = viewer.getBoundingClientRect();
-      const isMobile = width < 720;
-      const availableWidth = isMobile ? width - 24 : width / 2 - 16;
-      const availableHeight = Math.max(360, height - 24);
+      const { width, height } = bookArea.getBoundingClientRect();
+      const portrait = width < 720;
+      setIsPortrait(portrait);
+      const availableWidth = portrait ? width - 16 : (width - 32) / 2;
+      const availableHeight = Math.max(1, height - 8);
       const pdfRatio = 0.707;
-      const nextWidth = Math.max(
-        280,
-        Math.min(760, availableWidth, availableHeight * pdfRatio),
-      );
+      const nextWidth = Math.max(1, Math.min(760, availableWidth, availableHeight * pdfRatio));
 
       setPageWidth(Math.floor(nextWidth));
     };
 
     const observer = new ResizeObserver(updateSize);
-    observer.observe(viewer);
+    observer.observe(bookArea);
     updateSize();
     return () => observer.disconnect();
   }, []);
@@ -133,60 +133,66 @@ export default function PdfFlipBook({ pdfUrl }) {
         </div>
       </div>
 
-      <Document
-        file={pdfUrl}
-        onLoadSuccess={onDocumentLoadSuccess}
-        onLoadError={onDocumentLoadError}
-        loading={<p className="text-sm text-neutral-500">Opening catalogue...</p>}
-        error={
-          <p className="max-w-sm text-center text-sm text-red-600">
-            This catalogue could not be opened. Please try again later.
-          </p>
-        }
+      <div
+        ref={bookAreaRef}
+        className="flex min-h-0 w-full flex-1 items-center justify-center overflow-hidden"
       >
-        {numPages && (
-          <HTMLFlipBook
-            key={`${zoomedPageWidth}-${numPages}`}
-            width={zoomedPageWidth}
-            height={Math.round(zoomedPageWidth / 0.707)}
-            size="stretch"
-            minWidth={280}
-            maxWidth={900}
-            minHeight={400}
-            maxHeight={1200}
-            maxShadowOpacity={0.5}
-            showCover={true}
-            mobileScrollSupport={true}
-            ref={bookRef}
-            startPage={0}
-            useMouseEvents={true}
-            flippingTime={850}
-            drawShadow={true}
-            onFlip={(event) => setActivePage(event.data)}
-            className="pdf-flip-book shadow-2xl"
-          >
-            {Array.from(new Array(numPages), (_, index) => (
-              <PdfPage key={`page_${index + 1}`}>
-                {Math.abs(index - activePage) <= 1 ? (
-                  <Page
-                    pageNumber={index + 1}
-                    width={zoomedPageWidth}
-                    devicePixelRatio={1}
-                    renderTextLayer={true}
-                    renderAnnotationLayer={true}
-                    loading={<div className="pdf-page-loading" />}
-                  />
-                ) : (
-                  <div className="pdf-page-loading" aria-hidden="true" />
-                )}
-                <p className="pdf-page-number">
-                  {index + 1} / {numPages}
-                </p>
-              </PdfPage>
-            ))}
-          </HTMLFlipBook>
-        )}
-      </Document>
+        <Document
+          file={pdfUrl}
+          onLoadSuccess={onDocumentLoadSuccess}
+          onLoadError={onDocumentLoadError}
+          loading={<p className="text-sm text-neutral-500">Opening catalogue...</p>}
+          error={
+            <p className="max-w-sm text-center text-sm text-red-600">
+              This catalogue could not be opened. Please try again later.
+            </p>
+          }
+        >
+          {numPages && (
+            <HTMLFlipBook
+              key={`${zoomedPageWidth}-${numPages}-${isPortrait}`}
+              width={zoomedPageWidth}
+              height={Math.round(zoomedPageWidth / 0.707)}
+              size="stretch"
+              minWidth={1}
+              maxWidth={900}
+              minHeight={1}
+              maxHeight={1200}
+              usePortrait={isPortrait}
+              maxShadowOpacity={0.5}
+              showCover={true}
+              mobileScrollSupport={true}
+              ref={bookRef}
+              startPage={0}
+              useMouseEvents={true}
+              flippingTime={850}
+              drawShadow={true}
+              onFlip={(event) => setActivePage(event.data)}
+              className="pdf-flip-book shadow-2xl"
+            >
+              {Array.from(new Array(numPages), (_, index) => (
+                <PdfPage key={`page_${index + 1}`}>
+                  {Math.abs(index - activePage) <= 1 ? (
+                    <Page
+                      pageNumber={index + 1}
+                      width={zoomedPageWidth}
+                      devicePixelRatio={1}
+                      renderTextLayer={true}
+                      renderAnnotationLayer={true}
+                      loading={<div className="pdf-page-loading" />}
+                    />
+                  ) : (
+                    <div className="pdf-page-loading" aria-hidden="true" />
+                  )}
+                  <p className="pdf-page-number">
+                    {index + 1} / {numPages}
+                  </p>
+                </PdfPage>
+              ))}
+            </HTMLFlipBook>
+          )}
+        </Document>
+      </div>
 
       {numPages && (
         <div className="mt-6 flex items-center gap-6">

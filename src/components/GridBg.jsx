@@ -1,8 +1,3 @@
-'use client';
-
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-
 const GridBg = ({
   children,
   className = "",
@@ -11,53 +6,6 @@ const GridBg = ({
   bgColor = "#111827",
   lineOpacity = 0.6,
 }) => {
-  const topRightRef = useRef(null);
-  const leftCenterRef = useRef(null);
-
-  useEffect(() => {
-    // Top Right System
-    if (topRightRef.current) {
-      const outerOrbit = topRightRef.current.querySelector(".outer-orbit");
-      const innerOrbit = topRightRef.current.querySelector(".inner-orbit");
-
-      gsap.to(outerOrbit, {
-        rotation: 360,
-        duration: 8,
-        ease: "linear",
-        repeat: -1,
-      });
-
-      gsap.to(innerOrbit, {
-        rotation: 360,
-        duration: 11,
-        ease: "linear",
-        repeat: -1,
-      });
-    }
-
-    // Left Center System (Previously Bottom Left)
-    if (leftCenterRef.current) {
-      const outerOrbit = leftCenterRef.current.querySelector(".outer-orbit");
-      const innerOrbit = leftCenterRef.current.querySelector(".inner-orbit");
-
-      gsap.to(outerOrbit, {
-        rotation: -360,
-        duration: 9,
-        ease: "linear",
-        repeat: -1,
-      });
-
-      gsap.to(innerOrbit, {
-        rotation: -360,
-        duration: 12,
-        ease: "linear",
-        repeat: -1,
-      });
-    }
-
-    return () => gsap.killTweensOf(".orbit-wrapper");
-  }, []);
-
   return (
     <div
       className={`relative w-full min-h-auto overflow-hidden ${className}`}
@@ -88,7 +36,7 @@ const GridBg = ({
       />
 
       {/* === Top Right System === */}
-      <div className="absolute top-14 right-8 md:right-16 lg:right-16 z-10" ref={topRightRef}>
+      <div className="absolute top-14 right-8 md:right-16 lg:right-16 z-10">
         <div className="relative w-[180px] h-[180px] md:w-[260px] md:h-[260px]">
           {/* Orbit Rings */}
           <div className="absolute w-full h-full border border-gray-400/30 rounded-full" />
@@ -96,7 +44,7 @@ const GridBg = ({
 
           {/* Outer Planet */}
           <div
-            className="outer-orbit absolute w-full h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="outer-orbit orbit-spin-forward absolute w-full h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ transformOrigin: "center" }}
           >
             <div
@@ -111,7 +59,7 @@ const GridBg = ({
 
           {/* Inner Planet */}
           <div
-            className="inner-orbit absolute w-[55%] h-[55%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="inner-orbit orbit-spin-forward-slow absolute w-[55%] h-[55%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ transformOrigin: "center" }}
           >
             <div
@@ -127,7 +75,7 @@ const GridBg = ({
       </div>
 
       {/* === Left Center System (Moved from Bottom Left) === */}
-      <div className="absolute left-6 bottom-1 md:left-16 lg:left-24 z-10" ref={leftCenterRef}>
+      <div className="absolute left-6 bottom-1 md:left-16 lg:left-24 z-10">
         <div className="relative w-[220px] h-[220px] md:w-[340px] md:h-[340px]">
           {/* Orbit Rings */}
           <div className="absolute w-full h-full border border-gray-400/30 rounded-full" />
@@ -135,7 +83,7 @@ const GridBg = ({
 
           {/* Outer Planet - Orange */}
           <div
-            className="outer-orbit absolute w-full h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="outer-orbit orbit-spin-reverse absolute w-full h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ transformOrigin: "center" }}
           >
             <div
@@ -150,7 +98,7 @@ const GridBg = ({
 
           {/* Inner Planet - Pink */}
           <div
-            className="inner-orbit absolute w-[52%] h-[52%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            className="inner-orbit orbit-spin-reverse-slow absolute w-[52%] h-[52%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ transformOrigin: "center" }}
           >
             <div

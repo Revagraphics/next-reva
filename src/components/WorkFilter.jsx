@@ -27,7 +27,7 @@ export default function WorkFilter({
 
   return (
     <section className="py-20 bg-white">
-      <div className="max-w-[80%] mx-auto px-6">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-zinc-900 mb-4">
@@ -38,11 +38,13 @@ export default function WorkFilter({
 
         {/* Tabs */}
         <div
-          className="flex gap-2
-            overflow-x-auto
+          className="flex w-full min-w-0 gap-2
+            overflow-x-auto overscroll-x-contain
+            touch-pan-x
             scrollbar-hide
             bg-white
             rounded-2xl
+            mt-5
             p-2
             border
             shadow-sm"
@@ -51,7 +53,7 @@ export default function WorkFilter({
             <button
               key={category}
               onClick={() => setActiveTab(category)}
-              className={`whitespace-nowrap
+              className={`shrink-0 whitespace-nowrap
     px-6 py-3
     rounded-xl
     text-sm font-semibold

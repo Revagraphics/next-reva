@@ -1,5 +1,168 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+.home-rotating-words {
+  display: inline-grid;
+  vertical-align: bottom;
+}
+
+.home-rotating-measure,
+.home-rotating-word {
+  grid-area: 1 / 1;
+}
+
+.home-rotating-measure {
+  visibility: hidden;
+}
+
+.home-rotating-word {
+  animation: home-word-enter 500ms ease both;
+}
+
+@keyframes home-word-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(0.25em);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-logo-marquee {
+  animation: home-logo-marquee 32s linear infinite running;
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  will-change: transform;
+}
+
+.home-logo-group {
+  flex: none;
+}
+
+.home-logo-card {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 1rem;
+  box-shadow: 0 4px 14px rgb(15 23 42 / 0.08);
+  display: flex;
+  height: 6rem;
+  justify-content: center;
+  padding: 1rem;
+  width: 11rem;
+}
+
+@keyframes home-logo-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sector-marquee {
+  animation: sector-marquee 70s linear infinite;
+  display: flex;
+}
+
+.sector-marquee-reverse {
+  animation-direction: reverse;
+  animation-duration: 75s;
+}
+
+@keyframes sector-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.orbit-spin-forward,
+.orbit-spin-forward-slow,
+.orbit-spin-reverse,
+.orbit-spin-reverse-slow {
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.orbit-spin-forward {
+  animation-name: orbit-spin-forward;
+  animation-duration: 8s;
+}
+
+.orbit-spin-forward-slow {
+  animation-name: orbit-spin-forward;
+  animation-duration: 11s;
+}
+
+.orbit-spin-reverse {
+  animation-name: orbit-spin-reverse;
+  animation-duration: 9s;
+}
+
+.orbit-spin-reverse-slow {
+  animation-name: orbit-spin-reverse;
+  animation-duration: 12s;
+}
+
+@keyframes orbit-spin-forward {
+  to {
+    rotate: 1turn;
+  }
+}
+
+@keyframes orbit-spin-reverse {
+  to {
+    rotate: -1turn;
+  }
+}
+
+.shimmer-animated-text {
+  animation: 4s linear infinite custom-text-shimmer;
+  background: linear-gradient(
+      110deg,
+      #c2185b 0%,
+      #ef7b20 35%,
+      #e84393 55%,
+      #ef7b20 75%,
+      #c2185b 100%
+    )
+    0 0 / 200%;
+  background-clip: text;
+  display: inline-block;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes custom-text-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-rotating-word,
+  .home-logo-marquee,
+  .sector-marquee,
+  .orbit-spin-forward,
+  .orbit-spin-forward-slow,
+  .orbit-spin-reverse,
+  .orbit-spin-reverse-slow,
+  .shimmer-animated-text {
+    animation: none;
+  }
+}
+
+@media (min-width: 640px) {
+  .home-logo-card {
+    height: 7rem;
+    width: 13rem;
+  }
+}
 
 .portfolio-fan-card {
   transform:

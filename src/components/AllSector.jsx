@@ -1,7 +1,4 @@
-'use client';
-
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import React from "react";
 import DecorativeUnderline from "../components/DecorativeUnderline";
 import GridBg from "../components/GridBg";
 import {
@@ -84,37 +81,6 @@ const logos = [
 ];
 
 const AllSector = () => {
-  const marquee1Ref = useRef(null);
-  const marquee2Ref = useRef(null);
-
-  useEffect(() => {
-    const marquee1 = marquee1Ref.current;
-    const marquee2 = marquee2Ref.current;
-
-    if (marquee1) {
-      gsap.to(marquee1, {
-        x: "-50%",
-        duration: 70,
-        ease: "linear",
-        repeat: -1,
-      });
-    }
-
-    if (marquee2) {
-      gsap.set(marquee2, { x: "-50%" });
-      gsap.to(marquee2, {
-        x: "0%",
-        duration: 75,
-        ease: "linear",
-        repeat: -1,
-      });
-    }
-
-    return () => {
-      gsap.killTweensOf([marquee1, marquee2]);
-    };
-  }, []);
-
   const renderCard = (item) => (
     <div
       className="flex items-center gap-4 bg-white border border-zinc-100 hover:border-zinc-200 
@@ -160,22 +126,38 @@ const AllSector = () => {
 
         {/* First Marquee - Left to Right */}
         <div className="overflow-hidden mb-6">
-          <div ref={marquee1Ref} className="flex gap-4 w-max">
-            {[...sectors, ...sectors, ...sectors].map((item, index) => (
-              <React.Fragment key={`m1-${item.id}-${index}`}>
-                {renderCard(item)}
-              </React.Fragment>
+          <div className="sector-marquee sector-marquee-forward w-max">
+            {[0, 1].map((group) => (
+              <div
+                key={group}
+                className="flex gap-4 pr-4"
+                aria-hidden={group === 1}
+              >
+                {sectors.map((item) => (
+                  <React.Fragment key={`m1-${group}-${item.id}`}>
+                    {renderCard(item)}
+                  </React.Fragment>
+                ))}
+              </div>
             ))}
           </div>
         </div>
 
         {/* Second Marquee - Right to Left */}
         <div className="overflow-hidden">
-          <div ref={marquee2Ref} className="flex gap-4 w-max">
-            {[...logos, ...logos, ...logos].map((item, index) => (
-              <React.Fragment key={`m2-${item.id}-${index}`}>
-                {renderCard(item)}
-              </React.Fragment>
+          <div className="sector-marquee sector-marquee-reverse w-max">
+            {[0, 1].map((group) => (
+              <div
+                key={group}
+                className="flex gap-4 pr-4"
+                aria-hidden={group === 1}
+              >
+                {logos.map((item) => (
+                  <React.Fragment key={`m2-${group}-${item.id}`}>
+                    {renderCard(item)}
+                  </React.Fragment>
+                ))}
+              </div>
             ))}
           </div>
         </div>
@@ -185,5 +167,4 @@ const AllSector = () => {
 };
 
 export default AllSector;
-
 

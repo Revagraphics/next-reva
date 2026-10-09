@@ -15,14 +15,14 @@ import Invision from "@/assets/illustrator.svg";
 import figma from "@/assets/Figma.svg";
 
 const softwareTools = [
-  { name: "After Effects", icon: adobe1, size: "h-16 w-16" },
-  { name: "Premiere Pro", icon: adobe2, size: "h-20 w-20" },
-  { name: "Final Cut Pro", icon: adobe3, size: "h-14 w-14" },
-  { name: "DaVinci Resolve", icon: adobe4, size: "h-20 w-20" },
-  { name: "Photoshop", icon: photoshop, size: "h-14 w-14" },
-  { name: "After Effects", icon: Adob, size: "h-12 w-12" },
-  { name: "Illustrator", icon: Invision, size: "h-14 w-14" },
-  { name: "Figma", icon: figma, size: "h-12 w-12" },
+  { name: "After Effects", icon: adobe1, size: "h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16" },
+  { name: "Premiere Pro", icon: adobe2, size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20" },
+  { name: "Final Cut Pro", icon: adobe3, size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14" },
+  { name: "DaVinci Resolve", icon: adobe4, size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20" },
+  { name: "Photoshop", icon: photoshop, size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14" },
+  { name: "After Effects", icon: Adob, size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12" },
+  { name: "Illustrator", icon: Invision, size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14" },
+  { name: "Figma", icon: figma, size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12" },
 ];
 
 const projects = [
@@ -94,7 +94,7 @@ export default function VideoPage() {
 
       <div className="bg-white min-h-screen">
         {/* ================= HERO SECTION ================= */}
-        <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden bg-[#f7f4f0]">
+        <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden bg-[#f7f4f0]">
           <div className="absolute inset-0 "></div>
 
           {/* Floating Software Badges */}
@@ -162,13 +162,13 @@ export default function VideoPage() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 sm:py-20">
+          <div className="relative z-10 mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 sm:py-24 md:py-28">
             <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-black/60 backdrop-blur-md sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.3em]">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF9800] animate-pulse sm:h-2.5 sm:w-2.5"></span>
               Professional reel-creation
             </div>
 
-            <h1 className="mb-4 text-3xl font-bold leading-tight tracking-tight text-zinc-900 sm:mb-6 sm:text-6xl md:text-7xl">
+            <h1 className="mb-4 text-3xl font-bold leading-tight tracking-tight text-zinc-900 sm:mb-6 sm:text-5xl md:text-6xl lg:text-7xl">
               Video <ShimmerText>Editing</ShimmerText> Solution
             </h1>
 
@@ -179,13 +179,13 @@ export default function VideoPage() {
               centerColor="#3B82F6"
             />
 
-            <p className="mx-auto mt-5 mb-8 max-w-3xl px-2 text-sm leading-relaxed text-black/90 sm:mt-6 sm:mb-10 sm:px-4 sm:text-xl md:text-2xl">
+            <p className="mx-auto mt-5 mb-8 max-w-3xl px-2 text-sm leading-relaxed text-black/90 sm:mt-6 sm:mb-10 sm:px-4 sm:text-lg md:text-xl lg:text-2xl">
               Cinematic storytelling, high-impact reels, and polished corporate
                 films. We turn your raw footage into content that captivates and
               converts.
             </p>
 
-            <div className="mx-auto flex w-full max-w-xl flex-row items-stretch justify-center gap-2 sm:gap-4">
+            <div className="mx-auto flex w-full max-w-xl flex-col items-stretch justify-center gap-3 min-[420px]:flex-row sm:gap-4">
               <button
                 onClick={() =>
                   document
