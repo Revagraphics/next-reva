@@ -139,7 +139,7 @@ export default function Feedback() {
             Get In Touch
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100 leading-tight">
-            Let&apos;s Build Something Great
+            Let&apos;s Build Something Extraordinary
           </h2>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-stretch">

@@ -1,6 +1,4 @@
-
-import Image from 'next/image'
-import ServicesSection from "@/components/ServicesSection";
+import Image from "next/image";
 import SelectedWork from "@/components/SelectedWork";
 import SkillsTabs from "@/components/SkillTabs";
 import Feedback from "@/components/Feedback";
@@ -23,6 +21,7 @@ import ShimmerText from "@/components/ShimmerText";
 import RotatingText from "@/components/RotatingText";
 import GridBg from "@/components/GridBg";
 import AllSector from "@/components/AllSector";
+import ServicesShowcase from "@/components/ServicesShowcase";
 
 // selected images
 import campaign from "@/assets/campaign.webp";
@@ -45,6 +44,7 @@ import {
   FaUsers,
   FaHandshake,
   FaCalendarAlt,
+  FaRegCheckCircle,
 } from "react-icons/fa";
 
 function StatCard({
@@ -63,13 +63,13 @@ function StatCard({
           background: `linear-gradient(to bottom, ${color}, ${color2})`,
         }}
       />
-      
+
       <div className="flex flex-col h-full ml-2">
         <div className="flex items-start gap-3 sm:gap-4 xl:gap-5">
           <div className="flex shrink-0 aspect-square w-12 h-12 sm:w-14 sm:h-14 xl:w-16 xl:h-16 items-center justify-center rounded-2xl bg-orange-50 border border-orange-100 group-hover:scale-105 transition-transform duration-300 mt-1">
             <Icon className="w-6 h-6 sm:w-7 sm:h-7 xl:w-8 xl:h-8 text-orange-500 stroke-[1.5]" />
           </div>
-          
+
           <div className="flex-1 min-w-0">
             <span className="text-orange-500 text-xs sm:text-sm font-bold tracking-[0.125em] uppercase">
               {title}
@@ -78,9 +78,8 @@ function StatCard({
               {value}
             </h3>
           </div>
-          
         </div>
-        
+
         <div className="pt-4 flex-grow flex flex-col justify-center">
           <p className="text-sm sm:text-base md:text-sm xl:text-base leading-relaxed text-slate-600">
             {desc}
@@ -110,8 +109,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <section className="flex-1 order-2 lg:order-1 text-center lg:text-left">
             <h1 className="text-3xl text-[#30303c] sm:text-2xl md:text-4xl lg:text-6xl font-poppins font-bold leading-tight">
-              Expert Branding & Web{" "}
-              <span>Development Solutions Across</span>{" "}
+              Expert Branding & Web <span>Development Solutions Across</span>{" "}
               <RotatingText />
             </h1>
 
@@ -175,9 +173,9 @@ export default function Home() {
                 </span>
 
                 <h2 className="text-[#30303c] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
-                  <span>Top-Rated</span> Web Designing And{" "}
+                  <span>We Pioneer Design Tech & Physical Print </span>
                   <ShimmerText className="font-bold">
-                    Development Company
+                    Under The Roof
                   </ShimmerText>
                 </h2>
 
@@ -191,13 +189,36 @@ export default function Home() {
               <div className="about-container flex flex-col lg:flex-row items-center lg:items-start gap-12 lg:gap-16 xl:gap-20 w-full">
                 <div className="space-y-8 lg:space-y-10 w-full lg:w-1/2">
                   <p className="text-slate-600 leading-relaxed text-[17px] sm:text-lg text-justify md:text-left">
-                    Reva started its operation in the year 2019. We are a
-                    Worldwide, based Web Designing and Digital Marketing
-                    Company. Our main Domain is Web Design, Web Development,
-                    Digital Marketing, Product Design, and Cloud Services.
-                    Customer Satisfaction and the Highest rate of Customer
-                    Repeatability make us one of the pioneers in the field.
+                    Founded in 2019, Reva Graphics has grown from a specialized
+                    brand identity design studio into an end-to-end full-service
+                    agency offering a wide range of solutions, including digital
+                    marketing, web software, Android and iOS app development,
+                    corporate merchandising, premium gifting, and enterprise
+                    printing services.
                   </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  p-4">
+                    {[
+                      ["Full In-House Production", "Zero outsourcing delay"],
+                      [
+                        "Dedicated Project Managers",
+                        "24/7 client communication",
+                      ],
+                    ].map(([title, desc]) => (
+                      <div key={title} className="flex items-center  rounded-sm gap-3">
+                        <div className="rounded-xl bg-cyan-500/10 p-3">
+                          <FaRegCheckCircle className="text-xl text-cyan-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-sm font-semibold text-black sm:text-base">
+                            {title}
+                          </h3>
+                          <p className="text-xs text-gray-800 sm:text-sm">
+                            {desc}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
                   <div className="flex items-center justify-center gap-2 sm:gap-3 lg:justify-start lg:gap-4">
                     {[badge1, badge2, badge3].map((badge, i) => (
@@ -253,7 +274,8 @@ export default function Home() {
       </section>
 
       <AllSector />
-      <ServicesSection />
+      <ServicesShowcase />
+
       <SkillsTabs />
 
       <SelectedWork

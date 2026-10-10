@@ -211,6 +211,31 @@
   scrollbar-width: none;
 }
 
+.service-showcase-card {
+  flex: 0 0 min(82cqi, 320px);
+}
+
+@container (min-width: 700px) {
+  .service-showcase-card {
+    flex-basis: min(320px, calc((100cqi - 3rem) / 3));
+  }
+}
+
+.services-showcase-viewport {
+  container-type: inline-size;
+}
+
+@media (min-width: 1024px) and (min-height: 700px) {
+  .services-showcase-pin {
+    height: min(680px, calc(100svh - 80px));
+  }
+
+  .services-showcase-viewport {
+    overflow-x: hidden;
+    padding-block: 44px 12px;
+  }
+}
+
 /* my-font-face */
 @font-face {
   font-family: 'MyFont';

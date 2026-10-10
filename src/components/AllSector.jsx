@@ -83,14 +83,16 @@ const logos = [
 const AllSector = () => {
   const renderCard = (item) => (
     <div
-      className="flex items-center gap-4 bg-white border border-zinc-100 hover:border-zinc-200 
+      className="flex items-center gap-4  border border-zinc-100 hover:border-zinc-200 
                     rounded-2xl px-5 py-4 shadow-sm hover:shadow transition-all duration-300 
                     min-w-70 shrink-0"
+        style={{ backgroundColor: `${item.color}15` }}
     >
+      
       {/* Icon Container - Light colored background */}
       <div
-        className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-        style={{ backgroundColor: `${item.color}15` }}
+        className="w-11 h-11 rounded-xl flex items-center bg-zinc-100 justify-center shrink-0"
+        style={{ border: `2px solid ${item.color}` }}
       >
         <item.img
           className="w-6 h-6"
@@ -104,7 +106,7 @@ const AllSector = () => {
       </div>
 
       {/* Text */}
-      <span className="text-[#4b5563]  text-[15px] leading-tight pr-2">
+      <span className="text-[#1f2733]  text-[15px] leading-tight pr-2">
         {item.category}
       </span>
     </div>
