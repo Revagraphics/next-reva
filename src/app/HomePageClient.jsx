@@ -105,7 +105,7 @@ export default function Home() {
   return (
     <div className="bg-white overflow-hidden">
       {/* ================= HERO ================= */}
-      <section className="mt-28 md:mt-20 px-4 flex items-center lg:h-[70vh] max-w-[90vw] justify-center mx-auto py-12 sm:py-16 lg:py-20 sm:px-6 lg:px-8">
+      <section className="mt-28 md:mt-28 px-4 flex items-center lg:min-h-[70vh] max-w-[90vw] justify-center mx-auto py-12 sm:py-16 lg:py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           <section className="flex-1 order-2 lg:order-1 text-center lg:text-left">
             <h1 className="text-3xl text-[#30303c] sm:text-2xl md:text-4xl lg:text-6xl font-poppins font-bold leading-tight">
@@ -163,7 +163,7 @@ export default function Home() {
       </section>
 
       {/* ================= REVA SECTION ================= */}
-      <section className="relative mt-24 overflow-hidden flex justify-center w-full sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative mt-24 overflow-hidden flex justify-center w-full sm:py-10 lg:py-8 px-4 sm:px-6 lg:px-8">
         <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#fff">
           <div className="relative z-10 max-w-[90vw] mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="flex flex-col max-w-295 lg:max-w-none mx-auto gap-12 lg:gap-16 xl:gap-20">

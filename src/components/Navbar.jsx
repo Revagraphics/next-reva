@@ -58,7 +58,7 @@ const dropdownConfigs = {
 
 const navLinkClass = (pathname, href) =>
   `nav-animate-item px-3 py-2 font-bold transition-all duration-200 ${
-    pathname === href ? "text-orange-500" : "text-[#08182b] hover:bg-white/70"
+    pathname === href ? "text-orange-500" : "text-[#08182b] "
   }`;
 
 export default function Navbar() {
@@ -227,7 +227,7 @@ export default function Navbar() {
                       `nav-animate-item flex items-center gap-1 py-2 px-3 font-bold transition-all duration-200 ${
                         pathname === config.to || isGroupActive
                           ? "text-orange-500"
-                          : "text-[#08182b] hover:bg-white/70"
+                          : "text-[#08182b]"
                       }`
                     }
                     aria-haspopup="true"
@@ -277,7 +277,7 @@ export default function Navbar() {
                 `nav-animate-item px-3 py-2 font-bold transition-all duration-200 ${
                   pathname === "/contact"
                     ? "text-orange-500 bg-white/60"
-                    : "text-[#08182b] hover:bg-white/70"
+                    : "text-[#08182b] "
                 }`
               }
             >

@@ -56,7 +56,7 @@ export default function SelectedWork({
   const loopedWorks = [...works, ...works, ...works];
 
   return (
-    <section className="bg-gray-50 py-14 sm:py-20 lg:py-28 overflow-hidden">
+    <section className="bg-gray-50 py-14 sm:py-10 lg:py-8 overflow-hidden">
       <div className="max-w-[90%] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-14">

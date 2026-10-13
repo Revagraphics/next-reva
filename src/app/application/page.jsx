@@ -27,7 +27,7 @@ export default function Application() {
 
       <div className="min-h-screen bg-[#f8fafc]">
         {/* ==================== HERO SECTION ==================== */}
-        <section className="relative h-[80vh] lg:h-screen  flex items-center justify-center overflow-hidden bg-linear-to-br from-[#0f766e] via-[#14b8a6] to-[#22d3ee]">
+        <section className="navbar-clearance-hero relative h-[80vh] lg:h-screen flex items-center justify-center overflow-hidden bg-linear-to-br from-[#0f766e] via-[#14b8a6] to-[#22d3ee]">
           <div className="absolute inset-0 bg-black/30" />
 
           <GridBg

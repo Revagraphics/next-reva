@@ -14,121 +14,15 @@ export const metadata = createPageMetadata(
   "/branding",
 );
 
-// Helper function to remove floating image
-// const removeFloatingImage = (imageId, setFloatingImages) => {
-//   setFloatingImages((prev) => prev.filter((img) => img.id !== imageId));
-// };
-
-// Helper function to animate exit of floating image
-// const animateImageExit = (newImage, setFloatingImages) => {
-//   const el = document.getElementById(`float-${newImage.id}`);
-//   if (el) {
-//     gsap.to(el, {
-//       scale: 0.65,
-//       opacity: 0,
-//       rotation: newImage.rotation * 1.4,
-//       duration: 0.45,
-//       ease: "power2.in",
-//       onComplete: () => removeFloatingImage(newImage.id, setFloatingImages),
-//     });
-//   }
-// };
-
-// Helper function to animate entrance of floating image
-// const animateImageEntrance = (newImage, mouseX, offsetX, mouseY, offsetY) => {
-//   const el = document.getElementById(`float-${newImage.id}`);
-//   if (!el) return;
-
-//   gsap.fromTo(
-//     el,
-//     {
-//       scale: 0.2,
-//       opacity: 0,
-//       rotation: newImage.rotation * 0.4,
-//       x: mouseX + offsetX * 0.6,
-//       y: mouseY + offsetY * 0.6,
-//     },
-
-//     {
-//       scale: 1,
-//       opacity: 1,
-//       rotation: newImage.rotation,
-//       x: newImage.baseX,
-//       y: newImage.baseY,
-//       duration: 0.55,
-//       ease: "back.out(1.6)",
-//     },
-//   );
-// };
-
-// Helper function to create a new floating image
-// const createFloatingImage = (mouseX, mouseY, popupImages) => {
-//   const randomSrc = popupImages[Math.floor(Math.random() * popupImages.length)];
-//   const deviation = 20;
-//   const offsetX = (Math.random() - 0.5) * deviation;
-//   const offsetY = (Math.random() - 0.5) * deviation;
-//   const size = 180 + Math.random() * 70;
-//   const rotation = (Math.random() - 0.5) * 18;
-
-//   return {
-//     id: Date.now() + Math.random(),
-//     src: randomSrc,
-//     baseX: mouseX + offsetX,
-//     baseY: mouseY + offsetY,
-//     size,
-//     rotation,
-//     offsetX,
-//     offsetY,
-//   };
-// };
-
 export default function Branding() {
-  // const handleMouseMove = (e) => {
-  //   if (!containerRef.current) return;
-
-  //   const rect = containerRef.current.getBoundingClientRect();
-  //   const mouseX = e.clientX - rect.left;
-  //   const mouseY = e.clientY - rect.top;
-
-  //   if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
-  //   timeoutRef.current = setTimeout(() => {
-  //     const newImage = createFloatingImage(mouseX, mouseY, popupImages);
-
-  //     setFloatingImages((prev) => [...prev, newImage]);
-
-  //     // GSAP entrance animation (very smooth pop)
-
-  //     requestAnimationFrame(() => {
-  //       animateImageEntrance(
-  //         newImage,
-  //         mouseX,
-  //         newImage.offsetX,
-  //         mouseY,
-  //         newImage.offsetY,
-  //       );
-  //     });
-
-  //     // Smooth exit animation + remove
-  //     setTimeout(() => {
-  //       animateImageExit(newImage, setFloatingImages);
-  //     }, 1550); // how long each image stays visible
-  //   }, 80); // spawn delay - feels very responsive
-  // };
-
-  // const handleMouseLeave = () => {
-  //   if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  // };
-
+  
   return (
     <>
 
       <div className="overflow-x-hidden">
 
         <div
-          className="relative h-screen w-full bg-gray-50 overflow-hidden"
-          // onMouseMove={handleMouseMove}
-          // onMouseLeave={handleMouseLeave}
+          className="navbar-clearance-brand-hero relative h-screen w-full bg-gray-50 overflow-hidden"
         >
           {/* Video + Overlays (unchanged) */}
           <video
@@ -144,7 +38,7 @@ export default function Branding() {
 
 
           {/* Text Content */}
-          <div className="absolute inset-0 flex items-center justify-center text-center px-6 z-10 pointer-events-none">
+          <div className="navbar-clearance-hero-content absolute inset-0 flex items-center justify-center text-center px-6 z-10 pointer-events-none">
             <div className="max-w-4xl mx-auto">
               <h1 className="text-3xl md:text-7xl font-bold  text-gray-900 leading-tight tracking-tight mb-6">
                 We build a unique Brand

@@ -5,7 +5,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import HTMLFlipBook from "react-pageflip";
 import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
-import { FaDownload, FaMinus, FaPlus, FaPrint } from "react-icons/fa";
+import { FaDownload, FaMinus, FaPlus, FaPrint, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/legacy/build/pdf.worker.min.mjs",
@@ -30,6 +30,24 @@ export default function PdfFlipBook({ pdfUrl }) {
 
   const bookAreaRef = useRef(null);
   const bookRef = useRef(null);
+  const flipSoundRef = useRef(null);
+
+  // Load page-flip sound once
+  useEffect(() => {
+    flipSoundRef.current = new Audio("/sound/flipsound.ogg");
+    flipSoundRef.current.volume = 0.6;
+    // Preload
+    flipSoundRef.current.load();
+  }, []);
+
+  const playFlipSound = useCallback(() => {
+    if (flipSoundRef.current) {
+      flipSoundRef.current.currentTime = 0;
+      flipSoundRef.current.play().catch(() => {
+        // Ignore autoplay / user-gesture errors
+      });
+    }
+  }, []);
 
   // Responsive size calculation – respects available space
   useEffect(() => {
@@ -98,6 +116,22 @@ export default function PdfFlipBook({ pdfUrl }) {
   const zoomIn = () => setZoom((z) => Math.min(1.6, +(z + 0.1).toFixed(1)));
   const zoomOut = () => setZoom((z) => Math.max(0.7, +(z - 0.1).toFixed(1)));
 
+  const flipPrev = () => {
+    bookRef.current?.pageFlip()?.flipPrev();
+  };
+
+  const flipNext = () => {
+    bookRef.current?.pageFlip()?.flipNext();
+  };
+
+  const onFlip = useCallback(
+    (e) => {
+      setActivePage(e.data);
+      playFlipSound();
+    },
+    [playFlipSound],
+  );
+
   const zoomedPageWidth = Math.round(pageWidth * zoom);
   const zoomedPageHeight = Math.round(zoomedPageWidth / pageAspect);
 
@@ -120,6 +154,9 @@ export default function PdfFlipBook({ pdfUrl }) {
       )),
     [numPages, zoomedPageWidth],
   );
+
+  const canGoPrev = activePage > 0;
+  const canGoNext = activePage < (numPages ?? 1) - 1;
 
   return (
     <div className="pdf-flip-viewer flex h-full min-h-0 w-full flex-col">
@@ -171,11 +208,23 @@ export default function PdfFlipBook({ pdfUrl }) {
         </div>
       </div>
 
-      {/* Book area – this is the only flex-1 region */}
+      {/* Book area – relative so we can position side buttons */}
       <div
         ref={bookAreaRef}
-        className="relative flex min-h-0 flex-1 items-center justify-center overflow-auto"
+        className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden"
       >
+        {/* Previous button – left side */}
+        {numPages && (
+          <button
+            onClick={flipPrev}
+            disabled={!canGoPrev}
+            className="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-neutral-900/90 p-3 text-white shadow-lg transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-30 md:left-4 md:p-3.5"
+            aria-label="Previous page"
+          >
+            <FaChevronLeft size={18} />
+          </button>
+        )}
+
         <Document
           file={pdfUrl}
           onLoadSuccess={onDocumentLoadSuccess}
@@ -208,33 +257,33 @@ export default function PdfFlipBook({ pdfUrl }) {
               useMouseEvents={true}
               flippingTime={700}
               drawShadow={true}
-              onFlip={(e) => setActivePage(e.data)}
+              onFlip={onFlip}
               className="pdf-flip-book shadow-xl"
             >
               {pages}
             </HTMLFlipBook>
           )}
         </Document>
+
+        {/* Next button – right side */}
+        {numPages && (
+          <button
+            onClick={flipNext}
+            disabled={!canGoNext}
+            className="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full bg-neutral-900/90 p-3 text-white shadow-lg transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-30 md:right-4 md:p-3.5"
+            aria-label="Next page"
+          >
+            <FaChevronRight size={18} />
+          </button>
+        )}
       </div>
 
-      {/* Controls – always visible, never push the book off-screen */}
+      {/* Page indicator only (no buttons) */}
       {numPages && (
-        <div className="mt-3 flex shrink-0 items-center justify-center gap-5 pb-1">
-          <button
-            onClick={() => bookRef.current?.pageFlip()?.flipPrev()}
-            className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-700"
-          >
-            ← Previous
-          </button>
+        <div className="mt-3 flex shrink-0 items-center justify-center pb-1">
           <span className="text-sm font-medium text-neutral-600">
             {activePage + 1} – {Math.min(activePage + (isPortrait ? 1 : 2), numPages)} / {numPages}
           </span>
-          <button
-            onClick={() => bookRef.current?.pageFlip()?.flipNext()}
-            className="rounded-full bg-neutral-900 px-5 py-2 text-sm font-medium text-white transition hover:bg-neutral-700"
-          >
-            Next →
-          </button>
         </div>
       )}
 

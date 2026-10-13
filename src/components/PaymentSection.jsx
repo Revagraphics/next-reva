@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React, { useLayoutEffect, useRef } from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import gsap from "gsap";
 import ShimmerText from "./ShimmerText";
 import DecorativeUnderline from "./DecorativeUnderline";
@@ -26,73 +26,43 @@ export default function PaymentSection() {
 
   useLayoutEffect(() => {
     const track = trackRef.current;
-
     if (!track) return;
 
-    // Wait until the browser has rendered everything
     const setupLoop = () => {
-      // Kill previous animation if any
       tweenRef.current?.kill();
 
-      const items = track.children;
+      // Calculate the exact width of a single complete set of items
+      const singleSetWidth = track.scrollWidth / 3;
 
-      if (items.length < images.length * 2) return;
+      gsap.set(track, { x: 0 });
 
-      // Width of ONE complete set
-      const firstItem = items[0];
-      const lastItemOfFirstSet = items[images.length - 1];
-
-      const firstItemRect = firstItem.getBoundingClientRect();
-      const lastItemRect = lastItemOfFirstSet.getBoundingClientRect();
-
-      const singleSetWidth =
-        lastItemRect.right - firstItemRect.left + 24;
-
-      /*
-        24px = 1.5rem gap
-
-        We move exactly one complete set.
-        Therefore when GSAP repeats,
-        the second set is exactly where the first set was.
-      */
-
+      // Animate exactly to -singleSetWidth and loop seamlessly using modifiers or repeat
       tweenRef.current = gsap.to(track, {
         x: -singleSetWidth,
-        duration: 22,
+        duration: 25,
         ease: "none",
         repeat: -1,
+        modifiers: {
+          x: gsap.utils.unitize((x) => parseFloat(x) % singleSetWidth),
+        },
       });
     };
 
-    // Wait for images/layout
-    const timer = setTimeout(setupLoop, 100);
-
-    const pause = () => {
-      tweenRef.current?.pause();
-    };
-
-    const play = () => {
-      tweenRef.current?.play();
-    };
-
-    track.addEventListener("mouseenter", pause);
-    track.addEventListener("mouseleave", play);
+    // Small timeout to allow images/fonts to render widths accurately
+    const timer = setTimeout(setupLoop, 50);
+    window.addEventListener("resize", setupLoop);
 
     return () => {
       clearTimeout(timer);
-
+      window.removeEventListener("resize", setupLoop);
       tweenRef.current?.kill();
       tweenRef.current = null;
-
-      track.removeEventListener("mouseenter", pause);
-      track.removeEventListener("mouseleave", play);
     };
   }, []);
 
   return (
     <section className="relative py-20 bg-zinc-100 overflow-hidden">
       <div className="max-w-[100%] mx-auto px-6">
-
         {/* Heading */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-semibold text-[#313131] tracking-tight">
@@ -111,54 +81,37 @@ export default function PaymentSection() {
         </div>
 
         {/* Marquee */}
-        <div className="relative">
-          <div className="overflow-hidden w-full">
-            <div
-              ref={trackRef}
-              className="flex select-none will-change-transform"
-              style={{
-                width: "max-content",
-                gap: "1.5rem",
-              }}
-            >
-              {/* First set */}
-              {images.map((image) => (
-                <div
-                  key={`first-${image.id}`}
-                  className="flex-shrink-0 bg-zinc-100 rounded-3xl overflow-hidden shadow-xl border border-zinc-800 hover:border-zinc-600 transition-all duration-300"
-                  style={{
-                    width: "160px",
-                    height: "100px",
-                  }}
-                >
+        <div className="relative w-full overflow-hidden">
+          <div
+            ref={trackRef}
+            className="flex select-none will-change-transform"
+            style={{
+              width: "max-content",
+              gap: "1.5rem",
+            }}
+          >
+            {/* Render 3 identical sets to ensure continuous coverage across any screen size */}
+            {[...images, ...images, ...images].map((image, index) => (
+              <div
+                key={`marquee-${index}`}
+                className="flex-shrink-0 bg-white rounded-3xl overflow-hidden shadow-xl border border-zinc-200 hover:border-zinc-400 transition-all duration-300 flex items-center justify-center p-4 relative"
+                style={{
+                  width: "210px",
+                  height: "120px",
+                }}
+              >
+                <div className="relative w-full h-full flex items-center justify-center">
                   <Image
                     src={image.img}
                     alt={`Payment method ${image.id}`}
-                    className="w-full h-full object-contain transition-transform duration-500 hover:scale-110"
+                    fill
+                    sizes="160px"
+                    className="object-contain p-2 transition-transform duration-500 hover:scale-110"
                     draggable="false"
                   />
                 </div>
-              ))}
-
-              {/* Duplicate set */}
-              {images.map((image) => (
-                <div
-                  key={`second-${image.id}`}
-                  className="flex-shrink-0 bg-zinc-100 rounded-3xl overflow-hidden shadow-xl border border-zinc-800 hover:border-zinc-600 transition-all duration-300"
-                  style={{
-                    width: "160px",
-                    height: "100px",
-                  }}
-                >
-                  <Image
-                    src={image.img}
-                    alt={`Payment method ${image.id}`}
-                    className="w-full h-full object-contain transition-transform duration-500 hover:scale-110"
-                    draggable="false"
-                  />
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

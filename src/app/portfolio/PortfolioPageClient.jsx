@@ -120,26 +120,26 @@ export default function Portfolio() {
 
     <div className="min-h-screen bg-[#fbf1ef] overflow-x-hidden">
       {/* ==================== CREATIVE WORK / PROJECT SHOWCASE SECTION ==================== */}
-      <section className="pt-16 sm:pt-20 lg:pt-28 pb-20  lg:pb-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <section className="pt-32 sm:pt-36 xl:pt-44 pb-16 sm:pb-20 lg:pb-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid xl:grid-cols-12 gap-10 xl:gap-16 items-center">
           {/* LEFT */}
-          <div className="lg:col-span-5 text-center lg:text-left">
+          <div className="xl:col-span-5 text-center xl:text-left">
             <span className="text-orange-500 tracking-widest text-xs sm:text-sm font-semibold">
               CLIENT LOVE
             </span>
 
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mt-3 sm:mt-4 text-[#30303c] leading-tight">
+            <h1 className="text-3xl sm:text-4xl xl:text-6xl 2xl:text-7xl font-bold mt-3 sm:mt-4 text-[#30303c] leading-tight">
               What our <ShimmerText>clients say</ShimmerText>
             </h1>
 
-            <p className="mt-4 sm:mt-6 text-zinc-500 text-sm sm:text-base lg:text-lg max-w-md mx-auto lg:mx-0">
+            <p className="mt-4 sm:mt-6 text-zinc-500 text-sm sm:text-base lg:text-lg max-w-md mx-auto xl:mx-0">
               Real stories from businesses we&apos;ve helped grow online.
             </p>
           </div>
 
           {/* FAN CARDS */}
-          <div className="lg:col-span-7 flex justify-center mt-14 lg:mt-0">
-            <div className="relative w-65 sm:w-[320px] lg:w-95 h-105 sm:h-115 lg:h-125">
+          <div className="xl:col-span-7 flex justify-center mt-14 xl:mt-0">
+            <div className="relative w-65 sm:w-[320px] xl:w-95 h-105 sm:h-115 xl:h-125">
               {testimonials.map((t, i) => {
                 const total = testimonials.length;
                 let offset = i - active;
@@ -159,9 +159,12 @@ export default function Portfolio() {
                       "--fan-x": `${offset * 80}px`,
                       "--fan-y": `${Math.abs(offset) * -25}px`,
                       "--fan-rotation": `${offset * 12}deg`,
-                      "--fan-x-mobile": `${offset * 40}px`,
-                      "--fan-y-mobile": `${Math.abs(offset) * -15}px`,
-                      "--fan-rotation-mobile": `${offset * 8}deg`,
+                      "--fan-x-mobile": `${offset * 24}px`,
+                      "--fan-y-mobile": `${Math.abs(offset) * -12}px`,
+                      "--fan-rotation-mobile": `${offset * 6}deg`,
+                      "--fan-x-tablet": `${offset * 52}px`,
+                      "--fan-y-tablet": `${Math.abs(offset) * -18}px`,
+                      "--fan-rotation-tablet": `${offset * 9}deg`,
                       "--fan-scale": offset === 0 ? 1 : 0.9,
                       transition:
                         "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
@@ -214,11 +217,11 @@ export default function Portfolio() {
       </section>
 
       {/* ==================== CREATIVE WORK / PROJECT SHOWCASE SECTION ==================== */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Heading */}
           <div className="text-center max-w-2xl mx-auto mb-20">
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold text-zinc-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl xl:text-6xl 2xl:text-7xl font-bold text-zinc-900 mb-4">
               Creative Work
             </h2>
             <p className="text-gray-500 text-sm sm:text-base lg:text-lg ">
@@ -228,13 +231,13 @@ export default function Portfolio() {
           </div>
 
           {/* Portfolio Projects - Alternating Layout */}
-          <div className="space-y-28">
+          <div className="space-y-16 sm:space-y-20 lg:space-y-28">
             {portfolioData.map((item, index) => {
               const isReverse = index % 2 === 1;
               return (
                 <div
                   key={item.id}
-                  className={`grid lg:grid-cols-12 gap-12 items-center ${isReverse ? "lg:flex-row-reverse" : ""}`}
+                  className={`grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center ${isReverse ? "lg:flex-row-reverse" : ""}`}
                 >
                   {/* Image Side */}
                   <div
@@ -269,9 +272,13 @@ export default function Portfolio() {
                     </a>
 
                     {/* Client Info */}
-                    <div className="mt-12 flex items-center gap-4">
+                    <div className="mt-8 sm:mt-12 flex items-center gap-4">
                       <div className="w-12 h-12 bg-zinc-200 overflow-hidden  rounded-full shrink-0">
-                        <Image src={item.clientImg} alt={item.client} />
+                        <Image
+                          src={item.clientImg}
+                          alt={item.client}
+                          className="h-full w-full object-cover"
+                        />
                       </div>
                       <div>
                         <h5 className="font-semibold text-zinc-900">

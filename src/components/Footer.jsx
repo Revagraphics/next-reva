@@ -278,7 +278,7 @@ export default function Footer() {
             <div>
               <Link
                 href="/contact"
-                className="inline-block bg-gradient-to-r from-[#FF9800] to-[#E91E63] px-8 py-4 rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg hover:shadow-orange-500/40 hover:scale-105"
+                className="inline-block bg-gradient-to-r from-[#FF9800] to-[#E91E63] px-8 py-4 rounded-xl font-semibold whitespace-nowrap text-sm transition-all duration-300 shadow-lg hover:shadow-orange-500/40 hover:scale-105"
               >
                 Our Brochure →
               </Link>

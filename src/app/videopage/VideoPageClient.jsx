@@ -71,14 +71,23 @@ const projects = [
 export default function VideoPage() {
   const [active, setActive] = useState(2);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 639px)");
-    const updateMobile = () => setIsMobile(mediaQuery.matches);
+    const mobileQuery = window.matchMedia("(max-width: 639px)");
+    const tabletQuery = window.matchMedia("(min-width: 640px) and (max-width: 1023px)");
+    const updateBreakpoints = () => {
+      setIsMobile(mobileQuery.matches);
+      setIsTablet(tabletQuery.matches);
+    };
 
-    updateMobile();
-    mediaQuery.addEventListener("change", updateMobile);
-    return () => mediaQuery.removeEventListener("change", updateMobile);
+    updateBreakpoints();
+    mobileQuery.addEventListener("change", updateBreakpoints);
+    tabletQuery.addEventListener("change", updateBreakpoints);
+    return () => {
+      mobileQuery.removeEventListener("change", updateBreakpoints);
+      tabletQuery.removeEventListener("change", updateBreakpoints);
+    };
   }, []);
 
   const next = () => {
@@ -94,27 +103,27 @@ export default function VideoPage() {
 
       <div className="bg-white min-h-screen">
         {/* ================= HERO SECTION ================= */}
-        <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden bg-[#f7f4f0]">
+        <section className="navbar-clearance-hero relative flex min-h-[80svh] items-center justify-center overflow-hidden bg-[#f7f4f0]">
           <div className="absolute inset-0 "></div>
 
           {/* Floating Software Badges */}
           <div className="absolute inset-0 pointer-events-none">
             {/* Left side */}
-            <div className="absolute top-[18%] left-[6%] md:left-[10%] animate-float-slow">
+            <div className="absolute top-[18%] left-[6%] hidden animate-float-slow sm:block md:left-[10%]">
               <Image
                 src={softwareTools[0].icon}
                 alt={softwareTools[0].name}
                 className={`${softwareTools[0].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
               />
             </div>
-            <div className="absolute top-[42%] left-[3%] md:left-[6%] animate-float">
+            <div className="absolute top-[42%] left-[3%] hidden animate-float sm:block md:left-[6%]">
               <Image
                 src={softwareTools[2].icon}
                 alt={softwareTools[2].name}
                 className={`${softwareTools[2].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
               />
             </div>
-            <div className="absolute bottom-[28%] left-[8%] md:left-[12%] animate-float-delayed">
+            <div className="absolute bottom-[28%] left-[8%] hidden animate-float-delayed sm:block md:left-[12%]">
               <Image
                 src={softwareTools[4].icon}
                 alt={softwareTools[4].name}
@@ -123,21 +132,21 @@ export default function VideoPage() {
             </div>
 
             {/* Right side */}
-            <div className="absolute top-[22%] right-[5%] md:right-[9%] animate-float">
+            <div className="absolute top-[22%] right-[5%] hidden animate-float sm:block md:right-[9%]">
               <Image
                 src={softwareTools[1].icon}
                 alt={softwareTools[1].name}
                 className={`${softwareTools[1].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
               />
             </div>
-            <div className="absolute top-[48%] right-[4%] md:right-[7%] animate-float-slow">
+            <div className="absolute top-[48%] right-[4%] hidden animate-float-slow sm:block md:right-[7%]">
               <Image
                 src={softwareTools[3].icon}
                 alt={softwareTools[3].name}
                 className={`${softwareTools[3].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
               />
             </div>
-            <div className="absolute bottom-[24%] right-[9%] md:right-[13%] animate-float-delayed">
+            <div className="absolute bottom-[24%] right-[9%] hidden animate-float-delayed sm:block md:right-[13%]">
               <Image
                 src={softwareTools[5].icon}
                 alt={softwareTools[5].name}
@@ -162,7 +171,7 @@ export default function VideoPage() {
             </div>
           </div>
 
-          <div className="relative z-10 mx-auto max-w-5xl px-4 py-20 text-center sm:px-6 sm:py-24 md:py-28">
+          <div className="relative z-10 mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 sm:py-20 md:py-24 lg:py-28">
             <div className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-black/60 backdrop-blur-md sm:px-4 sm:py-2 sm:text-sm sm:tracking-[0.3em]">
               <span className="h-2 w-2 shrink-0 rounded-full bg-[#FF9800] animate-pulse sm:h-2.5 sm:w-2.5"></span>
               Professional reel-creation
@@ -213,10 +222,10 @@ export default function VideoPage() {
         </section>
 
         {/* ================= PROJECTS SLIDER ================= */}
-        <section id="projects" className="py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-14">
-              <h2 className="text-5xl font-bold text-[#08182b] mb-4">
+        <section id="projects" className="bg-white py-14 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="mb-10 text-center sm:mb-14">
+              <h2 className="mb-4 text-3xl font-bold text-[#08182b] sm:text-4xl lg:text-5xl">
                 Our <ShimmerText>Projects</ShimmerText>
               </h2>
               <DecorativeUnderline
@@ -224,7 +233,7 @@ export default function VideoPage() {
                 className="mb-4 mx-auto md:w-[320px]"
                 centerColor="#3B82F6"
               />
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-lg lg:text-xl">
                 A selection of recent work — commercials, social content, and
                 brand films
               </p>
@@ -234,7 +243,7 @@ export default function VideoPage() {
             <div className="relative">
               {/* FAN CARDS */}
               <div className="lg:col-span-7 flex justify-center mt-10 lg:mt-0">
-                <div className="relative w-65 sm:w-[320px] lg:w-95 h-105 sm:h-115 lg:h-125">
+                <div className="relative h-105 w-[calc(100vw-5rem)] max-w-[260px] sm:h-115 sm:w-[320px] sm:max-w-none lg:h-125 lg:w-95">
                   {projects.map((Project, i) => {
                     const total = projects.length;
                     let offset = i - active;
@@ -243,6 +252,9 @@ export default function VideoPage() {
                     if (offset < -total / 2) offset += total;
 
                     const isVisible = Math.abs(offset) <= 2;
+                    const fanX = isMobile ? 24 : isTablet ? 48 : 80;
+                    const fanY = isMobile ? -12 : isTablet ? -18 : -25;
+                    const fanRotation = isMobile ? 6 : isTablet ? 9 : 12;
 
                     return (
                       <div
@@ -254,9 +266,9 @@ export default function VideoPage() {
 
                           // ✅ Responsive fan spacing
                           transform: `
-                  translateX(${offset * (isMobile ? 40 : 80)}px)
-                  translateY(${Math.abs(offset) * (isMobile ? -15 : -25)}px)
-                  rotate(${offset * (isMobile ? 8 : 12)}deg)
+                  translateX(${offset * fanX}px)
+                  translateY(${Math.abs(offset) * fanY}px)
+                  rotate(${offset * fanRotation}deg)
                   scale(${offset === 0 ? 1 : 0.9})
                 `,
 
@@ -314,7 +326,7 @@ export default function VideoPage() {
               </div>
 
               {/* Navigation Arrows */}
-              <div className="flex justify-center gap-4 mt-8">
+              <div className="mt-8 flex justify-center gap-4">
                 <button
                   onClick={prev}
                   aria-label="Show previous project"
@@ -359,10 +371,10 @@ export default function VideoPage() {
         </section>
 
         {/* ================= SERVICES ================= */}
-        <section className="py-24 bg-slate-50">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-5xl font-bold text-[#08182b] mb-4">
+        <section className="bg-slate-50 py-14 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="mb-10 text-center sm:mb-16">
+              <h2 className="mb-4 text-3xl font-bold text-[#08182b] sm:text-4xl lg:text-5xl">
                 What We <ShimmerText>Deliver</ShimmerText>
               </h2>
               <DecorativeUnderline
@@ -370,13 +382,13 @@ export default function VideoPage() {
                 className="mb-4 mx-auto"
                 centerColor="#3B82F6"
               />
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-base text-gray-600 sm:text-lg lg:text-xl">
                 End-to-end video solutions tailored for brands, creators, and
                 businesses
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
               {[
                 {
                   title: "Commercial & Brand Films",
@@ -405,7 +417,7 @@ export default function VideoPage() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="group bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                  className="group rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl sm:p-8"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-[#FF9800]/15 to-[#E91E63]/15 flex items-center justify-center mb-5">
                     <span className="text-2xl font-bold text-orange-500">
@@ -423,19 +435,19 @@ export default function VideoPage() {
         </section>
 
         {/* ================= CTA ================= */}
-        <section className="py-24 bg-slate-950 relative overflow-hidden">
+        <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-20 lg:py-24">
           <div className="absolute inset-0 bg-linear-to-r from-[#FF9800]/10 via-transparent to-[#E91E63]/10"></div>
-          <div className="relative max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+          <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
+            <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               Ready to elevate your <ShimmerText>video content</ShimmerText>?
             </h2>
-            <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+            <p className="mx-auto mb-8 max-w-2xl text-base text-white/80 sm:mb-10 sm:text-lg lg:text-xl">
               Let’s turn your footage into something unforgettable. Get a free
               consultation today.
             </p>
             <Link
               href="/contact"
-              className="inline-flex px-12 py-4 bg-linear-to-r from-[#FF9800] to-[#E91E63] text-white font-semibold rounded-full text-lg hover:shadow-[0_0_40px_rgba(255,152,0,0.4)] transition-all duration-300 hover:scale-105"
+              className="inline-flex rounded-full bg-linear-to-r from-[#FF9800] to-[#E91E63] px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,152,0,0.4)] sm:px-12 sm:py-4 sm:text-lg"
             >
               Get Started
             </Link>
@@ -461,6 +473,9 @@ export default function VideoPage() {
         .animate-float-slow { animation: float-slow 5.5s ease-in-out infinite; }
         .animate-float-delayed { animation: float-delayed 4.8s ease-in-out infinite 0.6s; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-float, .animate-float-slow, .animate-float-delayed { animation: none; }
+        }
       `}</style>
     </>
   );

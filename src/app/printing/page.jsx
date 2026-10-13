@@ -48,10 +48,10 @@ export default function PrintingPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ================= HERO ================= */}
-      <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden bg-slate-950 px-4 pb-16 pt-28 sm:px-6 sm:pt-32 md:min-h-[70vh] md:py-24">
+      <section className="navbar-clearance-hero relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-slate-950 px-4 pb-16 pt-28 sm:px-6 sm:pt-32 md:min-h-[70vh] md:py-24">
         <HeroVideo src="/print.mp4" />
 
-        <div className="absolute inset-0 bg-slate-950/10" />
+        <div className="absolute inset-0 bg-slate-950/10"/>
         <div className="absolute inset-0 bg-linear-to-t from-black/10 via-slate-900/10 to-transparent" />
 
         <div className="relative z-10 mx-auto w-full max-w-5xl px-2 text-center sm:px-5">

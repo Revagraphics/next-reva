@@ -44,9 +44,9 @@ export default function About() {
           <div className="flex flex-col lg:flex-row gap-2 lg:gap-12 items-center">
             {/* TEXT */}
             <section className="hero-animate flex-1 text-center lg:text-left">
-              <span className="text-indigo-600 font-semibold mb-4 uppercase text-[1.3rem]">
+              {/* <span className="text-indigo-600 font-semibold mb-4 uppercase text-[1.3rem]">
                 We Are Reva
-              </span>
+              </span> */}
               <h1 className="text-3xl text-[#30303c] sm:text-2xl lg:text-6xl font-semibold leading-tight">
                 We are a <ShimmerText>creative digital</ShimmerText>
                 <br /> agency based in India.

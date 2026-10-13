@@ -113,7 +113,7 @@ export default function Cloud() {
         {/* HERO SECTION - Orange Theme + Fully Responsive */}
 
         <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f2fff5">
-          <section className=" min-h-[65vh] flex items-center justify-center text-black py-16 md:py-24 relative overflow-hidden">
+          <section className="navbar-clearance-hero min-h-[65vh] flex items-center justify-center text-black py-16 md:py-24 relative overflow-hidden">
             <div className="max-w-[90%] mx-auto px-6 text-center relative z-10">
               <h1 className="text-4xl sm:text-2xl md:text-5xl lg:text-6l font-bold tracking-tighter leading-none mb-6">
                 <ShimmerText> Corporate Prints </ShimmerText>

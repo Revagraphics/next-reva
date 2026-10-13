@@ -117,7 +117,7 @@ export default function ReviewCarousel() {
   }, [active, goTo, isAnimating]);
 
   return (
-    <div className="min-h-screen  px-4 sm:px-6">
+    <div className=" px-4 sm:px-6">
       <GridBg gridSize={80} lineColor="#F0EDE8" bgColor="#fff">
         <div className="max-w-5xl mx-auto py-12 md:py-20">
           <div className="text-center mb-8 md:mb-14">
@@ -187,7 +187,7 @@ export default function ReviewCarousel() {
           </div>
 
           {/* Navigation Dots */}
-          <div className="flex justify-center gap-3 mt-10 md:mt-12">
+          <div className="flex justify-center gap-3 -mt-5 -md:mt-5">
             {reviews.map((_, idx) => (
               <button
                 key={idx}

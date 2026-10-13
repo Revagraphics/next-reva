@@ -1,14 +1,9 @@
-import React from "react";
-import SelectedWork from "@/components/SelectedWork";
+import Image from "next/image";
 import Expertise from "@/components/Expertise";
-import Image from 'next/image'
 import Link from "next/link";
 import bg from "@/assets/about.webp";
-import ShimmerText from "@/components/ShimmerText";
 import { createPageMetadata } from "@/lib/seo";
-import GridBg from "@/components/GridBg";
-import DecorativeUnderline from "@/components/DecorativeUnderline";
-
+import ShimmerText from "@/components/ShimmerText";
 export const metadata = createPageMetadata(
   "Graphic & Digital Design Services | Reva Graphics",
   "Explore graphic design, digital design, and visual communication services created by the Reva Graphics team.",
@@ -103,9 +98,8 @@ const projectsData = [
 export default function designing() {
   return (
     <>
-
       <div className="bg-white">
-        <section className="relative flex min-h-[80svh] items-center overflow-hidden bg-linear-to-br from-zinc-50 via-white to-slate-50">
+        <section className="navbar-clearance-hero relative flex min-h-[80svh] items-center overflow-hidden bg-linear-to-br from-zinc-50 via-white to-slate-50">
           {/* Subtle Light Background Pattern */}
           <div className="absolute inset-0 bg-[radial-gradient(at_center,#e0e7ff30_0%,transparent_70%)]"></div>
 
@@ -114,22 +108,15 @@ export default function designing() {
               <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
                 {/* Left Content */}
                 <div className="space-y-6 sm:space-y-8">
-                  <div className="inline-flex items-center gap-1 rounded-full border  px-4 py-2.5 shadow-sm sm:px-5">
-                    {/* <span className="text-orange-600 text-sm font-semibold tracking-widest">
-                      PREMIUM DESIGNING
-                    </span> */}
-                  </div>
-
                   <h1 className="text-4xl font-bold leading-tight tracking-tighter text-zinc-900 sm:text-5xl md:text-6xl lg:text-6xl">
                     We Design <ShimmerText>Experiences</ShimmerText>
-                 
                     That Convert
                   </h1>
 
                   <p className="max-w-lg text-base text-zinc-600 sm:text-lg lg:text-xl">
                     From stunning branding to high-converting websites and
-                    packaging — we craft designs that don&apos;t just look good, they
-                    perform.
+                    packaging — we craft designs that don&apos;t just look good,
+                    they perform.
                   </p>
 
                   <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:gap-4 sm:pt-4">
@@ -155,8 +142,13 @@ export default function designing() {
                       {/* Inner Card */}
                       <div className="absolute inset-3 flex items-center justify-center rounded-4xl bg-white shadow-inner sm:inset-4 sm:rounded-[2.5rem] lg:rounded-[3rem]">
                         <div className="text-center">
-                          <div className="mb-3 text-3xl text-orange-500 sm:mb-4 sm:text-4xl">
-                            <ShimmerText>✦</ShimmerText>
+                          <div className="mb-3 flex flex-col items-center justify-center text-3xl text-orange-500 sm:mb-4 sm:text-4xl">
+                            <Image
+                              src="/favicon.png"
+                              alt="favicon"
+                              width={40}
+                              height={40}
+                            />
                           </div>
                           <p className="text-lg font-light text-zinc-500 sm:text-2xl">
                             Premium
@@ -186,7 +178,7 @@ export default function designing() {
           </div>
         </section>
 
-        <section className=" min-h-[70vh] lg:pt-24 pb-6 lg:pb-12">
+        <section className=" min-h-[70vh] lg:pt-2 pb-6 lg:pb-6">
           <div className="max-w-[90%] mx-auto px-6">
             <div className="grid lg:grid-cols-2 items-center mt-20 gap-12">
               {/* LEFT CONTENT */}
@@ -214,7 +206,7 @@ export default function designing() {
               </div>
 
               {/* RIGHT IMAGE */}
-              <div className="flex justify-center lg:justify-end">
+              <div className="flex justify-center items-center lg:justify-end">
                 <Image
                   src={bg}
                   alt="hero"
@@ -225,7 +217,6 @@ export default function designing() {
           </div>
         </section>
 
-        <SelectedWork />
         <Expertise />
       </div>
     </>

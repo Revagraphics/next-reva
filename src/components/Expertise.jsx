@@ -133,9 +133,7 @@ export default function Expertise() {
                     className={`flex items-center justify-between text-sm font-medium ${item.accent}`}
                   >
                     <span>{item.tech}</span>
-                    <span className="text-3xl transition-transform group-hover:translate-x-3 duration-300">
-                      →
-                    </span>
+                   
                   </div>
                 </div>
                 {/* Subtle Glow Border */}
