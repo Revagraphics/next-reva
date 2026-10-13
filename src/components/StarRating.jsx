@@ -134,7 +134,7 @@ export default function ReviewCarousel() {
           {/* Carousel Container - More Responsive Height */}
           <div
             ref={containerRef}
-            className="relative min-h-[520px] md:min-h-[560px] lg:min-h-[580px] flex items-center justify-center overflow-hidden"
+            className="relative flex min-h-[680px] items-center justify-center overflow-hidden sm:min-h-[620px] md:min-h-[480px] lg:min-h-[500px]"
           >
             {reviews.map((review, idx) => (
               <div
@@ -146,14 +146,14 @@ export default function ReviewCarousel() {
                 style={{ opacity: idx === active ? 1 : 0 }}
               >
                 {/* Image Side */}
-                <div className="md:w-5/12 relative">
-                  <div className="relative aspect-[4/3] md:aspect-auto md:h-full bg-gray-100 flex items-center justify-center">
+                <div className="relative shrink-0 md:w-5/12">
+                  <div className="relative flex aspect-[4/3] items-center justify-center bg-gray-100 md:aspect-auto md:h-full md:min-h-[380px]">
                     <Image
                       src={review.image}
                       alt={review.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 42vw"
-                      className="w-full h-full object-cover object-center transition-transform duration-700"
+                      className="h-full w-full object-contain object-center transition-transform duration-700"
                     />
                   </div>
                   {/* Mobile Gradient Overlay */}

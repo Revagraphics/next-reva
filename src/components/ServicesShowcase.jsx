@@ -18,19 +18,7 @@ import {
 // Register the hook (recommended by GSAP for React)
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-/**
- * Interactive Services Showcase
- * Converted from HTML to dedicated React JSX component
- * Animations powered by GSAP
- *
- * Dependencies:
- * - react
- * - gsap
- * - @gsap/react
- * - tailwindcss (configured)
- * - font-awesome (CDN or package)
- * - Plus Jakarta Sans font
- */
+
 
 const servicesData = [
   {
@@ -208,7 +196,6 @@ const ServicesShowcase = () => {
             anticipatePin: 1,
           },
         });
-
       });
 
       return () => media.revert();
@@ -276,20 +263,16 @@ const ServicesShowcase = () => {
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-pink-600">
               What we do
             </p>
-            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+            <h2 className="text-3xl lg:text-5xl font-bold text-zinc-900">
               Services for your next stage
             </h2>
-            <p className="mt-2 max-w-xl text-sm leading-relaxed text-gray-600">
+            <p className="text-slate-600 leading-relaxed text-[17px] sm:text-lg text-justify md:text-left">
               Explore the expertise that turns your ideas into lasting results.
             </p>
           </div>
-
         </header>
 
-        <div
-          className="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10 md:py-4"
-        >
-
+        <div className="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10 md:py-4">
           {/* CAROUSEL TRACK */}
           <div
             ref={carouselViewportRef}
@@ -297,64 +280,60 @@ const ServicesShowcase = () => {
           >
             <div ref={carouselTrackRef} className="flex w-max gap-6">
               {servicesData.map((service, index) => {
-                  const ServiceIcon = service.icon;
-                  return (
-                    <Link
-                      key={service.id}
-                      href={service.href}
-                      ref={(el) => (cardRefs.current[index] = el)}
-                      className="service-card service-showcase-card group cursor-pointer rounded-3xl focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pink-500"
-                      aria-label={`View ${service.title} services`}
-                      onMouseEnter={(e) => handleCardHover(e, true)}
-                      onMouseLeave={(e) => handleCardHover(e, false)}
+                const ServiceIcon = service.icon;
+                return (
+                  <Link
+                    key={service.id}
+                    href={service.href}
+                    ref={(el) => (cardRefs.current[index] = el)}
+                    className="service-card service-showcase-card group cursor-pointer rounded-3xl focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pink-500"
+                    aria-label={`View ${service.title} services`}
+                    onMouseEnter={(e) => handleCardHover(e, true)}
+                    onMouseLeave={(e) => handleCardHover(e, false)}
+                  >
+                    <div
+                      className={`${service.gradientClass} relative flex h-full min-h-97.5 flex-col justify-between overflow-visible rounded-2xl p-6 pt-12 text-white`}
                     >
-                      <div
-                        className={`${service.gradientClass} relative flex h-full min-h-97.5 flex-col justify-between overflow-visible rounded-2xl p-6 pt-12 text-white`}
-                      >
-                        {/* Floating Icon */}
-                        <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/70 bg-white/90 text-3xl text-gray-800 backdrop-blur-md">
-                          <ServiceIcon
+                      {/* Floating Icon */}
+                      <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/70 bg-white/90 text-3xl text-gray-800 backdrop-blur-md">
+                        <ServiceIcon
+                          aria-hidden="true"
+                          className="text-gray-800 transition-colors group-hover:text-pink-500"
+                        />
+                      </div>
+
+                      {/* Title & Tags */}
+                      <div className="mt-8 text-center">
+                        <h3 className="text-2xl font-extrabold tracking-tight">
+                          {service.title}
+                        </h3>
+                        <p className="mt-2 inline-block rounded-full bg-black/10 px-3 py-1 text-xs font-semibold text-white/80 backdrop-blur-sm">
+                          {service.tags}
+                        </p>
+                      </div>
+
+                      {/* Description */}
+                      <p className="my-4 line-clamp-3 text-center text-xs leading-relaxed text-white/90">
+                        {service.description}
+                      </p>
+
+                      {/* Read More Button */}
+                      <div className="pt-2">
+                        <div className="w-full rounded-xl border border-white/30 bg-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all group-hover:bg-white group-hover:text-gray-900">
+                          <span>Read More</span>
+                          <FaArrowRight
                             aria-hidden="true"
-                            className="text-gray-800 transition-colors group-hover:text-pink-500"
+                            className="ml-2 inline transition-transform group-hover:translate-x-1"
                           />
                         </div>
-
-                        {/* Title & Tags */}
-                        <div className="mt-8 text-center">
-                          <h3 className="text-2xl font-extrabold tracking-tight">
-                            {service.title}
-                          </h3>
-                          <p className="mt-2 inline-block rounded-full bg-black/10 px-3 py-1 text-xs font-semibold text-white/80 backdrop-blur-sm">
-                            {service.tags}
-                          </p>
-                        </div>
-
-                        {/* Description */}
-                        <p className="my-4 line-clamp-3 text-center text-xs leading-relaxed text-white/90">
-                          {service.description}
-                        </p>
-
-                        {/* Read More Button */}
-                        <div className="pt-2">
-                          <div className="w-full rounded-xl border border-white/30 bg-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all group-hover:bg-white group-hover:text-gray-900">
-                            <span>Read More</span>
-                            <FaArrowRight
-                              aria-hidden="true"
-                              className="ml-2 inline transition-transform group-hover:translate-x-1"
-                            />
-                          </div>
-                        </div>
                       </div>
-                    </Link>
-                  );
-                })}
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
-
-          
         </div>
-
-        
       </div>
     </section>
   );

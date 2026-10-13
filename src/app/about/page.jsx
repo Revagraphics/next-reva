@@ -109,12 +109,6 @@ export default function About() {
 
                 {/* Right Side */}
                 <div className="space-y-8">
-                  {/* <p className="text-indigo-600 font-semibold mb-4 uppercase text-[1.3rem]">
-                    ABOUT THE REVA
-                  </p> */}
-                  <h2 className="text-5xl font-bold text-gray-900 leading-tight">
-                    <ShimmerText>Reva Graphics</ShimmerText>
-                  </h2>
                   <h3 className="text-3xl font-semibold text-gray-900">
                     Reva is a full-service web and digital marketing company
                     based in India.

@@ -220,13 +220,13 @@ export default function Home() {
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-center gap-2 sm:gap-3 lg:justify-start lg:gap-4">
+                  <div className="about-badges flex items-center justify-center gap-2 sm:gap-3 lg:justify-start lg:gap-4">
                     {[badge1, badge2, badge3].map((badge, i) => (
                       <Image
                         key={i}
                         src={badge}
                         alt=""
-                        className="h-9 w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-10 md:h-12 lg:h-24"
+                        className="about-badge h-9 w-auto object-contain transition-transform duration-300 hover:scale-105 sm:h-10 md:h-12 lg:h-24"
                       />
                     ))}
                   </div>

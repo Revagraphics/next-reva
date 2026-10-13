@@ -48,29 +48,29 @@ export default function PrintingPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* ================= HERO ================= */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-slate-950">
+      <section className="relative flex min-h-[80svh] items-center justify-center overflow-hidden bg-slate-950 px-4 pb-16 pt-28 sm:px-6 sm:pt-32 md:min-h-[70vh] md:py-24">
         <HeroVideo src="/print.mp4" />
 
         <div className="absolute inset-0 bg-slate-950/10" />
         <div className="absolute inset-0 bg-linear-to-t from-black/10 via-slate-900/10 to-transparent" />
 
-        <div className="relative z-10 text-center px-6 sm:px-4 max-w-5xl mx-auto py-20 mt-2">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 backdrop-blur-md text-sm font-medium uppercase tracking-[0.3em] text-white/80 mb-6">
+        <div className="relative z-10 mx-auto w-full max-w-5xl px-2 text-center sm:px-5">
+          <div className="mb-6 inline-flex max-w-full items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.18em] text-white/80 backdrop-blur-md sm:px-4 sm:text-sm sm:tracking-[0.3em]">
             <span className="h-2.5 w-2.5 rounded-full bg-[#FF9800] animate-pulse" />
             Precision Printing Studio
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 tracking-tight leading-tight">
+          <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-white sm:text-6xl md:text-7xl">
             Premium <ShimmerText>Printing</ShimmerText>
           </h1>
 
           <DecorativeUnderline
-            width="520px"
+            width="min(520px, 85vw)"
             className="mt-2 mx-auto"
             centerColor="#3B82F6"
           />
 
-          <p className="text-md sm:text-xl md:text-2xl px-8 text-white/90 mb-8 max-w-3xl mx-auto">
+          <p className="mx-auto mb-8 max-w-3xl px-1 text-base text-white/90 sm:px-4 sm:text-xl md:text-2xl">
             High-quality prints that make your brand stand out. From business
             cards to large format — we bring your ideas to life with premium
             materials and flawless detail.

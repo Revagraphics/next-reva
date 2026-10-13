@@ -6,13 +6,16 @@ import Link from "next/link";
 const PdfFlipBook = dynamic(() => import("@/components/PdfFlipBook"), {
   ssr: false,
   loading: () => (
-    <p className="text-sm text-neutral-500">Loading PDF viewer...</p>
+    <div className="flex h-full w-full items-center justify-center">
+      <p className="text-sm text-neutral-500">Loading PDF viewer...</p>
+    </div>
   ),
 });
 
 export default function CatalogueViewer({ catalogue }) {
   return (
-    <main className="flex h-svh min-h-0 flex-col overflow-hidden bg-neutral-100">
+    <main className="flex min-h-svh flex-col bg-neutral-100 pt-28">
+      {/* Page header */}
       <header className="flex shrink-0 items-center justify-between gap-4 border-b border-neutral-200 bg-white px-4 py-3 sm:px-8">
         <div className="min-w-0">
           <h1 className="truncate font-serif text-lg text-neutral-900 sm:text-2xl">
@@ -30,8 +33,9 @@ export default function CatalogueViewer({ catalogue }) {
         </Link>
       </header>
 
-      <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-2 py-3 sm:px-6 sm:py-4">
-        <PdfFlipBook pdfUrl={catalogue.pdfUrl} />
+      {/* Viewer area – takes remaining height only */}
+      <div className="h-[82svh] min-h-[32rem] shrink-0 px-2 py-2 sm:px-4 sm:py-3">
+        <PdfFlipBook key={catalogue.slug} pdfUrl={catalogue.pdfUrl} />
       </div>
     </main>
   );
