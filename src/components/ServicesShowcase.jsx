@@ -15,10 +15,7 @@ import {
   FaPalette,
 } from "react-icons/fa";
 
-// Register the hook (recommended by GSAP for React)
 gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-
 
 const servicesData = [
   {
@@ -119,7 +116,6 @@ const servicesData = [
   },
 ];
 
-// Gradient utility classes (add these to your global CSS or Tailwind config)
 const gradientStyles = `
   .gradient-red { background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%); }
   .gradient-blue { background: linear-gradient(135deg, #00B4DB 0%, #0083B0 100%); }
@@ -130,7 +126,6 @@ const gradientStyles = `
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
 `;
 
 const ServicesShowcase = () => {
@@ -151,62 +146,69 @@ const ServicesShowcase = () => {
     }
   }, []);
 
-  // Initial card entrance animation
+  // Entrance animation (safer version)
   useGSAP(
     () => {
       const cards = cardRefs.current.filter(Boolean);
-      if (cards.length > 0) {
-        gsap.from(cards, {
-          opacity: 0,
-          y: 60,
-          scale: 0.9,
+      if (cards.length === 0) return;
+
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50, scale: 0.92 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
           duration: 0.7,
           stagger: 0.1,
           ease: "power3.out",
-          clearProps: "all",
-        });
-      }
+          clearProps: "transform", // only clear transform, keep opacity
+        },
+      );
     },
     { scope: containerRef },
   );
 
+  // Horizontal scroll + pin (desktop only)
   useGSAP(
     () => {
       const viewport = carouselViewportRef.current;
       const track = carouselTrackRef.current;
-      if (!viewport || !track || servicesData.length <= 3) return undefined;
+      if (!viewport || !track || servicesData.length <= 3) return;
 
       const media = gsap.matchMedia();
-      media.add("(min-width: 1024px) and (min-height: 700px)", () => {
-        const horizontalDistance = () =>
+
+      media.add("(min-width: 1024px) and (min-height: 840px)", () => {
+        const getDistance = () =>
           Math.max(0, track.scrollWidth - viewport.clientWidth);
 
-        if (horizontalDistance() <= 0) return undefined;
+        if (getDistance() <= 0) return;
 
         gsap.to(track, {
-          x: () => -horizontalDistance(),
+          x: () => -getDistance(),
           ease: "none",
           scrollTrigger: {
             trigger: pinRef.current,
-            pin: pinRef.current,
-            start: "top top+=100",
-            end: () => `+=${horizontalDistance()}`,
+            pin: true,
+            start: "top top+=128",
+            end: () => `+=${getDistance()}`,
             scrub: 1,
             invalidateOnRefresh: true,
             anticipatePin: 1,
+            snap: {
+              snapTo: 1 / (Math.ceil(servicesData.length / 3) - 1 || 1),
+              duration: { min: 0.2, max: 0.5 },
+              ease: "power1.inOut",
+            },
           },
         });
       });
 
       return () => media.revert();
     },
-    {
-      scope: containerRef,
-      dependencies: [],
-    },
+    { scope: containerRef },
   );
 
-  // Context-safe handlers for interactions
   const { contextSafe } = useGSAP({ scope: containerRef });
 
   const handleCardHover = contextSafe((e, entering) => {
@@ -222,9 +224,9 @@ const ServicesShowcase = () => {
       });
       if (iconWrapper) {
         gsap.to(iconWrapper, {
-          y: -20,
-          scale: 1.15,
-          rotation: 3,
+          y: -18,
+          scale: 1.12,
+          rotation: 4,
           duration: 0.45,
           ease: "back.out(1.6)",
         });
@@ -252,31 +254,31 @@ const ServicesShowcase = () => {
     <section
       ref={containerRef}
       className="relative isolate bg-white px-4 py-16 sm:px-6 md:py-20 lg:px-8"
-      style={{ color: "#1f2937" }}
     >
       <div
         ref={pinRef}
-        className="services-showcase-pin relative mx-auto flex min-h-155 w-full max-w-7xl flex-col justify-between text-gray-800 lg:min-h-0"
+        className="services-showcase-pin relative mx-auto flex min-h-[620px] w-full max-w-7xl flex-col justify-between text-gray-800 lg:min-h-0"
       >
+        {/* Header */}
         <header className="z-10 flex flex-col justify-between gap-5 border-b border-gray-100 bg-white py-6 sm:flex-row sm:items-center">
           <div>
             <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-pink-600">
               What we do
             </p>
-            <h2 className="text-3xl lg:text-5xl font-bold text-zinc-900">
+            <h2 className="text-3xl font-bold text-zinc-900 lg:text-5xl">
               Services for your next stage
             </h2>
-            <p className="text-slate-600 leading-relaxed text-[17px] sm:text-lg text-justify md:text-left">
+            <p className="mt-2 text-[17px] leading-relaxed text-slate-600 sm:text-lg">
               Explore the expertise that turns your ideas into lasting results.
             </p>
           </div>
         </header>
 
-        <div className="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10 md:py-4">
-          {/* CAROUSEL TRACK */}
+        {/* Carousel */}
+        <div className="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10">
           <div
             ref={carouselViewportRef}
-            className="services-showcase-viewport no-scrollbar -mx-4 overflow-x-auto px-4 py-12 scroll-smooth md:mx-0 md:px-0 md:py-12"
+            className="services-showcase-viewport no-scrollbar -mx-4 overflow-x-auto px-4 pt-16 pb-8 scroll-smooth md:mx-0 md:px-0"
           >
             <div ref={carouselTrackRef} className="flex w-max gap-6">
               {servicesData.map((service, index) => {
@@ -285,45 +287,49 @@ const ServicesShowcase = () => {
                   <Link
                     key={service.id}
                     href={service.href}
-                    ref={(el) => (cardRefs.current[index] = el)}
-                    className="service-card service-showcase-card group cursor-pointer rounded-3xl focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pink-500"
+                    ref={(el) => {
+                      cardRefs.current[index] = el;
+                    }}
+                    className="service-card service-showcase-card group flex-shrink-0 cursor-pointer rounded-3xl
+                               w-[300px] sm:w-[320px] lg:w-[340px]
+                               focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pink-500"
                     aria-label={`View ${service.title} services`}
                     onMouseEnter={(e) => handleCardHover(e, true)}
                     onMouseLeave={(e) => handleCardHover(e, false)}
                   >
                     <div
-                      className={`${service.gradientClass} relative flex h-full min-h-97.5 flex-col justify-between overflow-visible rounded-2xl p-6 pt-12 text-white`}
+                      className={`${service.gradientClass} relative flex h-full min-h-[390px] flex-col justify-between overflow-visible rounded-2xl p-6 pt-14 text-white`}
                     >
                       {/* Floating Icon */}
-                      <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/70 bg-white/90 text-3xl text-gray-800 backdrop-blur-md">
+                      <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/70 bg-white/90 text-3xl text-gray-800 backdrop-blur-md shadow-lg">
                         <ServiceIcon
                           aria-hidden="true"
-                          className="text-gray-800 transition-colors group-hover:text-pink-500"
+                          className="text-gray-800 transition-colors duration-300 group-hover:text-pink-500"
                         />
                       </div>
 
                       {/* Title & Tags */}
-                      <div className="mt-8 text-center">
+                      <div className="mt-6 text-center">
                         <h3 className="text-2xl font-extrabold tracking-tight">
                           {service.title}
                         </h3>
-                        <p className="mt-2 inline-block rounded-full bg-black/10 px-3 py-1 text-xs font-semibold text-white/80 backdrop-blur-sm">
+                        <p className="mt-2 inline-block rounded-full bg-black/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">
                           {service.tags}
                         </p>
                       </div>
 
                       {/* Description */}
-                      <p className="my-4 line-clamp-3 text-center text-xs leading-relaxed text-white/90">
+                      <p className="my-4 line-clamp-3 text-center text-sm leading-relaxed text-white/90">
                         {service.description}
                       </p>
 
                       {/* Read More Button */}
                       <div className="pt-2">
-                        <div className="w-full rounded-xl border border-white/30 bg-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all group-hover:bg-white group-hover:text-gray-900">
+                        <div className="w-full rounded-xl border border-white/30 bg-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 group-hover:bg-white group-hover:text-gray-900">
                           <span>Read More</span>
                           <FaArrowRight
                             aria-hidden="true"
-                            className="ml-2 inline transition-transform group-hover:translate-x-1"
+                            className="ml-2 inline transition-transform duration-300 group-hover:translate-x-1"
                           />
                         </div>
                       </div>

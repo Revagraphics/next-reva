@@ -245,7 +245,7 @@
 
 @container (min-width: 700px) {
   .service-showcase-card {
-    flex-basis: min(320px, calc((100cqi - 3rem) / 3));
+    flex-basis: calc((100cqi - 3rem) / 3);
   }
 }
 
@@ -253,17 +253,17 @@
   container-type: inline-size;
 }
 
-@media (min-width: 1024px) and (min-height: 700px) {
+@media (min-width: 1024px) and (min-height: 840px) {
   .services-showcase-pin {
-    height: min(740px, calc(100svh - 56px));
+    height: min(740px, calc(100svh - 144px));
   }
 
   .services-showcase-viewport {
     overflow-x: hidden;
     max-width: 1040px;
     margin-inline: auto;
-    padding-inline: 16px;
-    padding-block: 88px 24px;
+    padding-inline: 0;
+    padding-block: 56px 16px;
   }
 }
 
