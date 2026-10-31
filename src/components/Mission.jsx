@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image'
 import { useState, useRef, useEffect } from "react";
 
 import ShimmerText from "../components/ShimmerText";
@@ -14,33 +13,17 @@ const tabs = [
     accent: "#FF5C35",
     accentLight: "#fff3f0",
     content:
-      "We are on a mission to satisfy all our valuable clients through high-quality and result-oriented Digital Design and Branding Services across the globe.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&q=80",
-    imageAlt: "Team collaborating on a mission",
-    stats: [
-      { value: "500+", label: "Projects" },
-      { value: "98%", label: "Satisfaction" },
-      { value: "12+", label: "Years" },
-    ],
+      "Our Mission to satisfy all our valuable clients through high-quality and result-oriented Digital Design and Branding Services is driven by our team of passionate experts. From the inception of a project, through its delivery and beyond, we diligently work to understand our clients and provide them with intelligent digital design solutions and support.",
   },
   {
     id: "vision",
     tag: "Where We're Headed",
     label: "Our Vision",
     emoji: "👁️",
-    accent: "#3B5BDB",
-    accentLight: "#eef2ff",
+    accent: "#FF5C35", // Matches the warm accent color from your reference image
+    accentLight: "#fff3f0",
     content:
-      "Our vision is to break the digital world with innovation and powerful creative solutions.",
-    image:
-      "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=700&q=80",
-    imageAlt: "Visionary team",
-    stats: [
-      { value: "40+", label: "Markets" },
-      { value: "150+", label: "Experts" },
-      { value: "∞", label: "Ambition" },
-    ],
+      "Our Vision to break the digital world with our highly innovative thought leadership and delivering capacity is bolstered by our team of industry experts, who have proven their expertise in the field of Digital Marketing. From the inception of a project, through its delivery and beyond, we diligently work to understand our clients and provide them with intelligent digital design solutions and support.",
   },
 ];
 
@@ -50,12 +33,12 @@ function useAnimateIn(dep) {
     const el = ref.current;
     if (!el) return;
     el.style.opacity = "0";
-    el.style.transform = "translateY(20px)";
+    el.style.transform = "translateY(15px)";
     const t = setTimeout(() => {
-      el.style.transition = "all 0.5s ease";
+      el.style.transition = "all 0.4s ease";
       el.style.opacity = "1";
       el.style.transform = "translateY(0)";
-    }, 50);
+    }, 30);
     return () => clearTimeout(t);
   }, [dep]);
   return ref;
@@ -63,147 +46,67 @@ function useAnimateIn(dep) {
 
 export default function Mission() {
   const [activeTab, setActiveTab] = useState("vision");
-  const [imgLoaded, setImgLoaded] = useState(false);
-
   const active = tabs.find((t) => t.id === activeTab);
-
   const contentRef = useAnimateIn(activeTab);
-  const imgRef = useAnimateIn(activeTab);
 
   return (
-    <section className="bg-[#f7f4f0] py-16 md:py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section className="bg-[#fcf8f5] py-16 md:py-24 px-4">
+      <div className="max-w-5xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-10 md:mb-14">
-          <span className="text-xs uppercase tracking-widest px-4 py-1.5 bg-white border rounded-full text-gray-500">
+        <div className="text-center mb-12 md:mb-16">
+          <span className="text-xs uppercase tracking-widest px-4 py-1.5 bg-white border rounded-full text-gray-500 shadow-sm">
             Who We Are
           </span>
 
-          <h2 className="text-3xl md:text-5xl font-bold mt-4 leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold mt-4 leading-tight text-gray-900">
             Driven by purpose,
             <br />
             <ShimmerText>guided by vision</ShimmerText>
           </h2>
           <DecorativeUnderline
-            width="400px" // Adjust width as needed
+            width="300px"
             className="mt-4 mx-auto"
-            centerColor="#3B82F6" // Optional: change blue color
-            />
+            centerColor="#FF5C35"
+          />
         </div>
 
-        {/* Tabs (scrollable on mobile) */}
-        <div className="flex gap-3 mb-8 overflow-x-auto scrollbar-hide pb-2">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => {
-                setActiveTab(tab.id);
-                setImgLoaded(false);
-              }}
-              className="flex items-center gap-2 px-5 py-3 rounded-full text-sm font-semibold border whitespace-nowrap transition-all"
-              style={{
-                background: activeTab === tab.id ? tab.accent : "#fff",
-                color: activeTab === tab.id ? "#fff" : "#555",
-                borderColor: activeTab === tab.id ? tab.accent : "#e5e5e5",
-              }}
-            >
-              {tab.emoji} {tab.label}
-            </button>
-          ))}
-        </div>
+        {/* Layout: Vertical Stacked Tabs on Left, Content Box on Right */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-white rounded-3xl p-6 md:p-12 shadow-xl border border-orange-50/50">
+          
+          {/* Left Side: Vertical Stacked Buttons */}
+          <div className="md:col-span-5 flex flex-col gap-4">
+            {tabs.map((tab) => {
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-3 px-6 py-4 rounded-2xl text-base font-medium transition-all text-left shadow-sm ${
+                    isActive
+                      ? "bg-gradient-to-r from-orange-50 to-orange-100/60 border border-orange-200/80 text-gray-900 shadow-md"
+                      : "bg-white border border-gray-100 text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  <span className="text-xl">{tab.emoji}</span>
+                  <span className="font-semibold">{tab.label}</span>
+                </button>
+              );
+            })}
+          </div>
 
-        {/* Main Card */}
-        <div className="grid md:grid-cols-2 bg-white rounded-3xl overflow-hidden shadow-xl">
-          {/* Content */}
-          <div
-            ref={contentRef}
-            className="p-6 md:p-10 flex flex-col justify-between"
-          >
-            <div>
-              <span
-                className="inline-block text-xs px-3 py-1 rounded-full mb-4"
-                style={{
-                  background: active.accentLight,
-                  color: active.accent,
-                }}
-              >
-                {active.tag}
-              </span>
-
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+          {/* Right Side: Dynamic Content Panel (No Image) */}
+          <div className="md:col-span-7 md:pl-6 border-t md:border-t-0 md:border-l border-gray-100 pt-6 md:pt-0">
+            <div ref={contentRef}>
+              <h3 className="text-2xl md:text-4xl font-bold mb-6 text-gray-900">
                 {active.label}
               </h3>
 
-              <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-6">
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed">
                 {active.content}
               </p>
             </div>
-
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-3">
-              {active.stats.map((s) => (
-                <div
-                  key={s.label}
-                  className="p-3 rounded-xl text-center"
-                  style={{ background: active.accentLight }}
-                >
-                  <div
-                    className="text-lg md:text-xl font-bold"
-                    style={{ color: active.accent }}
-                  >
-                    {s.value}
-                  </div>
-                  <div className="text-xs text-gray-500">{s.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Image */}
-          <div className="relative h-[260px] md:h-auto">
-            <Image
-              ref={imgRef}
-              src={active.image}
-              alt={active.imageAlt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              onLoad={() => setImgLoaded(true)}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
-              style={{ opacity: imgLoaded ? 1 : 0 }}
-            />
-
-            {/* Overlay */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background: `linear-gradient(135deg, ${active.accent}55, transparent)`,
-              }}
-            />
-
-            {/* Text overlay */}
-            <div className="absolute bottom-4 left-4 right-4 bg-white/20 backdrop-blur-md p-4 rounded-xl">
-              <p className="text-white text-sm md:text-lg font-semibold">
-                &quot;{active.label} — shaping tomorrow.&quot;
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
-          {tabs.map((tab) => (
-            <span
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className="cursor-pointer transition-all duration-300"
-              style={{
-                width: activeTab === tab.id ? "24px" : "10px",
-                height: "10px",
-                borderRadius: "999px",
-                background: activeTab === tab.id ? tab.accent : "#ddd",
-              }}
-            />
-          ))}
         </div>
       </div>
     </section>

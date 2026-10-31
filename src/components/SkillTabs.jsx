@@ -91,13 +91,17 @@ export default function SkillsTabs() {
   /* ---------- GSAP Animation ---------- */
 
   return (
-    <section className="w-full h-auto bg-gradient-to-b from-gray-50 to-white ">
+    <section className="w-full h-auto bg-linear-to-b from-gray-50 to-white ">
       <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#fff">
 
       <div className="max-w-7xl mx-auto px-6 py-10">
         {/* ---------------- HEADING ---------------- */}
 
         <div className="text-center mb-14">
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+            We leverage modern technologies to build scalable, high-performance
+            digital experiences.
+          </p>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
             <ShimmerText>Technologies</ShimmerText> We {" "}
             <span>Work With</span>
@@ -106,12 +110,8 @@ export default function SkillsTabs() {
             width="320px" // Adjust width as needed
             className="mt-4 mx-auto"
             centerColor="#3B82F6" // Optional: change blue color
-                          />
+            />
 
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
-            We leverage modern technologies to build scalable, high-performance
-            digital experiences.
-          </p>
         </div>
 
         {/* ---------------- TABS ---------------- */}
@@ -157,13 +157,13 @@ export default function SkillsTabs() {
         <div
           ref={gridRef}
           className="
-            grid
-            grid-cols-2
-            sm:grid-cols-3
-            md:grid-cols-4
-            lg:grid-cols-5
-            xl:grid-cols-6
+            flex
+            flex-wrap
+            justify-center
+            items-center
             gap-8
+            max-w-6xl
+            mx-auto
           "
         >
           {techData[activeTab].map((item) => (

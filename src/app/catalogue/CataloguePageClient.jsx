@@ -148,7 +148,7 @@ export default function Catalogue() {
               <span className="inline-block uppercase tracking-[0.3em] text-xs text-orange-600 font-semibold mb-4">
                 Digital Experience
               </span>
-              <h2 className="font-serif text-4xl md:text-5xl text-neutral-900 mb-4">
+              <h2 className=" text-4xl md:text-5xl text-neutral-900 mb-4">
                 View Our Catalogue Work..
               </h2>
               <p className="text-neutral-600 max-w-xl mx-auto text-lg font-light">
@@ -198,7 +198,7 @@ export default function Catalogue() {
 
                   {/* Info */}
                   <div className="p-6">
-                    <h3 className="font-serif text-xl text-neutral-900 mb-1 group-hover:text-orange-600 transition-colors">
+                    <h3 className=" text-xl text-neutral-900 mb-1 group-hover:text-orange-600 transition-colors">
                       {pdf.title}
                     </h3>
                     <p className="text-sm text-neutral-500 mb-3 font-light">
@@ -228,7 +228,7 @@ export default function Catalogue() {
                   <span className="inline-block uppercase tracking-[0.3em] text-sm text-orange-600 font-semibold mb-4">
                     Printed System Architectures
                   </span>
-                  <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight text-neutral-900">
+                  <h1 className=" text-4xl md:text-5xl lg:text-6xl font-normal leading-tight tracking-tight text-neutral-900">
                     Curating page <ShimmerText>hierarchies.</ShimmerText>
                   </h1>
                 </div>
@@ -316,7 +316,7 @@ export default function Catalogue() {
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-neutral-900/70 via-transparent to-transparent" />
                   <div className="absolute bottom-8 left-8 text-white">
-                    <h4 className="text-xl font-serif font-light mb-1">
+                    <h4 className="text-xl font-light mb-1">
                       The Art of Editorial Print
                     </h4>
 

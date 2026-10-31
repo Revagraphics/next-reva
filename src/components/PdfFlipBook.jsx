@@ -186,7 +186,7 @@ export default function PdfFlipBook({ pdfUrl }) {
           </button>
         </div>
 
-        <div className="flex items-center gap-1">
+        {/* <div className="flex items-center gap-1">
           <a
             href={pdfUrl}
             download
@@ -205,7 +205,7 @@ export default function PdfFlipBook({ pdfUrl }) {
           >
             <FaPrint size={14} />
           </button>
-        </div>
+        </div> */}
       </div>
 
       {/* Book area – relative so we can position side buttons */}

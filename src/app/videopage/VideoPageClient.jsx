@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import React, { useEffect, useState } from "react";
-import Image from 'next/image'
+import Image from "next/image";
 import ShimmerText from "@/components/ShimmerText";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
 import Link from "next/link";
@@ -15,14 +15,46 @@ import Invision from "@/assets/illustrator.svg";
 import figma from "@/assets/Figma.svg";
 
 const softwareTools = [
-  { name: "After Effects", icon: adobe1, size: "h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16" },
-  { name: "Premiere Pro", icon: adobe2, size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20" },
-  { name: "Final Cut Pro", icon: adobe3, size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14" },
-  { name: "DaVinci Resolve", icon: adobe4, size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20" },
-  { name: "Photoshop", icon: photoshop, size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14" },
-  { name: "After Effects", icon: Adob, size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12" },
-  { name: "Illustrator", icon: Invision, size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14" },
-  { name: "Figma", icon: figma, size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12" },
+  {
+    name: "After Effects",
+    icon: adobe1,
+    size: "h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16",
+  },
+  {
+    name: "Premiere Pro",
+    icon: adobe2,
+    size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20",
+  },
+  {
+    name: "Final Cut Pro",
+    icon: adobe3,
+    size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
+  },
+  {
+    name: "DaVinci Resolve",
+    icon: adobe4,
+    size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20",
+  },
+  {
+    name: "Photoshop",
+    icon: photoshop,
+    size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
+  },
+  {
+    name: "After Effects",
+    icon: Adob,
+    size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12",
+  },
+  {
+    name: "Illustrator",
+    icon: Invision,
+    size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
+  },
+  {
+    name: "Figma",
+    icon: figma,
+    size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12",
+  },
 ];
 
 const projects = [
@@ -75,7 +107,9 @@ export default function VideoPage() {
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 639px)");
-    const tabletQuery = window.matchMedia("(min-width: 640px) and (max-width: 1023px)");
+    const tabletQuery = window.matchMedia(
+      "(min-width: 640px) and (max-width: 1023px)",
+    );
     const updateBreakpoints = () => {
       setIsMobile(mobileQuery.matches);
       setIsTablet(tabletQuery.matches);
@@ -100,7 +134,6 @@ export default function VideoPage() {
 
   return (
     <>
-
       <div className="bg-white min-h-screen">
         {/* ================= HERO SECTION ================= */}
         <section className="navbar-clearance-hero relative flex min-h-[80svh] items-center justify-center overflow-hidden bg-[#f7f4f0]">
@@ -181,7 +214,6 @@ export default function VideoPage() {
               Video <ShimmerText>Editing</ShimmerText> Solution
             </h1>
 
-
             <DecorativeUnderline
               width="min(520px, 82vw)"
               className="mx-auto mt-2"
@@ -190,7 +222,7 @@ export default function VideoPage() {
 
             <p className="mx-auto mt-5 mb-8 max-w-3xl px-2 text-sm leading-relaxed text-black/90 sm:mt-6 sm:mb-10 sm:px-4 sm:text-lg md:text-xl lg:text-2xl">
               Cinematic storytelling, high-impact reels, and polished corporate
-                films. We turn your raw footage into content that captivates and
+              films. We turn your raw footage into content that captivates and
               converts.
             </p>
 
@@ -392,67 +424,54 @@ export default function VideoPage() {
               {[
                 {
                   title: "Commercial & Brand Films",
+                  gradient: "from-pink-200 via-purple-200 to-cyan-200",
                   desc: "High-end commercials, product launches, and brand stories with cinematic color grading and sound design.",
                 },
                 {
                   title: "Social Media Content",
+                  gradient: "from-cyan-200 via-blue-200 to-purple-200",
                   desc: "Reels, Shorts, TikToks, and vertical videos optimized for engagement and platform algorithms.",
                 },
                 {
                   title: "Corporate & Event Videos",
+                  gradient: "from-emerald-200 via-teal-200 to-cyan-200",
                   desc: "Internal communications, conference highlights, testimonials, and professional event coverage.",
                 },
                 {
                   title: "Motion Graphics & VFX",
+                  gradient: "from-amber-200 via-orange-200 to-red-200",
                   desc: "Custom animations, lower thirds, transitions, and visual effects that elevate your message.",
                 },
                 {
                   title: "Color Grading",
+                  gradient: "from-rose-200 via-pink-200 to-violet-200",
                   desc: "Professional color correction and cinematic looks using DaVinci Resolve for a polished finish.",
                 },
                 {
                   title: "Sound Design & Mixing",
+                  gradient: "from-sky-200 via-blue-200 to-indigo-200",
                   desc: "Clean dialogue, music licensing, sound effects, and balanced audio mixes that feel premium.",
                 },
               ].map((item, i) => (
                 <div
                   key={i}
-                  className="group rounded-3xl border border-gray-100 bg-white p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl sm:p-8"
+                  className={`group rounded-3xl border border-gray-100 bg-gradient-to-br ${item.gradient} p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl sm:p-8`}
                 >
                   <div className="w-12 h-12 rounded-2xl bg-linear-to-br from-[#FF9800]/15 to-[#E91E63]/15 flex items-center justify-center mb-5">
-                    <span className="text-2xl font-bold text-orange-500">
+                    <span className="text-2xl font-bold text-black">
                       {i + 1}
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#08182b] mb-3">
+                  <h3 className="text-xl font-bold text-black mb-3">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                  <p className="text-black leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ================= CTA ================= */}
-        <section className="relative overflow-hidden bg-slate-950 py-16 sm:py-20 lg:py-24">
-          <div className="absolute inset-0 bg-linear-to-r from-[#FF9800]/10 via-transparent to-[#E91E63]/10"></div>
-          <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
-            <h2 className="mb-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
-              Ready to elevate your <ShimmerText>video content</ShimmerText>?
-            </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-base text-white/80 sm:mb-10 sm:text-lg lg:text-xl">
-              Let’s turn your footage into something unforgettable. Get a free
-              consultation today.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex rounded-full bg-linear-to-r from-[#FF9800] to-[#E91E63] px-8 py-3 text-base font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(255,152,0,0.4)] sm:px-12 sm:py-4 sm:text-lg"
-            >
-              Get Started
-            </Link>
-          </div>
-        </section>
       </div>
 
       {/* Simple floating animation styles */}

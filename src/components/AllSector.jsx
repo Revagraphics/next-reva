@@ -119,7 +119,8 @@ const AllSector = () => {
           <h2 className="text-3xl lg:text-5xl font-bold text-zinc-900">
             <ShimmerText>All Sectors</ShimmerText>
           </h2>
-          <DecorativeUnderline
+          
+          <DecorativeUnderline  
             width="280px"
             className="mt-4 mx-auto"
             centerColor="#3B82F6"

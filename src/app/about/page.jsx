@@ -7,7 +7,6 @@ import Mission from "@/components/Mission";
 import Ethics from "@/components/Ethics";
 import TeamWork from "@/components/TeamWork";
 import { createPageMetadata } from "@/lib/seo";
-import SelectedWork from "@/components/SelectedWork";
 import ShimmerText from "@/components/ShimmerText";
 import GridBg from "@/components/GridBg";
 import xv from "@/assets/xv.png";
@@ -163,15 +162,6 @@ export default function About() {
         </section>
 
         
-        <SelectedWork
-          works={works}
-          title="Our Portfolio"
-          highlight="Work"
-          subtitle=""
-          viewAllLink="/portfolio"
-          viewAllText="See All Clients"
-          duration={25} 
-        />
         <Mission />
         <Ethics />
         {/* <ComparisonSection /> */}

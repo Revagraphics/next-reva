@@ -38,15 +38,7 @@ const reviews = [
     image: yashpal,
     accent: "#8B5CF6",
   },
-  {
-    id: 5,
-    quote:
-      "Best website designing & development service provided by reva graphics to us. Reva Graphics is an excellent web design and development company...",
-    name: "Mr. Umesh",
-    rating: 5,
-    image: umesh,
-    accent: "#10B981",
-  },
+ 
 ];
 
 function StarRating({ count, color }) {

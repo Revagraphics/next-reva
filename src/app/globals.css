@@ -243,6 +243,30 @@
   flex: 0 0 min(82cqi, 320px);
 }
 
+.gradient-red {
+  background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+}
+
+.gradient-blue {
+  background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+}
+
+.gradient-green {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.gradient-orange {
+  background: linear-gradient(135deg, #ff8008 0%, #ffc837 100%);
+}
+
+.gradient-purple {
+  background: linear-gradient(135deg, #7f00ff 0%, #e100ff 100%);
+}
+
+.gradient-teal {
+  background: linear-gradient(135deg, #0575e6 0%, #00f666 100%);
+}
+
 @container (min-width: 700px) {
   .service-showcase-card {
     flex-basis: calc((100cqi - 3rem) / 3);
@@ -251,20 +275,6 @@
 
 .services-showcase-viewport {
   container-type: inline-size;
-}
-
-@media (min-width: 1024px) and (min-height: 840px) {
-  .services-showcase-pin {
-    height: min(740px, calc(100svh - 144px));
-  }
-
-  .services-showcase-viewport {
-    overflow-x: hidden;
-    max-width: 1040px;
-    margin-inline: auto;
-    padding-inline: 0;
-    padding-block: 56px 16px;
-  }
 }
 
 /* my-font-face */

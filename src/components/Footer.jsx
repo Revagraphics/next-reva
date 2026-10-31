@@ -68,6 +68,7 @@ const badges = [
 
 export default function Footer() {
   const sliderRef = useRef(null);
+  const footerRef = useRef(null);
   const lettersRef = useRef([]);
   const bigTextRef = useRef(null);
   const colorOrbRef = useRef(null);
@@ -108,12 +109,12 @@ export default function Footer() {
   }, []);
 
   useEffect(() => {
-    const section = bigTextRef.current;
+    const footer = footerRef.current;
     const colorOrb = colorOrbRef.current;
-    if (!section || !colorOrb) return undefined;
+    if (!footer || !colorOrb) return undefined;
 
     const handlePointerMove = (event) => {
-      const bounds = section.getBoundingClientRect();
+      const bounds = footer.getBoundingClientRect();
       const pointerX = event.clientX - bounds.left;
       const pointerY = event.clientY - bounds.top;
       const normalizedX = Math.max(0, Math.min(1, pointerX / bounds.width));
@@ -123,8 +124,8 @@ export default function Footer() {
         ];
 
       gsap.to(colorOrb, {
-        x: pointerX - 110,
-        y: pointerY - 110,
+        x: pointerX - 160,
+        y: pointerY - 160,
         background: `radial-gradient(circle, ${orbColor}dd 0%, ${orbColor}88 34%, ${orbColor}35 58%, transparent 78%)`,
         duration: 0.75,
         ease: "elastic.out(1, 0.45)",
@@ -134,8 +135,8 @@ export default function Footer() {
 
     const resetColorOrb = () => {
       gsap.to(colorOrb, {
-        x: -220,
-        y: 30,
+        x: -320,
+        y: -320,
         opacity: 0,
         duration: 0.7,
         ease: "power3.out",
@@ -144,17 +145,17 @@ export default function Footer() {
     };
 
     const showColorOrb = () => {
-      gsap.to(colorOrb, { opacity: 1.35, duration: 0.25, overwrite: "auto" });
+      gsap.to(colorOrb, { opacity: 0.3, duration: 0.25, overwrite: "auto" });
     };
 
-    section.addEventListener("pointermove", handlePointerMove);
-    section.addEventListener("pointerenter", showColorOrb);
-    section.addEventListener("pointerleave", resetColorOrb);
+    footer.addEventListener("pointermove", handlePointerMove);
+    footer.addEventListener("pointerenter", showColorOrb);
+    footer.addEventListener("pointerleave", resetColorOrb);
 
     return () => {
-      section.removeEventListener("pointermove", handlePointerMove);
-      section.removeEventListener("pointerenter", showColorOrb);
-      section.removeEventListener("pointerleave", resetColorOrb);
+      footer.removeEventListener("pointermove", handlePointerMove);
+      footer.removeEventListener("pointerenter", showColorOrb);
+      footer.removeEventListener("pointerleave", resetColorOrb);
       gsap.killTweensOf(colorOrb);
     };
   }, []);
@@ -178,7 +179,15 @@ export default function Footer() {
   const closeModal = () => setSelectedBadge(null);
 
   return (
-    <footer className="bg-[#30303c] text-zinc-300 border-t border-zinc-800">
+    <footer
+      ref={footerRef}
+      className="relative isolate overflow-hidden border-t border-zinc-800 bg-[#30303c] text-zinc-300"
+    >
+      <div
+        ref={colorOrbRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-10 h-80 w-80 rounded-full opacity-0 blur-2xl saturate-150 mix-blend-screen"
+      />
       {/* ── MIDDLE SECTION ──────────────────────────────────────── */}
 
       <section className="bg-[#30303c] text-white border-t border-zinc-800">
@@ -292,11 +301,6 @@ export default function Footer() {
         ref={bigTextRef}
         className="relative isolate overflow-hidden bg-[#30303c] border-t border-zinc-800 py-2 sm:py-8 md:py-10 group"
       >
-        <div
-          ref={colorOrbRef}
-          aria-hidden="true"
-          className="pointer-events-none absolute -left-56 top-8 z-0 h-56 w-56 rounded-full opacity-0 blur-xl saturate-150"
-        />
         <div className="relative z-10 flex w-full items-end px-4 sm:px-4">
           {WORD.split("").map((ch, i) => {
             if (ch === " ") {

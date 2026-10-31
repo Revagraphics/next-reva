@@ -40,7 +40,7 @@ export default function ProjectProcess() {
           {processes.map((process, index) => (
             <div
               key={process.id}
-              className="group relative bg-white/90 backdrop-blur-xl 
+              className="group relative bg-gradient-to-br from-orange-100 via-amber-50 to-pink-100
                 border border-orange-500/20 hover:border-orange-500/60
                 rounded-2xl p-4 sm:p-5 
                 shadow-[0_4px_20px_rgba(0,0,0,0.03)]
@@ -64,7 +64,7 @@ export default function ProjectProcess() {
               </div>
 
               {/* Title */}
-              <div className="mt-2 text-xs sm:text-sm md:text-base font-semibold text-zinc-800 tracking-tight leading-snug">
+              <div className="mt-2 text-xs sm:text-sm md:text-base font-semibold text-black tracking-tight leading-snug">
                 {process.title}
               </div>
             </div>

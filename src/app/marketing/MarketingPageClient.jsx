@@ -21,36 +21,42 @@ export default function Marketing() {
       id: 1,
       img: benefit1,
       title: "Branding & Management",
+      gradient: "from-pink-200 via-purple-200 to-cyan-200",
       dis: "Our SEO & SMO teams understand the true value of a brand & engage with users to know how they feel about your product or service.",
     },
     {
       id: 2,
       img: benefit2,
       title: "Social Media Campaigns",
+      gradient: "from-cyan-200 via-blue-200 to-purple-200",
       dis: "We possess experience with paid ad campaigns on Facebook, Twitter, Instagram for effective engagement.",
     },
     {
       id: 3,
       img: benefit3,
       title: "Search Engine Optimization (SEO)",
+      gradient: "from-emerald-200 via-teal-200 to-cyan-200",
       dis: "We perform complete keyword research after understanding the business, industry, and target audience.",
     },
     {
       id: 4,
       img: benefit4,
       title: "Social Media Monitoring",
+      gradient: "from-amber-200 via-orange-200 to-red-200",
       dis: "Regular monitoring and optimization help to better understand results at every stage before executing future campaigns.",
     },
     {
       id: 5,
       img: benefit5,
       title: "Performance Reporting",
+      gradient: "from-rose-200 via-pink-200 to-violet-200",
       dis: "In order to monitor and breakdown the details of the performance, SEO marketing team at Reva will send monthly reports.",
     },
     {
       id: 6,
       img: benefit5,
       title: "Experienced Team",
+      gradient: "from-sky-200 via-blue-200 to-indigo-200",
       dis: "High-quality content from an experienced team.",
     },
   ];
@@ -168,7 +174,7 @@ export default function Marketing() {
               {Benefits.map((benefit) => (
                 <div
                   key={benefit.id}
-                  className="group bg-white/10 backdrop-blur-sm border border-gray-200 hover:border-orange-300 rounded-3xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
+                  className={`group bg-gradient-to-br ${benefit.gradient} border border-gray-200 hover:border-orange-300 rounded-3xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-2`}
                 >
                   {/* Icon */}
                   <div className="w-16 h-16 mb-6 bg-linear-to-br from-orange-500 to-amber-500 rounded-2xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
@@ -180,12 +186,12 @@ export default function Marketing() {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-semibold text-[#30303c] mb-4 group-hover:text-orange-600 transition-colors">
+                  <h3 className="text-2xl font-semibold text-black mb-4">
                     {benefit.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-[17px]">
+                  <p className="text-black leading-relaxed text-[17px]">
                     {benefit.dis}
                   </p>
 

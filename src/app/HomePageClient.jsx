@@ -34,9 +34,8 @@ const works = [
   { id: 1, image: campaign, title: "Development" },
   { id: 2, image: website, title: "Designing" },
   { id: 3, image: branding, title: "Marketing" },
-  { id: 4, image: brochure, title: "Editing" },
-  { id: 6, image: packaging, title: "Printing" },
-  { id: 7, image: packaging, title: "Packaging" },
+  { id: 4, image: packaging, title: "Printing" },
+  { id: 5, image: packaging, title: "Packaging" },
 ];
 
 import {
@@ -103,7 +102,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="bg-white overflow-hidden">
+    <div className="bg-white overflow-x-clip">
       {/* ================= HERO ================= */}
       <section className="mt-28 md:mt-28 px-4 flex items-center lg:min-h-[70vh] max-w-[90vw] justify-center mx-auto py-12 sm:py-16 lg:py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
@@ -163,7 +162,7 @@ export default function Home() {
       </section>
 
       {/* ================= REVA SECTION ================= */}
-      <section className="relative mt-24 overflow-hidden flex justify-center w-full sm:py-10 lg:py-8 px-4 sm:px-6 lg:px-8">
+      <section className="relative mt-12 overflow-hidden flex justify-center w-full sm:py-10 lg:py-8 px-4 sm:px-6 lg:px-8">
         <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#fff">
           <div className="relative z-10 max-w-[90vw] mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="flex flex-col max-w-295 lg:max-w-none mx-auto gap-12 lg:gap-16 xl:gap-20">

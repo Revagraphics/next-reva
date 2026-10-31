@@ -77,7 +77,7 @@ export default function Stationery() {
             <span className="reveal-sub inline-block uppercase tracking-[0.3em] text-sm text-orange-600 font-medium mb-4">
               Tactile Architecture
             </span>
-            <h1 className="reveal-title font-serif text-3xl md:text-5xl lg:text-5xl font-normal leading-[1.1] tracking-tight text-neutral-900">
+            <h1 className="reveal-title  text-3xl md:text-5xl lg:text-5xl font-normal leading-[1.1] tracking-tight text-neutral-900">
               <ShimmerText>Stationery</ShimmerText> suites <br /> designed{" "}
               <ShimmerText>for</ShimmerText> <br /> the{" "}
               <ShimmerText>physical</ShimmerText> realm.
@@ -95,7 +95,7 @@ export default function Stationery() {
                 className="grid-item group flex flex-col justify-between border-b border-neutral-200 pb-12 lg:border-b-0 lg:pb-0 lg:pr-6 lg:border-r last:border-0 hover:border-orange-200 transition-colors"
               >
                 <div>
-                  <span className="block font-serif text-sm text-neutral-500 mb-8">
+                  <span className="block  text-sm text-neutral-500 mb-8">
                     {item.id}
                   </span>
                   <h3 className="text-2xl font-light tracking-tight text-neutral-900 mb-4 group-hover:text-orange-600 transition-colors duration-300">

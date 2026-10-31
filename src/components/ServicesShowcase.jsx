@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -116,58 +116,11 @@ const servicesData = [
   },
 ];
 
-const gradientStyles = `
-  .gradient-red { background: linear-gradient(135deg, #FF416C 0%, #FF4B2B 100%); }
-  .gradient-blue { background: linear-gradient(135deg, #00B4DB 0%, #0083B0 100%); }
-  .gradient-green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-  .gradient-orange { background: linear-gradient(135deg, #FF8008 0%, #FFC837 100%); }
-  .gradient-purple { background: linear-gradient(135deg, #7F00FF 0%, #E100FF 100%); }
-  .gradient-teal { background: linear-gradient(135deg, #0575E6 0%, #00F666 100%); }
-
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-`;
-
 const ServicesShowcase = () => {
   const containerRef = useRef(null);
   const pinRef = useRef(null);
   const carouselViewportRef = useRef(null);
   const carouselTrackRef = useRef(null);
-  const cardRefs = useRef([]);
-
-  // Inject custom styles once
-  useEffect(() => {
-    const styleId = "services-showcase-styles";
-    if (!document.getElementById(styleId)) {
-      const style = document.createElement("style");
-      style.id = styleId;
-      style.textContent = gradientStyles;
-      document.head.appendChild(style);
-    }
-  }, []);
-
-  // Entrance animation (safer version)
-  useGSAP(
-    () => {
-      const cards = cardRefs.current.filter(Boolean);
-      if (cards.length === 0) return;
-
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 50, scale: 0.92 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: "power3.out",
-          clearProps: "transform", // only clear transform, keep opacity
-        },
-      );
-    },
-    { scope: containerRef },
-  );
 
   // Horizontal scroll + pin (desktop only)
   useGSAP(
@@ -178,7 +131,7 @@ const ServicesShowcase = () => {
 
       const media = gsap.matchMedia();
 
-      media.add("(min-width: 1024px) and (min-height: 840px)", () => {
+      media.add("(min-width: 1024px)", () => {
         const getDistance = () =>
           Math.max(0, track.scrollWidth - viewport.clientWidth);
 
@@ -257,7 +210,7 @@ const ServicesShowcase = () => {
     >
       <div
         ref={pinRef}
-        className="services-showcase-pin relative mx-auto flex min-h-[620px] w-full max-w-7xl flex-col justify-between text-gray-800 lg:min-h-0"
+        className="services-showcase-pin relative mx-auto flex min-h-[620px] w-full max-w-7xl flex-col justify-between text-gray-800"
       >
         {/* Header */}
         <header className="z-10 flex flex-col justify-between gap-5 border-b border-gray-100 bg-white py-6 sm:flex-row sm:items-center">
@@ -275,21 +228,18 @@ const ServicesShowcase = () => {
         </header>
 
         {/* Carousel */}
-        <div className="relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10">
+        <div className="services-showcase-carousel relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10">
           <div
             ref={carouselViewportRef}
-            className="services-showcase-viewport no-scrollbar -mx-4 overflow-x-auto px-4 pt-16 pb-8 scroll-smooth md:mx-0 md:px-0"
+            className="services-showcase-viewport no-scrollbar -mx-4 overflow-x-auto px-4 pt-16 pb-8 scroll-smooth md:mx-0 md:px-0 lg:overflow-x-hidden"
           >
             <div ref={carouselTrackRef} className="flex w-max gap-6">
-              {servicesData.map((service, index) => {
+              {servicesData.map((service) => {
                 const ServiceIcon = service.icon;
                 return (
                   <Link
                     key={service.id}
                     href={service.href}
-                    ref={(el) => {
-                      cardRefs.current[index] = el;
-                    }}
                     className="service-card service-showcase-card group flex-shrink-0 cursor-pointer rounded-3xl
                                w-[300px] sm:w-[320px] lg:w-[340px]
                                focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-pink-500"

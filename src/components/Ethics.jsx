@@ -18,36 +18,42 @@ export default function Ethics() {
       id: 1,
       icon: targets,
       title: "Client-centric Approach",
+      gradient: "from-pink-200 via-purple-200 to-cyan-200",
       description: "We are known for our positive and personalized experience to the customers due to our outstanding client-centric approach."
     },
     {
       id: 2,
       icon: time,
       title: "Service Delivered in Time",
+      gradient: "from-cyan-200 via-blue-200 to-purple-200",
       description: "We understand the value of time and henceforth we always deliver the assigned task on time."
     },
     {
       id: 3,
       icon: united,
       title: "Effective Collaboration",
+      gradient: "from-emerald-200 via-teal-200 to-cyan-200",
       description: "Our team is very effective and efficient and we create a culture of cooperation between you and us to achieve our goals."
     },
     {
       id: 4,
       icon: emp,
       title: "Employee Benefits",
+      gradient: "from-amber-200 via-orange-200 to-red-200",
       description: "Our software house has been recognised by google for outstanding android application quality."
     },
     {
       id: 5,
       icon: teamwork,
       title: "Team Work",
+      gradient: "from-rose-200 via-pink-200 to-violet-200",
       description: "Team work enables to share ideas and responsibilities which increases mutual support and creates confidence in a self being."
     },
     {
       id: 6,
       icon: quality,
       title: "Quality of Service",
+      gradient: "from-sky-200 via-blue-200 to-indigo-200",
       description: "Our software house has been recognised by google for outstanding android application quality."
     }
   ];
@@ -79,7 +85,7 @@ export default function Ethics() {
           {cards.map((card, index) => (
             <div 
               key={card.id}
-              className={`ree-card r-bg-c group rounded-3xl p-3 sm:p-5 md:p-10 bg-[#f7f7f7]/60 backdrop-blur-sm  duration-300 hover:shadow-xl hover:-translate-y-2 ${
+              className={`ree-card r-bg-c group rounded-3xl p-3 sm:p-5 md:p-10 bg-gradient-to-br ${card.gradient} transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
                 index >= 3 ? 'lg:mt-10' : ''
               }`}
             >
@@ -94,10 +100,10 @@ export default function Ethics() {
 
               {/* Content */}
               <div className="ree-card-content">
-                <h3 className="text-base sm:text-lg md:text-2xl font-semibold text-[#30303c] mb-3 sm:mb-4 md:mb-5 leading-tight">
+                <h3 className="text-base sm:text-lg md:text-2xl font-semibold text-black mb-3 sm:mb-4 md:mb-5 leading-tight">
                   {card.title}
                 </h3>
-                <p className="text-[#30303c] leading-relaxed text-xs sm:text-sm md:text-[17px]">
+                <p className="text-black leading-relaxed text-xs sm:text-sm md:text-[17px]">
                   {card.description}
                 </p>
               </div>
@@ -111,4 +117,3 @@ export default function Ethics() {
     </section>
   );
 };
-

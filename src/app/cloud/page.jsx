@@ -2,6 +2,15 @@ import ShimmerText from "@/components/ShimmerText";
 import GridBg from "@/components/GridBg";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
 import { createPageMetadata } from "@/lib/seo";
+import Image from "next/image";
+import adobe1 from "@/assets/after-effact.png";
+import adobe2 from "@/assets/premier.svg";
+import adobe3 from "@/assets/final.png";
+import adobe4 from "@/assets/Davinci.png";
+import photoshop from "@/assets/photoshop.svg";
+import Adob from "@/assets/ex.svg";
+import Invision from "@/assets/illustrator.svg";
+import figma from "@/assets/Figma.svg";
 
 export const metadata = createPageMetadata(
   "Cloud Services & Solutions | Reva Graphics",
@@ -10,6 +19,49 @@ export const metadata = createPageMetadata(
 );
 
 export default function Cloud() {
+  const softwareTools = [
+    {
+      name: "After Effects",
+      icon: adobe1,
+      size: "h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16",
+    },
+    {
+      name: "Premiere Pro",
+      icon: adobe2,
+      size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20",
+    },
+    {
+      name: "Final Cut Pro",
+      icon: adobe3,
+      size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
+    },
+    {
+      name: "DaVinci Resolve",
+      icon: adobe4,
+      size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20",
+    },
+    {
+      name: "Photoshop",
+      icon: photoshop,
+      size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
+    },
+    {
+      name: "After Effects",
+      icon: Adob,
+      size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12",
+    },
+    {
+      name: "Illustrator",
+      icon: Invision,
+      size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
+    },
+    {
+      name: "Figma",
+      icon: figma,
+      size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12",
+    },
+  ];
+
   const services = [
     {
       id: 1,
@@ -84,13 +136,76 @@ export default function Cloud() {
 
   return (
     <>
-
       <div className="bg-white min-h-screen">
-
         {/* HERO SECTION - Orange Theme + Fully Responsive */}
 
         <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f2fff5">
           <section className="navbar-clearance-hero h-[70vh] sm:h-[90vh] flex items-center justify-center text-black py-16 md:py-24 relative overflow-hidden">
+            {/* Floating Software Badges */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Left side */}
+              <div className="absolute top-[18%] left-[6%] hidden animate-float-slow sm:block md:left-[10%]">
+                <Image
+                  src={softwareTools[0].icon}
+                  alt={softwareTools[0].name}
+                  className={`${softwareTools[0].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+              <div className="absolute top-[42%] left-[3%] hidden animate-float sm:block md:left-[6%]">
+                <Image
+                  src={softwareTools[2].icon}
+                  alt={softwareTools[2].name}
+                  className={`${softwareTools[2].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+              <div className="absolute bottom-[28%] left-[8%] hidden animate-float-delayed sm:block md:left-[12%]">
+                <Image
+                  src={softwareTools[4].icon}
+                  alt={softwareTools[4].name}
+                  className={`${softwareTools[4].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+
+              {/* Right side */}
+              <div className="absolute top-[22%] right-[5%] hidden animate-float sm:block md:right-[9%]">
+                <Image
+                  src={softwareTools[1].icon}
+                  alt={softwareTools[1].name}
+                  className={`${softwareTools[1].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+              <div className="absolute top-[48%] right-[4%] hidden animate-float-slow sm:block md:right-[7%]">
+                <Image
+                  src={softwareTools[3].icon}
+                  alt={softwareTools[3].name}
+                  className={`${softwareTools[3].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+              <div className="absolute bottom-[24%] right-[9%] hidden animate-float-delayed sm:block md:right-[13%]">
+                <Image
+                  src={softwareTools[5].icon}
+                  alt={softwareTools[5].name}
+                  className={`${softwareTools[5].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+
+              {/* Extra small ones */}
+              <div className="absolute top-[32%] left-[22%] hidden lg:block animate-float">
+                <Image
+                  src={softwareTools[6].icon}
+                  alt={softwareTools[6].name}
+                  className={`${softwareTools[6].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+              <div className="absolute bottom-[38%] right-[22%] hidden lg:block animate-float-slow">
+                <Image
+                  src={softwareTools[7].icon}
+                  alt={softwareTools[7].name}
+                  className={`${softwareTools[7].size} object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.35)]`}
+                />
+              </div>
+            </div>
+
             <div className="max-w-[90%] mx-auto px-6 text-center relative z-10">
               <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-3xl text-sm font-medium mb-6">
                 ⚡ POWERED BY <ShimmerText>AWS • AZURE • GCP</ShimmerText>
@@ -205,8 +320,6 @@ export default function Cloud() {
             </div>
           </div>
         </section>
-
-
       </div>
     </>
   );
