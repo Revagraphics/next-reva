@@ -95,7 +95,7 @@ export default function WorkGallery({ works, name }) {
 
       {activeWork && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col items-center rounded-[1.25rem] sm:rounded-[1.5rem]  justify-end bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-end bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={`${activeWork.title} image viewer`}
@@ -133,14 +133,16 @@ export default function WorkGallery({ works, name }) {
             </>
           )}
           <div className="relative h-[min(72svh,700px)] max-h-[calc(100svh-5rem)] w-full max-w-5xl">
-            <Image
-              src={activeWork.image}
-              alt={activeWork.title}
-              fill
-              sizes="100vw"
-              className="object-contain"
-              priority
-            />
+            <div className="absolute inset-0 overflow-hidden rounded-[1.25rem]">
+              <Image
+                src={activeWork.image}
+                alt={activeWork.title}
+                fill
+                sizes="100vw"
+                className="object-contain"
+                priority
+              />
+            </div>
             <p className="absolute -bottom-6 left-0 right-0 truncate px-12 text-center text-xs font-semibold text-gray-900 sm:-bottom-8 sm:text-sm md:text-base">
               {activeWork.title}
             </p>
