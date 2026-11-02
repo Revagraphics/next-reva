@@ -159,7 +159,7 @@ export default function SkillsTabs() {
             flex-wrap
             justify-center
             items-center
-            gap-4 sm:gap-8
+            gap-3 sm:gap-6
             max-w-6xl
             mx-auto
           "
@@ -172,20 +172,20 @@ export default function SkillsTabs() {
                 group
                 bg-white
                 rounded-2xl sm:rounded-3xl
-                p-3 sm:p-2
+                p-2.5 sm:p-3
                 text-center
                 flex flex-col
                 items-center
                 border
                 hover:shadow-2xl
-                hover:-translate-y-2
+                hover:-translate-y-1.5
                 transition-all duration-300
                 w-[calc(50%-8px)] sm:w-auto
               "
             >
               <div
                 className="
-                w-20 h-20 sm:w-32 sm:h-32
+                w-14 h-14 sm:w-20 sm:h-20
                 flex items-center justify-center
                 rounded-2xl sm:rounded-3xl
                 mb-2 sm:mb-3
@@ -196,7 +196,7 @@ export default function SkillsTabs() {
                 <Image
                   src={item.icon}
                   alt={item.title}
-                  className="w-12 h-12 sm:w-28 sm:h-28 object-contain group-hover:scale-110 transition"
+                  className="w-8 h-8 sm:w-14 sm:h-14 object-contain group-hover:scale-110 transition"
                 />
               </div>
 

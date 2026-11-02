@@ -15,15 +15,10 @@ export const metadata = createPageMetadata(
 );
 
 export default function Branding() {
-  
   return (
     <>
-
       <div className="overflow-x-hidden">
-
-        <div
-          className="navbar-clearance-brand-hero relative h-screen w-full bg-gray-50 overflow-hidden"
-        >
+        <div className="navbar-clearance-brand-hero relative h-screen w-full bg-gray-50 overflow-hidden">
           {/* Video + Overlays (unchanged) */}
           <video
             src="/video-slider.mp4"
@@ -35,7 +30,6 @@ export default function Branding() {
           />
           <div className="absolute inset-0 bg-white/70"></div>
           <div className="absolute inset-0 bg-linear-to-b from-gray-50/80 via-white/60 to-gray-100/80"></div>
-
 
           {/* Text Content */}
           <div className="navbar-clearance-hero-content absolute inset-0 flex items-center justify-center text-center px-6 z-10 pointer-events-none">
@@ -49,7 +43,6 @@ export default function Branding() {
                 <ShimmerText>for attract the customers</ShimmerText>
               </h1>
 
-              
               <p className="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto mb-10">
                 We craft stunning digital experiences that captivate and inspire
               </p>
@@ -94,12 +87,13 @@ export default function Branding() {
           <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-t from-gray-50 to-transparent"></div>
         </div>
 
-        <section className="min-h-screen lg:pt-24 pb-28 bg-white">
+        <section className="min-h-screen lg:pt-24 pb-2 bg-white">
           <div className="max-w-7xl mx-auto px-6">
             {/* Main Heading */}
             <div className="text-center mb-20">
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold leading-tight tracking-tighter text-black">
-                We offer <ShimmerText>Brand Identity</ShimmerText> Designing Services
+                We offer <ShimmerText>Brand Identity</ShimmerText> Designing
+                Services
               </h2>
 
               <DecorativeUnderline
@@ -145,7 +139,8 @@ export default function Branding() {
                 <div className="flex items-center gap-4">
                   <div className="w-px h-10 bg-black"></div>
                   <h2 className="uppercase text-sm tracking-[2px] font-medium text-gray-500">
-                    <ShimmerText>Creative Advertising</ShimmerText> & Brand Culture
+                    <ShimmerText>Creative Advertising</ShimmerText> & Brand
+                    Culture
                   </h2>
                 </div>
 
@@ -161,7 +156,8 @@ export default function Branding() {
                   Our award-winning creative sparks an emotional reaction. It
                   brings your brand story to life, captivates attention, engages
                   the senses, and transforms perspectives. We develop
-                  commercials that create memorable experiences across any medium.
+                  commercials that create memorable experiences across any
+                  medium.
                 </p>
 
                 <p className="text-[17px] leading-relaxed  hover:stroke-black text-gray-700">
@@ -174,11 +170,10 @@ export default function Branding() {
           </div>
         </section>
 
-        
         <ImageSlider />
         <ProjectProcess />
         <PaymentSection />
-        
+
         <Instagram />
       </div>
     </>

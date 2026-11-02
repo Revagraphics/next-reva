@@ -105,7 +105,7 @@ export default function PaymentSection() {
                     src={image.img}
                     alt={`Payment method ${image.id}`}
                     fill
-                    sizes="160px"
+                    sizes="180px"
                     className="object-contain p-2 transition-transform duration-500 hover:scale-110"
                     draggable="false"
                   />

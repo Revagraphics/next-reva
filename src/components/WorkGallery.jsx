@@ -71,7 +71,7 @@ export default function WorkGallery({ works, name }) {
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`View ${work.title}`}
-              className="group mb-3 inline-block w-full break-inside-avoid overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-500 min-[420px]:mb-4 md:mb-5 sm:rounded-[1.5rem]"
+              className="group mb-3 inline-block w-full break-inside-avoid overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-500 min-[420px]:mb-4 md:mb-5  sm:rounded-[1.5rem]"
             >
               <span
                 className={`relative block overflow-hidden rounded-[1.15rem] bg-gray-100 ${imageRatios[index % imageRatios.length]}`}
@@ -95,7 +95,7 @@ export default function WorkGallery({ works, name }) {
 
       {activeWork && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
+          className="fixed inset-0 z-[100] flex flex-col items-center rounded-[1.25rem] sm:rounded-[1.5rem]  justify-end bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={`${activeWork.title} image viewer`}
@@ -103,14 +103,15 @@ export default function WorkGallery({ works, name }) {
             if (event.target === event.currentTarget) setActiveIndex(null);
           }}
         >
-          <button
+          {/* <button
             type="button"
             onClick={() => setActiveIndex(null)}
             aria-label="Close image viewer"
             className="absolute right-3 top-3 z-20 rounded-full bg-black/50 px-3 py-1 text-2xl leading-none text-white hover:bg-black/70 sm:right-5 sm:top-5 sm:px-4 sm:py-2"
           >
             &times;
-          </button>
+          </button> */}
+
           {works.length > 1 && (
             <>
               <button

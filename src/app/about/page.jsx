@@ -39,8 +39,8 @@ export default function About() {
       
 
       <div className=" min-h-screen">
-        <section className="mt-28 px-4 flex item-center lg:h-[75vh] max-w-[90%] mx-auto">
-          <div className="flex flex-col lg:flex-row gap-2 lg:gap-12 items-center">
+        <section className="mx-auto mt-24 flex max-w-[90%] items-center px-4 py-8 sm:mt-28 lg:mt-28 lg:py-10">
+          <div className="flex w-full flex-col items-center gap-8 lg:flex-row lg:gap-12">
             {/* TEXT */}
             <section className="hero-animate flex-1 text-center lg:text-left">
               {/* <span className="text-indigo-600 font-semibold mb-4 uppercase text-[1.3rem]">
@@ -68,11 +68,12 @@ export default function About() {
 
             {/* IMAGE */}
             <section className="hero-animate flex-1 w-full">
-              <div className="relative rounded-3xl overflow-hidden">
+              <div className="relative overflow-hidden rounded-3xl">
                 <Image
                   src={build}
                   alt="hero"
-                  className="w-full h-80 sm:h-105 lg:h-130 object-cover"
+                  sizes="(max-width: 1023px) 90vw, 45vw"
+                  className="h-auto max-h-[60svh] w-full object-contain"
                 />
               </div>
             </section>
@@ -81,10 +82,10 @@ export default function About() {
         </section>
 
         {/* ==================== ABOUT REVA SECTION (with Animated Stats) ==================== */}
-        <section className=" py-2 lg:py-0 ">
+        <section className="pt-4 pb-8 sm:pt-6 sm:pb-10 lg:pt-4 lg:pb-12">
           <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f8f7f4">
-            <div className="max-w-[90%] mx-auto py-10">
-              <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div className="mx-auto max-w-[90%] py-8 sm:py-10">
+              <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
                 {/* Left Side */}
                 <div>
                   <section className="hero-animate flex-1 w-full">

@@ -33,7 +33,7 @@ export default function ImageSlider() {
       .map(
         (img) => `
           <div class="branding_slide w-[75vw] max-w-[340px] min-w-[240px] h-[32vh] min-h-[200px] md:w-[45vw] md:max-w-[450px] md:min-w-[320px] md:h-[45vh] lg:w-[58vh] lg:min-w-[440px] lg:h-[45vh] flex-shrink-0 rounded-3xl overflow-hidden shadow-xl bg-gray-900 flex items-center justify-center transition-all duration-300 hover:scale-[1.02]">
-            <img src="${img.img.src}" alt="Slide ${img.id}" class="w-full h-full object-contain object-center transition-transform duration-700 hover:scale-[1.03]" draggable="false" />
+            <img src="${img.img.src}" alt="Slide ${img.id}" class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-[1.03]" draggable="false" />
           </div>
         `,
       )
