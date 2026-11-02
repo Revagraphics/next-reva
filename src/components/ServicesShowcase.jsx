@@ -25,7 +25,7 @@ const servicesData = [
     tags: "Logo Design | Stationery Design",
     description:
       "Let's talk a story with different brand elements that unanimously define your brand personality. We craft iconic visual systems tailored for lasting recognition.",
-    gradient: "from-pink-200 via-purple-200 to-cyan-200",
+    gradient: "from-pink-300 via-purple-300 to-cyan-300",
     icon: FaPalette,
     features: [
       "Logo & Visual Guidelines",
@@ -41,7 +41,7 @@ const servicesData = [
     tags: "UI & UX Design | Dynamic Websites",
     description:
       "Customized, SEO-friendly, and user-centric websites that reflect your brand perfectly. Engaging UI/UX designs focused on conversion and retention.",
-    gradient: "from-cyan-200 via-blue-200 to-purple-200",
+    gradient: "from-cyan-300 via-blue-300 to-purple-300",
     icon: FaGlobe,
     features: [
       "UI/UX Prototyping",
@@ -57,7 +57,7 @@ const servicesData = [
     tags: "eCommerce | Custom Portals",
     description:
       "Robust, scalable, and high-performance web applications tailored to your business needs. Built with modern tech stacks for maximum speed and security.",
-    gradient: "from-emerald-200 via-teal-200 to-cyan-200",
+    gradient: "from-emerald-300 via-teal-300 to-cyan-300",
     icon: FaCode,
     features: [
       "eCommerce Storefronts",
@@ -73,7 +73,7 @@ const servicesData = [
     tags: "SEO | SMO | PPC",
     description:
       "360-degree digital strategies to boost your brand presence and engagement. Drive qualified traffic and maximize sales performance.",
-    gradient: "from-amber-200 via-orange-200 to-red-200",
+    gradient: "from-amber-300 via-orange-300 to-red-300",
     icon: FaChartLine,
     features: [
       "Search Engine Optimization",
@@ -89,7 +89,7 @@ const servicesData = [
     tags: "Mobile Apps | Web Apps",
     description:
       "Powerful mobile and web applications designed for exceptional user experiences. Smooth performance across iOS, Android, and cross-platform web.",
-    gradient: "from-rose-200 via-pink-200 to-violet-200",
+    gradient: "from-rose-300 via-pink-300 to-violet-300",
     icon: FaMobileAlt,
     features: [
       "iOS & Android Native Apps",
@@ -105,7 +105,7 @@ const servicesData = [
     tags: "Cloud Services | Hosting | SSL",
     description:
       "Tailored cloud solutions and custom software to give your business a competitive edge. Streamline operations with dedicated software systems.",
-    gradient: "from-sky-200 via-blue-200 to-indigo-200",
+    gradient: "from-sky-300 via-blue-300 to-indigo-300",
     icon: FaCloud,
     features: [
       "Cloud Infrastructure",
@@ -248,10 +248,10 @@ const ServicesShowcase = () => {
                     onMouseLeave={(e) => handleCardHover(e, false)}
                   >
                     <div
-                      className={`${service.gradient} relative flex h-full min-h-[390px] flex-col justify-between overflow-visible rounded-2xl p-6 pt-14 text-white`}
+                      className={`${service.gradient} bg-linear-to-br relative flex h-full min-h-[390px] flex-col justify-between overflow-visible rounded-2xl p-6 pt-14 text-gray-950`}
                     >
                       {/* Floating Icon */}
-                      <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border border-white/70 bg-white/90 text-3xl text-gray-800 backdrop-blur-md shadow-lg">
+                      <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border-2 border-white bg-white/95 text-3xl text-gray-800 shadow-lg ring-2 ring-black/10 backdrop-blur-md">
                         <ServiceIcon
                           aria-hidden="true"
                           className="text-gray-800 transition-colors duration-300 group-hover:text-pink-500"
@@ -263,19 +263,19 @@ const ServicesShowcase = () => {
                         <h3 className="text-2xl font-extrabold tracking-tight">
                           {service.title}
                         </h3>
-                        <p className="mt-2 inline-block rounded-full bg-black/15 px-3 py-1 text-xs font-semibold text-white/90 backdrop-blur-sm">
+                        <p className="mt-2 inline-block rounded-full bg-white/50 px-3 py-1 text-xs font-semibold text-gray-900 backdrop-blur-sm">
                           {service.tags}
                         </p>
                       </div>
 
                       {/* Description */}
-                      <p className="my-4 line-clamp-3 text-center text-sm leading-relaxed text-white/90">
+                      <p className="my-4 line-clamp-3 text-center text-sm leading-relaxed text-gray-900">
                         {service.description}
                       </p>
 
                       {/* Read More Button */}
                       <div className="pt-2">
-                        <div className="w-full rounded-xl border border-white/30 bg-white/20 px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-white backdrop-blur-md transition-all duration-300 group-hover:bg-white group-hover:text-gray-900">
+                        <div className="w-full rounded-xl border border-black/20 bg-white/50 px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-gray-950 backdrop-blur-md transition-all duration-300 group-hover:bg-black group-hover:text-white">
                           <span>Read More</span>
                           <FaArrowRight
                             aria-hidden="true"

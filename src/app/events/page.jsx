@@ -33,7 +33,7 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-white">
       <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f2fff5">
-        <section className="navbar-clearance-hero relative flex flex-col min-h-[40vh] items-center justify-end overflow-hidden py-16 text-black md:py-24">
+        <section className="navbar-clearance-hero relative flex min-h-[40vh] flex-col items-center justify-end overflow-hidden pt-32 pb-16 text-black sm:pt-36 md:pt-40 md:pb-24">
           <div className="relative z-10 mx-auto max-w-[90%] px-6 text-center">
             <h1 className="mb-6 text-4xl font-bold leading-none tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
               <ShimmerText>Events Prints</ShimmerText>
