@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import ShimmerText from "@/components/ShimmerText";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
@@ -62,41 +62,31 @@ const projects = [
     id: 1,
     title: "Brand Promo Film",
     category: "Commercial",
-    thumbnail:
-      "https://images.pexels.com/photos/7991579/pexels-photo-7991579.jpeg?auto=compress&cs=tinysrgb&w=800",
-    duration: "1:24",
+    video: "/clips/1.mp4",
   },
   {
     id: 2,
     title: "Product Launch Reel",
     category: "Social Media",
-    thumbnail:
-      "https://images.pexels.com/photos/7991650/pexels-photo-7991650.jpeg?auto=compress&cs=tinysrgb&w=800",
-    duration: "0:48",
+    video: "/clips/2.mp4",
   },
   {
     id: 3,
     title: "Corporate Story",
     category: "Corporate",
-    thumbnail:
-      "https://images.pexels.com/photos/7991661/pexels-photo-7991661.jpeg?auto=compress&cs=tinysrgb&w=800",
-    duration: "2:15",
+    video: "/clips/3.mp4",
   },
   {
     id: 4,
     title: "Event Highlights",
     category: "Event",
-    thumbnail:
-      "https://images.pexels.com/photos/7991583/pexels-photo-7991583.jpeg?auto=compress&cs=tinysrgb&w=800",
-    duration: "1:52",
+    video: "/clips/4.mp4",
   },
   {
     id: 5,
     title: "YouTube Documentary",
     category: "YouTube",
-    thumbnail:
-      "https://images.pexels.com/photos/7991575/pexels-photo-7991575.jpeg?auto=compress&cs=tinysrgb&w=800",
-    duration: "8:40",
+    video: "/clips/5.mp4",
   },
 ];
 
@@ -104,6 +94,8 @@ export default function VideoPage() {
   const [active, setActive] = useState(2);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [playingProjectId, setPlayingProjectId] = useState(null);
+  const videoRefs = useRef(new Map());
 
   useEffect(() => {
     const mobileQuery = window.matchMedia("(max-width: 639px)");
@@ -123,6 +115,27 @@ export default function VideoPage() {
       tabletQuery.removeEventListener("change", updateBreakpoints);
     };
   }, []);
+
+  useEffect(() => {
+    videoRefs.current.forEach((video, projectIndex) => {
+      if (projectIndex !== active) video.pause();
+    });
+  }, [active]);
+
+  const toggleProjectPlayback = (event, projectIndex) => {
+    event.stopPropagation();
+    setActive(projectIndex);
+    const video = videoRefs.current.get(projectIndex);
+    if (!video) return;
+
+    if (video.paused) {
+      video.play().catch((error) => {
+        console.error("Unable to play video project.", error);
+      });
+    } else {
+      video.pause();
+    }
+  };
 
   const next = () => {
     setActive((previous) => (previous + 1) % projects.length);
@@ -313,29 +326,58 @@ export default function VideoPage() {
                       >
                         {/* CARD */}
                         <div className="relative h-full w-full overflow-hidden rounded-2xl sm:rounded-3xl bg-slate-950 shadow-lg border-4 border-orange-300 hover:shadow-2xl transition">
-                          <Image
-                            src={Project.thumbnail}
-                            alt={Project.title}
-                            fill
-                            sizes="(max-width: 640px) 260px, (max-width: 1024px) 320px, 380px"
-                            loading="lazy"
-                            decoding="async"
+                          <video
+                            ref={(video) => {
+                              if (video) videoRefs.current.set(i, video);
+                              else videoRefs.current.delete(i);
+                            }}
+                            src={Project.video}
+                            preload="metadata"
+                            playsInline
+                            aria-label={Project.title}
+                            onPlay={() => setPlayingProjectId(Project.id)}
+                            onPause={() =>
+                              setPlayingProjectId((current) =>
+                                current === Project.id ? null : current,
+                              )
+                            }
+                            onEnded={() => setPlayingProjectId(null)}
                             className="absolute inset-0 h-full w-full object-cover"
                           />
                           <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/10 to-black/20" />
 
-                          <div className="absolute inset-0 flex items-center justify-center">
+                          <button
+                            type="button"
+                            onClick={(event) => toggleProjectPlayback(event, i)}
+                            aria-label={
+                              playingProjectId === Project.id
+                                ? `Pause ${Project.title}`
+                                : `Play ${Project.title}`
+                            }
+                            className="absolute inset-0 flex items-center justify-center"
+                          >
                             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 text-slate-950 shadow-xl backdrop-blur-sm">
-                              <svg
-                                className="ml-1 h-7 w-7"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                                aria-hidden="true"
-                              >
-                                <path d="M8 5v14l11-7z" />
-                              </svg>
+                              {playingProjectId === Project.id ? (
+                                <svg
+                                  className="h-7 w-7"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M6 5h4v14H6zm8 0h4v14h-4z" />
+                                </svg>
+                              ) : (
+                                <svg
+                                  className="ml-1 h-7 w-7"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M8 5v14l11-7z" />
+                                </svg>
+                              )}
                             </div>
-                          </div>
+                          </button>
 
                           <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 sm:p-7">
                             <div>
@@ -346,9 +388,6 @@ export default function VideoPage() {
                                 {Project.title}
                               </h5>
                             </div>
-                            <span className="shrink-0 rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                              {Project.duration}
-                            </span>
                           </div>
                         </div>
                       </div>
@@ -471,7 +510,6 @@ export default function VideoPage() {
             </div>
           </div>
         </section>
-
       </div>
 
       {/* Simple floating animation styles */}
