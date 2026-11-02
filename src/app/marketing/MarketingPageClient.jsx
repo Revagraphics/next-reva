@@ -62,7 +62,7 @@ export default function Marketing() {
   ];
   return (
     <>
-      <div className="min-h-screen bg-[#f2fff5]">
+      <div className="min-h-screen bg-[#f9fafb]">
         <section className="pt-20 pb-32  overflow-hidden">
           <div className="max-w-[90%] mx-auto px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center pt-16">

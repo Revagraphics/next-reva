@@ -1,25 +1,26 @@
-import Image from "next/image";
-import img1 from "../assets/workflow-icon1.webp";
-import img2 from "../assets/workflow-icon2.webp";
-import img3 from "../assets/workflow-icon3.webp";
-import img4 from "../assets/workflow-icon5.webp";
-import img5 from "../assets/workflow-icon6.webp";
-import img6 from "../assets/workflow-icon7.webp";
-import img7 from "../assets/workflow-icon9.webp";
-import img8 from "../assets/workflow-icon10.webp";
 import ShimmerText from "./ShimmerText";
 import GridBg from "./GridBg";
+import { 
+  FaClipboardList, 
+  FaFileInvoiceDollar, 
+  FaSearch, 
+  FaPencilRuler, 
+  FaDesktop, 
+  FaComments, 
+  FaCheckCircle, 
+  FaHandshake 
+} from "react-icons/fa";
 
 export default function ProjectProcess() {
   const processes = [
-    { id: 1, icon: img1, title: "Project Brief" },
-    { id: 2, icon: img2, title: "50% Payment – Advance" },
-    { id: 3, icon: img3, title: "Research Work" },
-    { id: 4, icon: img4, title: "Design Creation" },
-    { id: 5, icon: img5, title: "Initial Presentation" },
-    { id: 6, icon: img6, title: "Client Feedback" },
-    { id: 7, icon: img7, title: "Final Presentation" },
-    { id: 8, icon: img8, title: "50% Remaining" },
+    { id: 1, icon: <FaClipboardList className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "Project Brief" },
+    { id: 2, icon: <FaFileInvoiceDollar className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "50% Payment – Advance" },
+    { id: 3, icon: <FaSearch className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "Research Work" },
+    { id: 4, icon: <FaPencilRuler className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "Design Creation" },
+    { id: 5, icon: <FaDesktop className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "Initial Presentation" },
+    { id: 6, icon: <FaComments className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "Client Feedback" },
+    { id: 7, icon: <FaCheckCircle className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "Final Presentation" },
+    { id: 8, icon: <FaHandshake className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 group-hover:scale-110 transition-transform duration-300" />, title: "50% Remaining" },
   ];
 
   return (
@@ -37,7 +38,7 @@ export default function ProjectProcess() {
 
         {/* Cards Grid - Compact, Balanced, & Modern */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
-          {processes.map((process, index) => (
+          {processes.map((process) => (
             <div
               key={process.id}
               className="group relative bg-gradient-to-br from-orange-100 via-amber-50 to-pink-100
@@ -53,14 +54,8 @@ export default function ProjectProcess() {
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-400 to-pink-500 opacity-0 group-hover:opacity-100 rounded-t-2xl transition-opacity duration-300" />
 
               {/* Icon Container - Cleaner & Compact */}
-              <div className="my-2 p-3 bg-orange-50/50 rounded-xl group-hover:bg-orange-500/10 transition-colors duration-300">
-                <Image
-                  src={process.icon}
-                  alt={process.title}
-                  width={64}
-                  height={64}
-                  className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain group-hover:scale-110 transition-transform duration-300"
-                />
+              <div className="my-3 p-3.5 bg-orange-50/80 rounded-xl group-hover:bg-orange-500/10 transition-colors duration-300 flex items-center justify-center">
+                {process.icon}
               </div>
 
               {/* Title */}

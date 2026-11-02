@@ -237,7 +237,7 @@ export default function Portfolio() {
               return (
                 <div
                   key={item.id}
-                  className={`grid lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center ${isReverse ? "lg:flex-row-reverse" : ""}`}
+                  className={`grid lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-6 items-center ${isReverse ? "lg:flex-row-reverse" : ""}`}
                 >
                   {/* Image Side */}
                   <div

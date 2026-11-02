@@ -1,5 +1,5 @@
-'use client';
-import Image from 'next/image'
+"use client";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import bali from "../assets/bali.jpg";
@@ -38,7 +38,6 @@ const reviews = [
     image: yashpal,
     accent: "#8B5CF6",
   },
- 
 ];
 
 function StarRating({ count, color }) {
@@ -51,7 +50,6 @@ function StarRating({ count, color }) {
       ))}
     </div>
   );
-
 }
 
 export default function ReviewCarousel() {
@@ -61,40 +59,43 @@ export default function ReviewCarousel() {
   const containerRef = useRef(null);
   const cardsRef = useRef([]);
 
-  const goTo = useCallback((index) => {
-    if (isAnimating || index === active) return;
-    setIsAnimating(true);
+  const goTo = useCallback(
+    (index) => {
+      if (isAnimating || index === active) return;
+      setIsAnimating(true);
 
-    const direction = index > active ? 1 : -1;
-    const currentCard = cardsRef.current[active];
-    const nextCard = cardsRef.current[index];
+      const direction = index > active ? 1 : -1;
+      const currentCard = cardsRef.current[active];
+      const nextCard = cardsRef.current[index];
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setActive(index);
-        setIsAnimating(false);
-      },
-    });
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setActive(index);
+          setIsAnimating(false);
+        },
+      });
 
-    tl.to(currentCard, {
-      x: -700 * direction,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power3.inOut",
-    });
+      tl.to(currentCard, {
+        x: -700 * direction,
+        opacity: 0,
+        duration: 0.6,
+        ease: "power3.inOut",
+      });
 
-    gsap.set(nextCard, { x: 700 * direction, opacity: 0 });
-    tl.to(
-      nextCard,
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.7,
-        ease: "power3.out",
-      },
-      "-=0.35",
-    );
-  }, [active, isAnimating]);
+      gsap.set(nextCard, { x: 700 * direction, opacity: 0 });
+      tl.to(
+        nextCard,
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power3.out",
+        },
+        "-=0.35",
+      );
+    },
+    [active, isAnimating],
+  );
 
   // Auto-play
   useEffect(() => {
@@ -139,13 +140,13 @@ export default function ReviewCarousel() {
               >
                 {/* Image Side */}
                 <div className="relative shrink-0 md:w-5/12">
-                  <div className="relative flex aspect-[4/3] items-center justify-center bg-gray-100 md:aspect-auto md:h-full md:min-h-[380px]">
+                  <div className="relative flex aspect-[4/3] items-center justify-center bg-gray-900 md:aspect-auto md:h-full md:min-h-[380px] overflow-hidden">
                     <Image
                       src={review.image}
                       alt={review.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 42vw"
-                      className="h-full w-full object-contain object-center transition-transform duration-700"
+                      className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
                     />
                   </div>
                   {/* Mobile Gradient Overlay */}
@@ -179,7 +180,7 @@ export default function ReviewCarousel() {
           </div>
 
           {/* Navigation Dots */}
-          <div className="flex justify-center gap-3 -mt-5 -md:mt-5">
+          {/* <div className="flex justify-center gap-3 -mt-5 -md:mt-5">
             {reviews.map((_, idx) => (
               <button
                 key={idx}
@@ -195,10 +196,10 @@ export default function ReviewCarousel() {
                 }}
               />
             ))}
-          </div>
+          </div> */}
 
           {/* Arrow Buttons */}
-          {/* <div className="flex justify-center gap-6 mt-8 md:mt-10">
+          <div className="flex justify-center gap-6 mt-8 md:mt-10">
             <button
               onClick={() =>
                 goTo((active - 1 + reviews.length) % reviews.length)
@@ -213,7 +214,7 @@ export default function ReviewCarousel() {
             >
               →
             </button>
-          </div> */}
+          </div>
         </div>
       </GridBg>
     </div>

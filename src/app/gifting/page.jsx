@@ -36,7 +36,7 @@ export default function GiftingPage() {
         {/* HERO SECTION - Orange Theme + Fully Responsive */}
 
         <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f2fff5">
-          <section className="navbar-clearance-hero min-h-[40vh] flex items-center justify-end text-black py-16 md:py-24 relative overflow-hidden">
+          <section className="navbar-clearance-hero min-h-[40vh] flex flex-col items-center justify-end text-black py-16 md:py-24 relative overflow-hidden">
             <div className="max-w-[90%] mx-auto px-6 text-center relative z-10">
               <h1 className="mb-6 text-4xl font-bold leading-none tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
                 <ShimmerText>Gifting Prints</ShimmerText>

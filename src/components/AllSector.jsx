@@ -84,7 +84,7 @@ const AllSector = () => {
   const renderCard = (item) => (
     <div
       className="flex items-center gap-4  border border-zinc-100 hover:border-zinc-200 
-                    rounded-2xl px-5 py-4 shadow-sm hover:shadow transition-all duration-300 
+                    rounded-2xl px-5 py-1 shadow-sm hover:shadow transition-all duration-300 
                     min-w-70 shrink-0"
         style={{ backgroundColor: `${item.color}15` }}
     >

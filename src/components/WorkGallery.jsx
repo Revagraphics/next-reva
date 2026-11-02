@@ -64,14 +64,14 @@ export default function WorkGallery({ works, name }) {
             image to take a closer look.
           </p>
         </div>
-        <div className="columns-2 gap-4 md:columns-3 md:gap-5 xl:columns-4">
+        <div className="columns-1 min-[420px]:columns-2 gap-3 min-[420px]:gap-4 md:columns-3 md:gap-5 xl:columns-4">
           {works.map((work, index) => (
             <button
               key={work.id}
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`View ${work.title}`}
-              className="group mb-4 inline-block w-full break-inside-avoid overflow-hidden rounded-[1.5rem] border border-gray-200 bg-white p-1.5 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-500 md:mb-5"
+              className="group mb-3 inline-block w-full break-inside-avoid overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-500 min-[420px]:mb-4 md:mb-5 sm:rounded-[1.5rem]"
             >
               <span
                 className={`relative block overflow-hidden rounded-[1.15rem] bg-gray-100 ${imageRatios[index % imageRatios.length]}`}
@@ -95,7 +95,7 @@ export default function WorkGallery({ works, name }) {
 
       {activeWork && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 sm:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={`${activeWork.title} image viewer`}
@@ -107,7 +107,7 @@ export default function WorkGallery({ works, name }) {
             type="button"
             onClick={() => setActiveIndex(null)}
             aria-label="Close image viewer"
-            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 px-4 py-2 text-2xl text-white hover:bg-white/20"
+            className="absolute right-3 top-3 z-20 rounded-full bg-black/50 px-3 py-1 text-2xl leading-none text-white hover:bg-black/70 sm:right-5 sm:top-5 sm:px-4 sm:py-2"
           >
             &times;
           </button>
@@ -117,7 +117,7 @@ export default function WorkGallery({ works, name }) {
                 type="button"
                 onClick={showPrevious}
                 aria-label="Previous image"
-                className="absolute left-3 z-10 rounded-full bg-white/10 px-4 py-3 text-2xl text-white hover:bg-white/20 sm:left-8"
+                className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 px-3 py-2 text-xl text-white hover:bg-black/70 sm:left-5 sm:px-4 sm:py-3 sm:text-2xl md:left-8"
               >
                 &#8592;
               </button>
@@ -125,13 +125,13 @@ export default function WorkGallery({ works, name }) {
                 type="button"
                 onClick={showNext}
                 aria-label="Next image"
-                className="absolute right-3 z-10 rounded-full bg-white/10 px-4 py-3 text-2xl text-white hover:bg-white/20 sm:right-8"
+                className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 px-3 py-2 text-xl text-white hover:bg-black/70 sm:right-5 sm:px-4 sm:py-3 sm:text-2xl md:right-8"
               >
                 &#8594;
               </button>
             </>
           )}
-          <div className="relative h-[75vh] w-full max-w-5xl">
+          <div className="relative h-[min(72svh,700px)] max-h-[calc(100svh-5rem)] w-full max-w-5xl">
             <Image
               src={activeWork.image}
               alt={activeWork.title}
@@ -140,7 +140,7 @@ export default function WorkGallery({ works, name }) {
               className="object-contain"
               priority
             />
-            <p className="absolute -bottom-8 left-0 right-0 text-center text-sm font-medium text-white sm:-bottom-10 sm:text-base">
+            <p className="absolute -bottom-6 left-0 right-0 truncate px-12 text-center text-xs font-semibold text-gray-900 sm:-bottom-8 sm:text-sm md:text-base">
               {activeWork.title}
             </p>
           </div>

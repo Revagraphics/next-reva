@@ -34,6 +34,8 @@ import adobe1 from "../assets/after-effact.png";
 import adobe2 from "../assets/premier.svg";
 import adobe3 from "../assets/final.png";
 import adobe4 from "../assets/Davinci.png";
+import node from "../assets/node.svg";
+import amazon from "../assets/amazon.svg";
 
 /* ---------------- DATA ---------------- */
 
@@ -58,13 +60,12 @@ const techData = {
   backend: [
     { id: 1, title: "Python", icon: python },
     { id: 2, title: "Cordinator", icon: redis },
-    { id: 3, title: "MariaDB", icon: mariadb },
+    { id: 3, title: "NodeJs", icon: node },
     { id: 4, title: "MongoDB", icon: mongodb },
     { id: 5, title: "Laravel", icon: express },
     { id: 6, title: "MySQL", icon: mysql },
-    { id: 7, title: "PostgreSQL", icon: postgre },
-    { id: 8, title: "PHP", icon: oracle },
-    { id: 9, title: "AWS-RDS", icon: aws },
+    { id: 7, title: "PHP", icon: oracle },
+    { id: 8, title: "AWS", icon: amazon },
   ],
 
   video: [
@@ -88,30 +89,27 @@ export default function SkillsTabs() {
   const [activeTab, setActiveTab] = useState("frontend");
   const gridRef = useRef();
 
-  /* ---------- GSAP Animation ---------- */
-
   return (
     <section className="w-full h-auto bg-linear-to-b from-gray-50 to-white ">
       <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#fff">
 
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
         {/* ---------------- HEADING ---------------- */}
 
         <div className="text-center mb-14">
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto">
+          <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-sm sm:text-base">
             We leverage modern technologies to build scalable, high-performance
             digital experiences.
           </p>
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
             <ShimmerText>Technologies</ShimmerText> We {" "}
             <span>Work With</span>
           </h2>
           <DecorativeUnderline
-            width="320px" // Adjust width as needed
+            width="240px"
             className="mt-4 mx-auto"
-            centerColor="#3B82F6" // Optional: change blue color
-            />
-
+            centerColor="#3B82F6"
+          />
         </div>
 
         {/* ---------------- TABS ---------------- */}
@@ -135,9 +133,9 @@ export default function SkillsTabs() {
                 onClick={() => setActiveTab(tab.key)}
                 className={`
                   whitespace-nowrap
-                  px-6 py-3
+                  px-5 py-2.5 sm:px-6 sm:py-3
                   rounded-xl
-                  text-sm font-semibold
+                  text-xs sm:text-sm font-semibold
                   transition-all duration-300
                   ${
                     activeTab === tab.key
@@ -161,7 +159,7 @@ export default function SkillsTabs() {
             flex-wrap
             justify-center
             items-center
-            gap-8
+            gap-4 sm:gap-8
             max-w-6xl
             mx-auto
           "
@@ -173,8 +171,8 @@ export default function SkillsTabs() {
                 tech-card
                 group
                 bg-white
-                rounded-3xl
-                p-2
+                rounded-2xl sm:rounded-3xl
+                p-3 sm:p-2
                 text-center
                 flex flex-col
                 items-center
@@ -182,15 +180,15 @@ export default function SkillsTabs() {
                 hover:shadow-2xl
                 hover:-translate-y-2
                 transition-all duration-300
+                w-[calc(50%-8px)] sm:w-auto
               "
             >
               <div
                 className="
-                w-32 h-32
+                w-20 h-20 sm:w-32 sm:h-32
                 flex items-center justify-center
-                
-                rounded-3xl
-                mb-3
+                rounded-2xl sm:rounded-3xl
+                mb-2 sm:mb-3
                 group-hover:bg-orange-50
                 transition
               "
@@ -198,11 +196,11 @@ export default function SkillsTabs() {
                 <Image
                   src={item.icon}
                   alt={item.title}
-                  className="w-28 h-28 object-contain group-hover:scale-110 transition"
+                  className="w-12 h-12 sm:w-28 sm:h-28 object-contain group-hover:scale-110 transition"
                 />
               </div>
 
-              <p className="font-semibold text-gray-800 text-xl">
+              <p className="font-semibold text-gray-800 text-sm sm:text-xl">
                 {item.title}
               </p>
             </div>
@@ -210,10 +208,7 @@ export default function SkillsTabs() {
         </div>
       </div>
 
-
       </GridBg>
-
-
     </section>
   );
 }

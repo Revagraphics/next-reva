@@ -98,43 +98,49 @@ export default function Application() {
                 {
                   icon: <FaMobileAlt className="text-5xl text-teal-500" />,
                   title: "Native Apps",
+                  gradient: "from-pink-200 via-purple-200 to-cyan-200",
                   desc: "High-performance iOS & Android applications built with Swift, Kotlin, and Flutter.",
                   color: "teal",
                 },
                 {
                   icon: <FaRocket className="text-5xl text-purple-500" />,
                   title: "Cross-Platform Apps",
+                  gradient: "from-cyan-200 via-blue-200 to-purple-200",
                   desc: "Cost-effective apps using React Native and Flutter that work beautifully on both platforms.",
                   color: "purple",
                 },
                 {
                   icon: <FaUsers className="text-5xl text-orange-500" />,
                   title: "On-Demand Apps",
+                  gradient: "from-emerald-200 via-teal-200 to-cyan-200",
                   desc: "Uber-like, Swiggy-like, or any service-based app with real-time features.",
                   color: "orange",
                 },
                 {
                   icon: <FaChartLine className="text-5xl text-blue-500" />,
                   title: "Enterprise Apps",
+                  gradient: "from-amber-200 via-orange-200 to-red-200",
                   desc: "Scalable internal tools, CRM, inventory, and business management apps.",
                   color: "blue",
                 },
                 {
                   icon: <FaShieldAlt className="text-5xl text-emerald-500" />,
                   title: "Secure & Scalable",
+                  gradient: "from-rose-200 via-pink-200 to-violet-200",
                   desc: "Bank-grade security, offline support, and cloud integration.",
                   color: "emerald",
                 },
                 {
                   icon: <FaMobileAlt className="text-5xl text-rose-500" />,
                   title: "UI/UX Focused",
+                  gradient: "from-sky-200 via-blue-200 to-indigo-200",
                   desc: "Beautiful, intuitive designs that users love and keep coming back to.",
                   color: "rose",
                 },
               ].map((service, i) => (
                 <div
                   key={i}
-                  className="group bg-white border border-gray-100 hover:border-teal-200 p-8 rounded-3xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
+                  className={`group bg-gradient-to-br ${service.gradient} border border-gray-100 hover:border-teal-200 p-8 rounded-3xl transition-all duration-300 hover:shadow-2xl hover:-translate-y-2`}
                 >
                   <div className="mb-6">{service.icon}</div>
                   <h3 className="text-2xl font-semibold mb-3 text-gray-900">
