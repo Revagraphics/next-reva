@@ -3,14 +3,14 @@ import GridBg from "@/components/GridBg";
 import DecorativeUnderline from "@/components/DecorativeUnderline";
 import { createPageMetadata } from "@/lib/seo";
 import Image from "next/image";
-import adobe1 from "@/assets/after-effact.png";
-import adobe2 from "@/assets/premier.svg";
-import adobe3 from "@/assets/final.png";
-import adobe4 from "@/assets/Davinci.png";
-import photoshop from "@/assets/photoshop.svg";
-import Adob from "@/assets/ex.svg";
-import Invision from "@/assets/illustrator.svg";
-import figma from "@/assets/Figma.svg";
+import github from "@/assets/github.svg";
+import linux from "@/assets/linux.svg";
+import godaddy from "@/assets/godaddy.svg";
+import amazon from "@/assets/amazon.svg";
+import data from "@/assets/data.svg";
+import lightspeed from "@/assets/lightspeed.svg";
+import docker from "@/assets/docker.svg";
+import cpanel from "@/assets/cpanel.svg";
 
 export const metadata = createPageMetadata(
   "Cloud Services & Solutions | Reva Graphics",
@@ -21,43 +21,43 @@ export const metadata = createPageMetadata(
 export default function Cloud() {
   const softwareTools = [
     {
-      name: "After Effects",
-      icon: adobe1,
+      name: "Github",
+      icon: github,
       size: "h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-16 lg:w-16",
     },
     {
-      name: "Premiere Pro",
-      icon: adobe2,
+      name: "Data",
+      icon: data,
       size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20",
     },
     {
-      name: "Final Cut Pro",
-      icon: adobe3,
+      name: "Linux",
+      icon: linux,
       size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
     },
     {
-      name: "DaVinci Resolve",
-      icon: adobe4,
+      name: "Light speed",
+      icon: lightspeed,
       size: "h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 lg:h-20 lg:w-20",
     },
     {
-      name: "Photoshop",
-      icon: photoshop,
+      name: "Amazon",
+      icon: amazon,
       size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
     },
     {
-      name: "After Effects",
-      icon: Adob,
+      name: "Go Daddy",
+      icon: godaddy,
       size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12",
     },
     {
-      name: "Illustrator",
-      icon: Invision,
+      name: "Docker",
+      icon: docker,
       size: "h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 lg:h-14 lg:w-14",
     },
     {
-      name: "Figma",
-      icon: figma,
+      name: "cpanel",
+      icon: cpanel,
       size: "h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 lg:h-12 lg:w-12",
     },
   ];
@@ -139,7 +139,7 @@ export default function Cloud() {
       <div className="bg-white min-h-screen">
         {/* HERO SECTION - Orange Theme + Fully Responsive */}
 
-        <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f2fff5">
+        <GridBg gridSize={80} lineColor="#f5f1ed" bgColor="#f2f5ff">
           <section className="navbar-clearance-hero h-[70vh] sm:h-[90vh] flex items-center justify-center text-black py-16 md:py-24 relative overflow-hidden">
             {/* Floating Software Badges */}
             <div className="absolute inset-0 pointer-events-none">

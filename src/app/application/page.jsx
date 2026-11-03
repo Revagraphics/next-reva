@@ -5,6 +5,7 @@ import GridBg from "@/components/GridBg";
 import ShimmerText from "@/components/ShimmerText";
 import { createPageMetadata } from "@/lib/seo";
 
+
 import {
   FaMobileAlt,
   FaRocket,
@@ -55,12 +56,12 @@ export default function Application() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="bg-white text-teal-700 font-semibold px-10 py-4 rounded-2xl text-lg hover:scale-105 transition-all duration-300 shadow-xl">
+                <Link href="/contact" className="bg-white text-teal-700 font-semibold px-10 py-4 rounded-2xl text-lg hover:scale-105 transition-all duration-300 shadow-xl">
                   Get Your App Built
-                </button>
-                <button className="border border-white/70 hover:bg-white/10 font-semibold px-10 py-4 rounded-2xl text-lg transition-all duration-300">
+                </Link>
+                <Link href="/portfolio" className="border border-white/70 hover:bg-white/10 font-semibold px-10 py-4 rounded-2xl text-lg transition-all duration-300">
                   View Our Work →
-                </button>
+                </Link>
               </div>
 
               <div className="mt-16 flex justify-center gap-10 text-sm">

@@ -228,10 +228,10 @@ const ServicesShowcase = () => {
         </header>
 
         {/* Carousel */}
-        <div className="services-showcase-carousel relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-8 md:px-10">
+        <div className="services-showcase-carousel relative flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-2 md:px-10">
           <div
             ref={carouselViewportRef}
-            className="services-showcase-viewport no-scrollbar -mx-4 overflow-x-auto px-4 pt-16 pb-8 scroll-smooth md:mx-0 md:px-0 lg:overflow-x-hidden"
+            className="services-showcase-viewport no-scrollbar -mx-4 overflow-x-auto px-4 pt-28 pb-8 scroll-smooth md:mx-0 md:px-0 lg:overflow-x-hidden"
           >
             <div ref={carouselTrackRef} className="flex w-max gap-6">
               {servicesData.map((service) => {
@@ -254,7 +254,7 @@ const ServicesShowcase = () => {
                       <div className="service-icon-wrapper absolute -top-10 left-1/2 flex h-20 w-20 -translate-x-1/2 items-center justify-center rounded-2xl border-2 border-white bg-white/95 text-3xl text-gray-800 shadow-lg ring-2 ring-black/10 backdrop-blur-md">
                         <ServiceIcon
                           aria-hidden="true"
-                          className="text-gray-800 transition-colors duration-300 group-hover:text-pink-500"
+                          className="text-gray-800 transition-colors duration-300 group-hover:text-black"
                         />
                       </div>
 

@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import bali from "../assets/bali.jpg";
 import dhruv from "../assets/dhruv.jpg";
 import yashpal from "../assets/yashpal.jpg";
-import umesh from "../assets/umesh.jpg";
 import ShimmerText from "../components/ShimmerText";
 import DecorativeUnderline from "../components/DecorativeUnderline";
 import GridBg from "../components/GridBg";
@@ -36,16 +35,40 @@ const reviews = [
     name: "Yashpaal Soni",
     rating: 5,
     image: yashpal,
-    accent: "#8B5CF6",
+    accent: "#f72b2b",
   },
 ];
 
 function StarRating({ count, color }) {
   return (
-    <div className="flex gap-1">
+    <div className="flex items-center gap-1.5">
       {Array.from({ length: count }).map((_, i) => (
-        <svg key={i} width="20" height="20" viewBox="0 0 20 20" fill={color}>
-          <path d="M10 1l2.39 4.84 5.34.78-3.86 3.76.91 5.32L10 13.27l-4.78 2.51.91-5.32L2.27 6.62l5.34-.78L10 1z" />
+        <svg
+          key={i}
+          width="22"
+          height="22"
+          viewBox="0 0 24 24"
+          className="transition-transform duration-300 hover:scale-110"
+          style={{
+            filter: `drop-shadow(0 2px 4px ${color}40)`,
+          }}
+        >
+          <defs>
+            <linearGradient
+              id={`star-grad-${i}`}
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop offset="0%" stopColor={color} />
+              <stop offset="100%" stopColor={color} stopOpacity="0.85" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7.4-6.3-4.6-6.3 4.6 2.3-7.4-6-4.6h7.6z"
+            fill={`url(#star-grad-${i})`}
+          />
         </svg>
       ))}
     </div>
@@ -110,7 +133,7 @@ export default function ReviewCarousel() {
   }, [active, goTo, isAnimating]);
 
   return (
-    <div className=" px-4 sm:px-6">
+    <div className="px-4 sm:px-6">
       <GridBg gridSize={80} lineColor="#F0EDE8" bgColor="#fff">
         <div className="max-w-5xl mx-auto py-12 md:py-20">
           <div className="text-center mb-8 md:mb-14">
@@ -124,7 +147,7 @@ export default function ReviewCarousel() {
             />
           </div>
 
-          {/* Carousel Container - More Responsive Height */}
+          {/* Carousel Container */}
           <div
             ref={containerRef}
             className="relative flex min-h-[680px] items-center justify-center overflow-hidden sm:min-h-[620px] md:min-h-[480px] lg:min-h-[500px]"
@@ -132,25 +155,28 @@ export default function ReviewCarousel() {
             {reviews.map((review, idx) => (
               <div
                 key={review.id}
-                ref={(el) => (cardsRef.current[idx] = el)}
+                ref={(el) => {
+                  cardsRef.current[idx] = el;
+                }}
                 className={`absolute w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row transition-all duration-300 ${
                   idx === active ? "z-20" : "z-10"
                 }`}
                 style={{ opacity: idx === active ? 1 : 0 }}
               >
-                {/* Image Side */}
-                <div className="relative shrink-0 md:w-5/12">
-                  <div className="relative flex aspect-[4/3] items-center justify-center bg-gray-900 md:aspect-auto md:h-full md:min-h-[380px] overflow-hidden">
+                {/* Image Side - Fixed */}
+                <div className="relative w-full md:w-5/12 shrink-0">
+                  <div className="relative aspect-[4/3] md:aspect-auto md:h-full md:min-h-[420px] overflow-hidden">
                     <Image
                       src={review.image}
                       alt={review.name}
                       fill
                       sizes="(max-width: 768px) 100vw, 42vw"
-                      className="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                      className="object-cover object-center transition-transform duration-700 hover:scale-105"
+                      priority={idx === 0}
                     />
+                    {/* Soft gradient for better text readability on mobile */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent md:hidden" />
                   </div>
-                  {/* Mobile Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-transparent md:hidden" />
                 </div>
 
                 {/* Content Side */}
@@ -179,38 +205,19 @@ export default function ReviewCarousel() {
             ))}
           </div>
 
-          {/* Navigation Dots */}
-          {/* <div className="flex justify-center gap-3 -mt-5 -md:mt-5">
-            {reviews.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => goTo(idx)}
-                className={`w-3.5 h-3.5 rounded-full transition-all duration-300 border-2 ${
-                  idx === active
-                    ? "bg-white scale-125 shadow-md"
-                    : "bg-transparent border-gray-400 hover:border-gray-600"
-                }`}
-                style={{
-                  borderColor:
-                    idx === active ? reviews[active].accent : undefined,
-                }}
-              />
-            ))}
-          </div> */}
-
           {/* Arrow Buttons */}
-          <div className="flex justify-center gap-6 mt-8 md:mt-10">
+          <div className="flex justify-center gap-6 mt-6 md:mt-8">
             <button
               onClick={() =>
                 goTo((active - 1 + reviews.length) % reviews.length)
               }
-              className="w-12 h-12 rounded-full border border-gray-300 hover:border-gray-400 hover:bg-white flex items-center justify-center text-xl transition-all active:scale-95"
+              className="w-12 h-12 rounded-full border border-gray-300 hover:border-gray-400 hover:bg-white flex items-center justify-center text-xl transition-all active:scale-95 shadow-sm"
             >
               ←
             </button>
             <button
               onClick={() => goTo((active + 1) % reviews.length)}
-              className="w-12 h-12 rounded-full border border-gray-300 hover:border-gray-400 hover:bg-white flex items-center justify-center text-xl transition-all active:scale-95"
+              className="w-12 h-12 rounded-full border border-gray-300 hover:border-gray-400 hover:bg-white flex items-center justify-center text-xl transition-all active:scale-95 shadow-sm"
             >
               →
             </button>

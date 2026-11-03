@@ -119,7 +119,7 @@ export default function Portfolio() {
     <>
       <div className="min-h-screen bg-[#fbf1ef] overflow-x-hidden">
         {/* ==================== CREATIVE WORK / PROJECT SHOWCASE SECTION ==================== */}
-        <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <section className="py-16 pt-32 sm:py-20 sm:pt-36 lg:py-24 lg:pt-40 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             {/* Heading */}
             <div className="text-center max-w-2xl mx-auto mb-20">

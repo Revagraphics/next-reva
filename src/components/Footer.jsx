@@ -12,7 +12,6 @@ import bottomLogo from "../assets/footer-logo.png";
 import {
   FaFacebook,
   FaLinkedin,
-  FaTwitter,
   FaInstagram,
   FaTimes,
   FaHeart,
@@ -126,7 +125,7 @@ export default function Footer() {
       gsap.to(colorOrb, {
         x: pointerX - 160,
         y: pointerY - 160,
-        background: `radial-gradient(circle, ${orbColor}dd 0%, ${orbColor}88 34%, ${orbColor}35 58%, transparent 78%)`,
+        background: `radial-gradient(circle, ${orbColor}dd 0%, ${orbColor}88 34%, ${orbColor}35 58%, transparent 68%)`,
         duration: 0.75,
         ease: "elastic.out(1, 0.45)",
         overwrite: "auto",

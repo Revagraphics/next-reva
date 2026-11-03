@@ -64,6 +64,7 @@ export default function WorkGallery({ works, name }) {
             image to take a closer look.
           </p>
         </div>
+
         <div className="columns-1 min-[420px]:columns-2 gap-3 min-[420px]:gap-4 md:columns-3 md:gap-5 xl:columns-4">
           {works.map((work, index) => (
             <button
@@ -71,7 +72,7 @@ export default function WorkGallery({ works, name }) {
               type="button"
               onClick={() => setActiveIndex(index)}
               aria-label={`View ${work.title}`}
-              className="group mb-3 inline-block w-full break-inside-avoid overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-500 min-[420px]:mb-4 md:mb-5  sm:rounded-[1.5rem]"
+              className="group mb-3 inline-block w-full break-inside-avoid overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 text-left shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-500 min-[420px]:mb-4 md:mb-5 sm:rounded-[1.5rem]"
             >
               <span
                 className={`relative block overflow-hidden rounded-[1.15rem] bg-gray-100 ${imageRatios[index % imageRatios.length]}`}
@@ -103,15 +104,6 @@ export default function WorkGallery({ works, name }) {
             if (event.target === event.currentTarget) setActiveIndex(null);
           }}
         >
-          {/* <button
-            type="button"
-            onClick={() => setActiveIndex(null)}
-            aria-label="Close image viewer"
-            className="absolute right-3 top-3 z-20 rounded-full bg-black/50 px-3 py-1 text-2xl leading-none text-white hover:bg-black/70 sm:right-5 sm:top-5 sm:px-4 sm:py-2"
-          >
-            &times;
-          </button> */}
-
           {works.length > 1 && (
             <>
               <button
@@ -132,18 +124,23 @@ export default function WorkGallery({ works, name }) {
               </button>
             </>
           )}
-          <div className="relative h-[min(72svh,700px)] max-h-[calc(100svh-5rem)] w-full max-w-5xl">
-            <div className="absolute inset-0 overflow-hidden rounded-[1.25rem]">
-              <Image
-                src={activeWork.image}
-                alt={activeWork.title}
-                fill
-                sizes="100vw"
-                className="object-contain"
-                priority
-              />
+
+          {/* Popup image – same curved card style as outer gallery */}
+          <div className="relative mb-8 w-full max-w-5xl sm:mb-10">
+            <div className="overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 shadow-xl sm:rounded-[1.5rem]">
+              <div className="relative h-[min(68svh,620px)] max-h-[calc(100svh-7.5rem)] w-full overflow-hidden rounded-[1.15rem] bg-gray-100">
+                <Image
+                  src={activeWork.image}
+                  alt={activeWork.title}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </div>
-            <p className="absolute -bottom-6 left-0 right-0 truncate px-12 text-center text-xs font-semibold text-gray-900 sm:-bottom-8 sm:text-sm md:text-base">
+
+            <p className="mt-3 truncate px-2 text-center text-xs font-semibold text-gray-900 sm:mt-4 sm:text-sm md:text-base">
               {activeWork.title}
             </p>
           </div>
