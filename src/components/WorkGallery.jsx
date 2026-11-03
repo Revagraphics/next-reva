@@ -96,7 +96,7 @@ export default function WorkGallery({ works, name }) {
 
       {activeWork && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-end bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/30 p-3 backdrop-blur-md sm:p-6 md:p-8"
           role="dialog"
           aria-modal="true"
           aria-label={`${activeWork.title} image viewer`}
@@ -126,21 +126,21 @@ export default function WorkGallery({ works, name }) {
           )}
 
           {/* Popup image – same curved card style as outer gallery */}
-          <div className="relative mb-8 w-full max-w-5xl sm:mb-10">
-            <div className="overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white p-1.5 shadow-xl sm:rounded-[1.5rem]">
+          <div className="relative w-full max-w-5xl">
+            <div className="overflow-hidden rounded-[1.25rem] border border-gray-200 bg-white shadow-xl sm:rounded-[1.5rem]">
               <div className="relative h-[min(68svh,620px)] max-h-[calc(100svh-7.5rem)] w-full overflow-hidden rounded-[1.15rem] bg-gray-100">
                 <Image
                   src={activeWork.image}
                   alt={activeWork.title}
                   fill
                   sizes="100vw"
-                  className="object-contain"
+                  className="rounded-[1.15rem] object-cover"
                   priority
                 />
               </div>
             </div>
 
-            <p className="mt-3 truncate px-2 text-center text-xs font-semibold text-gray-900 sm:mt-4 sm:text-sm md:text-base">
+            <p className="mt-3 truncate px-2 text-center text-xs font-semibold text-gray-900 sm:text-sm md:text-base">
               {activeWork.title}
             </p>
           </div>
