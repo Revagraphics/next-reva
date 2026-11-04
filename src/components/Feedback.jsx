@@ -5,6 +5,8 @@ import gsap from "gsap";
 import ShimmerText from "../components/ShimmerText";
 import DecorativeUnderline from "../components/DecorativeUnderline";
 
+const CONTACT_ENDPOINT = "/contact.php";
+
 import logo1 from "../assets/customer-logo-1.png";
 import logo2 from "../assets/customer-logo-2.png";
 import logo3 from "../assets/customer-logo-11.png";
@@ -85,12 +87,14 @@ export default function Feedback() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (loading) return;
+
     setLoading(true);
 
     const toastId = toast.loading("Sending inquiry...");
 
     try {
-      const response = await fetch("/contact.php", {
+      const response = await fetch(CONTACT_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,11 +106,16 @@ export default function Feedback() {
           contactNumber: formData.contactNumber,
           interestedIn: formData.interestedIn,
           message: formData.message,
+          agree: formData.agree,
         }),
       });
 
-      const result = await response.json();
-      toast.dismiss(toastId);
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error("The contact service returned an invalid response.");
+      }
 
       if (response.ok && result.success) {
         toast.success(result.message || "Inquiry submitted successfully!");
@@ -118,14 +127,20 @@ export default function Feedback() {
           message: "",
           agree: false,
         });
-
       } else {
-        toast.error(result.message || "Unable to send inquiry. Please try again.");
+        throw new Error(
+          result.message || "Unable to send inquiry. Please try again.",
+        );
       }
-    } catch (err) {
-      toast.error("Something went wrong. Please try again.");
-      console.error(err);
+    } catch (error) {
+      console.error("Contact form submission failed:", error);
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.",
+      );
     } finally {
+      toast.dismiss(toastId);
       setLoading(false);
     }
   };
@@ -280,6 +295,10 @@ export default function Feedback() {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
+                  disabled={loading}
+                  maxLength={120}
+                  autoComplete="name"
+                  aria-label="Full name"
                   placeholder="Full Name"
                   className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200 text-sm sm:text-base placeholder-gray-400 transition"
                 />
@@ -289,6 +308,10 @@ export default function Feedback() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  disabled={loading}
+                  maxLength={254}
+                  autoComplete="email"
+                  aria-label="Email address"
                   placeholder="Email Address"
                   className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200 text-sm sm:text-base placeholder-gray-400 transition"
                 />
@@ -300,6 +323,10 @@ export default function Feedback() {
                   name="contactNumber"
                   value={formData.contactNumber}
                   onChange={handleChange}
+                  disabled={loading}
+                  maxLength={40}
+                  autoComplete="tel"
+                  aria-label="Contact number"
                   placeholder="Contact Number"
                   className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200 text-sm sm:text-base placeholder-gray-400 transition"
                 />
@@ -309,15 +336,17 @@ export default function Feedback() {
                     value={formData.interestedIn}
                     onChange={handleChange}
                     required
+                    disabled={loading}
+                    aria-label="Interested in"
                     className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200 text-sm sm:text-base text-gray-500 transition appearance-none cursor-pointer pr-10"
                   >
                     <option value="">Interested in</option>
                     <option value="branding">Brand Identity</option>
-                    <option value="web-desiging">Website Designing</option>
+                    <option value="web-designing">Website Designing</option>
                     <option value="web-development">Website Development</option>
                     <option value="marketing">Digital Marketing</option>
                     <option value="application">Application Development</option>
-                    <option value="customize software">
+                    <option value="customize-software">
                       Customise Software
                     </option>
                     <option value="other">Other</option>
@@ -343,6 +372,9 @@ export default function Feedback() {
                 value={formData.message}
                 onChange={handleChange}
                 required
+                disabled={loading}
+                maxLength={10000}
+                aria-label="Project message"
                 rows={5}
                 placeholder="Tell us more about your project..."
                 className="w-full px-4 sm:px-5 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-xl sm:rounded-2xl focus:outline-none focus:border-orange-400 focus:ring-1 focus:ring-orange-200 text-sm sm:text-base placeholder-gray-400 resize-y transition"
@@ -356,26 +388,21 @@ export default function Feedback() {
                   checked={formData.agree}
                   onChange={handleChange}
                   required
+                  disabled={loading}
                   className="mt-1 w-4 h-4 sm:w-5 sm:h-5 accent-orange-500 cursor-pointer flex-shrink-0"
                 />
                 <label
                   htmlFor="agree"
                   className="text-xs sm:text-sm text-gray-500 leading-relaxed cursor-pointer"
                 >
-                  I agree to the{" "}
-                  <a
-                    href="#"
-                    className="text-orange-500 hover:underline font-medium"
-                  >
-                    Terms &amp; Conditions
-                  </a>{" "}
-                  of Reva.
+                  I consent to Reva Graphics contacting me about this inquiry.
                 </label>
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
+                aria-busy={loading}
                 className="mt-auto w-full bg-orange-500 hover:bg-orange-600 active:scale-[0.98] transition-all text-white font-semibold text-sm sm:text-base lg:text-lg py-3.5 sm:py-4 rounded-xl sm:rounded-2xl shadow-sm shadow-orange-200 disabled:opacity-70"
               >
                 {loading ? "Sending..." : "Send your inquiry →"}

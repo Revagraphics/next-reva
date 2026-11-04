@@ -57,3 +57,15 @@ Place each PDF in `public` and add its slug, title, description, cover URL,
 PDF URL, and page count to that list. The catalogue gallery reads
 `/api/catalogues`, and each item is available at `/catalogue/{slug}`. The PDF
 viewer is loaded only on the slug page, not in the catalogue gallery.
+
+## Contact form
+
+The contact form posts to `/api/contact`, which forwards the inquiry to the
+PHP mail handler. Next.js serves files in `public` as static assets; it does not
+execute PHP. Deploy `backend/contact.php` to a PHP-enabled host, then configure
+the server-only `CONTACT_PHP_ENDPOINT` environment variable in each deployment
+with that handler's HTTPS URL. For local development, HTTP is allowed for localhost.
+
+The PHP host must have `mail()` configured. Its recipient and sender can be
+overridden with `CONTACT_TO_EMAILS` (comma-separated addresses) and
+`CONTACT_FROM_EMAIL`. Keep these deployment settings out of source control.
